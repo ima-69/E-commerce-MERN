@@ -2,7 +2,7 @@ import { Label } from "@radix-ui/react-label";
 
 export const registerFormControls = [
     {
-        name : 'username',
+        name : 'userName',
         Label : 'Username',
         placeholder : 'Enter your username',
         componentType : 'input',
