@@ -18,12 +18,8 @@ import UnauthPage from "./pages/unauth-page/index.jsx";
 
 function App() {
 
-  const isAuthenticated = true; // Replace with actual authentication logic
-  const user = {
-    name: "John Doe",
-    email: "john@example.com",
-    role: "user"
-  }; // Replace with actual user data
+  const isAuthenticated = false; // Replace with actual authentication logic
+  const user = null; // Replace with actual user data
 
   return (
     <div className="flex flex-col overflow-hidden bg-white ">
