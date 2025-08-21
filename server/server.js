@@ -1,12 +1,20 @@
+const dotenv = require('dotenv');
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+
+dotenv.config();
+
 const authRouter = require("./routes/auth/auth-routes");
 
-mongoose.connect('mongodb+srv://imanshaidr:12345idr@cluster0.kzufgaj.mongodb.net/')
-.then(() => console.log('MongoDB connected'))
-.catch(err => console.log(err));
+const adminProductRouter = require("./routes/admin/product-routes");
+
+
+
+mongoose.connect(process.env.mongodbURI)
+    .then(() => console.log('MongoDB connected'))
+    .catch(err => console.log(err));
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -29,6 +37,7 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 app.use("/api/auth", authRouter);
+app.use("/api/admin/products", adminProductRouter);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
