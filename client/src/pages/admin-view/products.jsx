@@ -47,10 +47,13 @@ const AdminProducts = () => {
     event.preventDefault();
 
     currentEditedId !== null
-      ? dispatch(
+              ? dispatch(
           editProduct({
             id: currentEditedId,
-            formData,
+            formData: {
+              ...formData,
+              salePrice: formData.salePrice || undefined,
+            },
           })
         ).then((data) => {
           console.log(data, "edit");
@@ -69,6 +72,7 @@ const AdminProducts = () => {
           addNewProduct({
             ...formData,
             image: uploadedImageUrl,
+            salePrice: formData.salePrice || undefined,
           })
         ).then((data) => {
           if (data?.payload?.success) {
@@ -96,7 +100,7 @@ const AdminProducts = () => {
 
   const isFormValid = () => {
     return Object.keys(formData)
-      .filter((currentKey) => currentKey !== "averageReview")
+      .filter((currentKey) => currentKey !== "averageReview" && currentKey !== "salePrice")
       .map((key) => formData[key] !== "")
       .every((item) => item);
   }
@@ -123,7 +127,7 @@ const AdminProducts = () => {
                 setCurrentEditedId={setCurrentEditedId}
                 product={productItem}
                 handleDelete={handleDelete}
-              />
+              />    
             ))
           : null} 
       </div>

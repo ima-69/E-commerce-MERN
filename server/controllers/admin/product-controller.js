@@ -68,7 +68,7 @@ const addProduct = async (req, res) => {
       category,
       brand,
       price,
-      salePrice,
+      salePrice: salePrice === "" ? undefined : salePrice,
       totalStock,
       averageReview,
     });
@@ -133,7 +133,7 @@ const editProduct = async (req, res) => {
     findProduct.category = category || findProduct.category;
     findProduct.brand = brand || findProduct.brand;
     findProduct.price = price === "" ? 0 : price || findProduct.price;
-    findProduct.salePrice = salePrice === "" ? 0 : salePrice || findProduct.salePrice;
+    findProduct.salePrice = salePrice === "" || salePrice === undefined ? undefined : salePrice || findProduct.salePrice;
     findProduct.totalStock = totalStock || findProduct.totalStock;
     findProduct.image = image || findProduct.image;
     findProduct.averageReview = averageReview || findProduct.averageReview;
