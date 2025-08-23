@@ -59,9 +59,7 @@ const UserCartItemsContent = ({ cartItem }) => {
       deleteCartItem({ userId: user?.id, productId: getCartItem?.productId })
     ).then((data) => {
       if (data?.payload?.success) {
-        toast({
-          title: "Cart item is deleted successfully",
-        });
+        toast.success("Cart item is deleted successfully");
       }
     });
   }
