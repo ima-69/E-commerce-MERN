@@ -11,31 +11,46 @@ const initialState = {
 export const fetchAllFilteredProducts = createAsyncThunk(
   "/products/fetchAllProducts",
   async ({ filterParams, sortParams }) => {
-    console.log(fetchAllFilteredProducts, "fetchAllFilteredProducts");
+    console.log("fetchAllFilteredProducts called with:", { filterParams, sortParams });
 
     const query = new URLSearchParams({
       ...filterParams,
       sortBy: sortParams,
     });
 
-    const result = await axios.get(
-      `${import.meta.env.VITE_BACKEND_URL}/api/shop/products/get?${query}`
-    );
+    const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+    console.log('Fetching products from:', `${backendUrl}/api/shop/products/get?${query}`);
 
-    console.log(result);
+    try {
+      const result = await axios.get(
+        `${backendUrl}/api/shop/products/get?${query}`
+      );
 
-    return result?.data;
+      console.log("Products result:", result);
+      return result?.data;
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      throw error;
+    }
   }
 );
 
 export const fetchProductDetails = createAsyncThunk(
   "/products/fetchProductDetails",
   async (id) => {
-    const result = await axios.get(
-      `${import.meta.env.VITE_BACKEND_URL}/api/shop/products/get/${id}`
-    );
-
-    return result?.data;
+    const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+    console.log('Fetching product details from:', `${backendUrl}/api/shop/products/get/${id}`);
+    
+    try {
+      const result = await axios.get(
+        `${backendUrl}/api/shop/products/get/${id}`
+      );
+      console.log('Product details result:', result);
+      return result?.data;
+    } catch (error) {
+      console.error('Error fetching product details:', error);
+      throw error;
+    }
   }
 );
 
