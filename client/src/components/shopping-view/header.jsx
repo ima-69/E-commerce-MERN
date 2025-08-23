@@ -19,41 +19,41 @@ import {
 } from "../ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { logoutUser } from "@/store/auth-slice";
-// import UserCartWrapper from "./cart-wrapper";
+import UserCartWrapper from "./cart-wrapper";
 import { useEffect, useState } from "react";
-// import { fetchCartItems } from "@/store/shop/cart-slice";
+import { fetchCartItems } from "@/store/shop/cart-slice";
 import { Label } from "../ui/label";
 
 const MenuItems = () => {
-  // const navigate = useNavigate();
-  // const location = useLocation();
-  // const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  // const handleNavigate = (getCurrentMenuItem) => {
-  //   sessionStorage.removeItem("filters");
-  //   const currentFilter =
-  //     getCurrentMenuItem.id !== "home" &&
-  //     getCurrentMenuItem.id !== "products" &&
-  //     getCurrentMenuItem.id !== "search"
-  //       ? {
-  //           category: [getCurrentMenuItem.id],
-  //         }
-  //       : null;
+  const handleNavigate = (getCurrentMenuItem) => {
+    sessionStorage.removeItem("filters");
+    const currentFilter =
+      getCurrentMenuItem.id !== "home" &&
+      getCurrentMenuItem.id !== "products" &&
+      getCurrentMenuItem.id !== "search"
+        ? {
+            category: [getCurrentMenuItem.id],
+          }
+        : null;
 
-  //   sessionStorage.setItem("filters", JSON.stringify(currentFilter));
+    sessionStorage.setItem("filters", JSON.stringify(currentFilter));
 
-  //   location.pathname.includes("listing") && currentFilter !== null
-  //     ? setSearchParams(
-  //         new URLSearchParams(`?category=${getCurrentMenuItem.id}`)
-  //       )
-  //     : navigate(getCurrentMenuItem.path);
-  // }
+    location.pathname.includes("listing") && currentFilter !== null
+      ? setSearchParams(
+          new URLSearchParams(`?category=${getCurrentMenuItem.id}`)
+        )
+      : navigate(getCurrentMenuItem.path);
+  }
 
   return (
     <nav className="flex flex-col mb-3 lg:mb-0 lg:items-center gap-6 lg:flex-row">
       {shoppingViewHeaderMenuItems.map((menuItem) => (
         <Label
-          //onClick={() => handleNavigate(menuItem)}
+          onClick={() => handleNavigate(menuItem)}
           className="text-sm font-medium cursor-pointer"
           key={menuItem.id}
         >
@@ -66,8 +66,8 @@ const MenuItems = () => {
 
 const HeaderRightContent = () => {
   const { user } = useSelector((state) => state.auth);
-  // const { cartItems } = useSelector((state) => state.shopCart);
-  // const [openCartSheet, setOpenCartSheet] = useState(false);
+  const { cartItems } = useSelector((state) => state.shopCart);
+  const [openCartSheet, setOpenCartSheet] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -75,36 +75,36 @@ const HeaderRightContent = () => {
     dispatch(logoutUser());
   };
 
-  // useEffect(() => {
-  //   dispatch(fetchCartItems(user?.id));
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchCartItems(user?.id));
+  }, [dispatch]);
 
   
 
   return (
     <div className="flex lg:items-center lg:flex-row flex-col gap-4">
-      {/* <Sheet open={openCartSheet} onOpenChange={() => setOpenCartSheet(false)}> */}
+      <Sheet open={openCartSheet} onOpenChange={() => setOpenCartSheet(false)}>
         <Button
-          // onClick={() => setOpenCartSheet(true)}
+          onClick={() => setOpenCartSheet(true)}
           variant="outline"
           size="icon"
-          // className="relative"
+          className="relative"
         >
           <ShoppingCart className="w-6 h-6" />
-          {/* <span className="absolute top-[-5px] right-[2px] font-bold text-sm">
+          <span className="absolute top-[-5px] right-[2px] font-bold text-sm">
             {cartItems?.items?.length || 0}
-          </span> */}
+          </span> 
           <span className="sr-only">User cart</span>
         </Button>
-        {/* <UserCartWrapper
+        <UserCartWrapper
           setOpenCartSheet={setOpenCartSheet}
           cartItems={
             cartItems && cartItems.items && cartItems.items.length > 0
               ? cartItems.items
               : []
           }
-        /> */}
-      {/* </Sheet>  */}
+        />
+      </Sheet>  
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>

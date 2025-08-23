@@ -13,6 +13,8 @@ const shopProductRouter = require("./routes/shop/products-routes");
 const shopReviewRouter = require("./routes/shop/review-routes");
 const shopCartRouter = require("./routes/shop/cart-routes");
 
+const commonFeatureRouter = require("./routes/common/feature-routes");
+
 mongoose.connect(process.env.mongodbURI)
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log(err));
@@ -42,6 +44,7 @@ app.use("/api/admin/products", adminProductRouter);
 app.use("/api/shop/products", shopProductRouter);
 app.use("/api/shop/review", shopReviewRouter);
 app.use("/api/shop/cart", shopCartRouter);
+app.use("/api/common/feature", commonFeatureRouter);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

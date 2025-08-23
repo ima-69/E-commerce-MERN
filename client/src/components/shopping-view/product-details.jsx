@@ -56,6 +56,8 @@ const ProductDetailsDialog = ({ open, setOpen, productDetails }) => {
       if (data?.payload?.success) {
         dispatch(fetchCartItems(user?.id));
         toast.success("Product added to cart successfully");
+      } else {
+        toast.error("Failed to add product to cart");
       }
     });
   }
@@ -77,13 +79,13 @@ const ProductDetailsDialog = ({ open, setOpen, productDetails }) => {
         reviewValue: rating,
       })
     ).then((data) => {
-      if (data.payload.success) {
+      if (data.payload?.success) {
         setRating(0);
         setReviewMsg("");
         dispatch(getReviews(productDetails?._id));
-        toast({
-          title: "Review added successfully!",
-        });
+        toast.success("Review added successfully");
+      } else {
+        toast.error("Failed to add review");
       }
     });
   };
