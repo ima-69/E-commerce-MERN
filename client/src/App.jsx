@@ -15,6 +15,7 @@ import ShoppingAccount from "./pages/shopping-view/account.jsx";
 import ShoppingCheckout from "./pages/shopping-view/checkout.jsx";
 import CheckAuth from "./components/common/check-auth.jsx";
 import UnauthPage from "./pages/unauth-page/index.jsx";
+import PaypalReturnPage from "./pages/shopping-view/paypal-return.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { checkAuth } from "./store/auth-slice/index.js";
@@ -63,6 +64,7 @@ function App() {
           <Route path="listing" element={<ShoppingListing />} />
           <Route path="account" element={<ShoppingAccount />} />
           <Route path="checkout" element={<ShoppingCheckout />} />
+          <Route path="paypal-return" element={<PaypalReturnPage />} />
         </Route>
         <Route path="/unauth-page" element={<UnauthPage />} />
         <Route path="*" element={<NotFound />} />
