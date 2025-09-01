@@ -1,6 +1,5 @@
 import ProductDetailsDialog from "@/components/shopping-view/product-details";
 import ShoppingProductTile from "@/components/shopping-view/product-tile";
-import { Input } from "@/components/ui/input";
 import { addToCart, fetchCartItems } from "@/store/shop/cart-slice";
 import { fetchProductDetails } from "@/store/shop/products-slice";
 import {
@@ -13,28 +12,25 @@ import { useSearchParams } from "react-router-dom";
 import { toast } from "sonner";
 
 const SearchProducts = () => {
-  const [keyword, setKeyword] = useState("");
   const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
   const { searchResults } = useSelector((state) => state.shopSearch);
   const { productDetails } = useSelector((state) => state.shopProducts);
 
   const { user } = useSelector((state) => state.auth);
-
   const { cartItems } = useSelector((state) => state.shopCart);
   
+  // Get search query from URL parameter
+  const searchQuery = searchParams.get('q') || '';
+  
   useEffect(() => {
-    if (keyword && keyword.trim() !== "" && keyword.trim().length > 3) {
-      setTimeout(() => {
-        setSearchParams(new URLSearchParams(`?keyword=${keyword}`));
-        dispatch(getSearchResults(keyword));
-      }, 1000);
+    if (searchQuery && searchQuery.trim() !== "" && searchQuery.trim().length > 0) {
+      dispatch(getSearchResults(searchQuery));
     } else {
-      setSearchParams(new URLSearchParams(`?keyword=${keyword}`));
       dispatch(resetSearchResults());
     }
-  }, [keyword]);
+  }, [searchQuery, dispatch]);
 
   const handleAddtoCart = (getCurrentProductId, getTotalStock) => {
     console.log(cartItems);
@@ -80,20 +76,19 @@ const SearchProducts = () => {
 
   return (
     <div className="container mx-auto md:px-6 px-4 py-8">
-      <div className="flex justify-center mb-8">
-        <div className="w-full flex items-center">
-          <Input
-            value={keyword}
-            name="keyword"
-            onChange={(event) => setKeyword(event.target.value)}
-            className="py-6"
-            placeholder="Search Products..."
-          />
+      {searchQuery && (
+        <div className="mb-8">
+          <h1 className="text-2xl font-semibold mb-2">
+            Search Results for: "{searchQuery}"
+          </h1>
         </div>
-      </div>
-      {!searchResults.length ? (
+      )}
+      {!searchResults.length && searchQuery ? (
         <h1 className="text-5xl font-extrabold">No result found!</h1>
       ) : null}
+      {!searchQuery && (
+        <h1 className="text-5xl font-extrabold">Search for products using the search bar above</h1>
+      )}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
         {searchResults.map((item) => (
           <ShoppingProductTile

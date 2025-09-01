@@ -1,4 +1,4 @@
-import { HousePlug, LogOut, Menu, ShoppingCart, UserCog, Settings } from "lucide-react";
+import { HousePlug, LogOut, Menu, ShoppingCart, UserCog, Settings, Search } from "lucide-react";
 import {
   Link,
   useLocation,
@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Button } from "../ui/button";
+import { Input } from "../ui/input";
 import { useDispatch, useSelector } from "react-redux";
 import { shoppingViewHeaderMenuItems } from "@/config";
 import {
@@ -23,6 +24,39 @@ import UserCartWrapper from "./cart-wrapper";
 import { useEffect, useState } from "react";
 import { fetchCartItems } from "@/store/shop/cart-slice";
 import { Label } from "../ui/label";
+
+const SearchInput = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      navigate(`/shop/search?q=${encodeURIComponent(searchTerm.trim())}`);
+      setSearchTerm("");
+    }
+  };
+
+  return (
+    <form onSubmit={handleSearch} className="relative">
+      <Input
+        type="text"
+        placeholder="Search products..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="w-64 pr-10"
+      />
+      <Button
+        type="submit"
+        size="sm"
+        variant="ghost"
+        className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+      >
+        <Search className="h-4 w-4" />
+      </Button>
+    </form>
+  );
+};
 
 const MenuItems = () => {
   const navigate = useNavigate();
@@ -51,15 +85,17 @@ const MenuItems = () => {
 
   return (
     <nav className="flex flex-col mb-3 lg:mb-0 lg:items-center gap-6 lg:flex-row">
-      {shoppingViewHeaderMenuItems.map((menuItem) => (
-        <Label
-          onClick={() => handleNavigate(menuItem)}
-          className="text-sm font-medium cursor-pointer"
-          key={menuItem.id}
-        >
-          {menuItem.label}
-        </Label>
-      ))}
+      {shoppingViewHeaderMenuItems
+        .filter((menuItem) => menuItem.id !== "search") // Remove search from menu items
+        .map((menuItem) => (
+          <Label
+            onClick={() => handleNavigate(menuItem)}
+            className="text-sm font-medium cursor-pointer"
+            key={menuItem.id}
+          >
+            {menuItem.label}
+          </Label>
+        ))}
     </nav>
   );
 }
@@ -85,6 +121,7 @@ const HeaderRightContent = () => {
   if (!isAuthenticated) {
     return (
       <div className="flex lg:items-center lg:flex-row flex-col gap-4">
+        <SearchInput />
         <Button
           onClick={() => navigate("/auth/login")}
           variant="default"
@@ -118,6 +155,8 @@ const HeaderRightContent = () => {
           Admin Mode
         </Button>
       )}
+
+      <SearchInput />
 
       <Sheet open={openCartSheet} onOpenChange={() => setOpenCartSheet(false)}>
         <Button
@@ -190,6 +229,9 @@ function ShoppingHeader() {
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="w-full max-w-xs">
+            <div className="mb-4">
+              <SearchInput />
+            </div>
             <MenuItems />
             <HeaderRightContent />
           </SheetContent>
