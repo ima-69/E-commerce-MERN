@@ -1,4 +1,4 @@
-import { HousePlug, LogOut, Menu, ShoppingCart, UserCog } from "lucide-react";
+import { HousePlug, LogOut, Menu, ShoppingCart, UserCog, Settings } from "lucide-react";
 import {
   Link,
   useLocation,
@@ -83,6 +83,19 @@ const HeaderRightContent = () => {
 
   return (
     <div className="flex lg:items-center lg:flex-row flex-col gap-4">
+      {/* Admin Mode Button - Only show for admin users */}
+      {user?.role === "admin" && (
+        <Button
+          onClick={() => navigate("/admin/dashboard")}
+          variant="outline"
+          size="sm"
+          className="flex items-center gap-2"
+        >
+          <Settings className="w-4 h-4" />
+          Admin Mode
+        </Button>
+      )}
+
       <Sheet open={openCartSheet} onOpenChange={() => setOpenCartSheet(false)}>
         <Button
           onClick={() => setOpenCartSheet(true)}

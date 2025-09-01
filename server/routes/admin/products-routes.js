@@ -9,8 +9,12 @@ const {
 } = require("../../controllers/admin/product-controller");
 
 const { upload } = require("../../helpers/cloudinary");
+const { adminMiddleware } = require("../../controllers/auth/auth-controller");
 
 const router = express.Router();
+
+// Apply admin middleware to all routes
+router.use(adminMiddleware);
 
 router.post("/upload-image", upload.single("my_file"), handleImageUpload);
 router.post("/add", addProduct);

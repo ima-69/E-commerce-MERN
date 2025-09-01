@@ -4,10 +4,12 @@ import {
   ChartNoAxesCombined,
   LayoutDashboard,
   ShoppingBasket,
+  User,
 } from "lucide-react";
 import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "../ui/sheet";
+import { Button } from "../ui/button";
 
 const adminSidebarMenuItems = [
   {
@@ -48,6 +50,21 @@ const MenuItems = ({ setOpen }) => {
           <span>{menuItem.label}</span>
         </div>
       ))}
+      
+      {/* User Mode Button */}
+      <div className="mt-6 pt-4 border-t">
+        <Button
+          onClick={() => {
+            navigate("/shop/home");
+            setOpen ? setOpen(false) : null;
+          }}
+          variant="outline"
+          className="w-full flex items-center gap-2"
+        >
+          <User size={20} />
+          <span>User Mode</span>
+        </Button>
+      </div>
     </nav>
   );
 }

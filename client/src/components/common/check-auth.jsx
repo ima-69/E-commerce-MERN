@@ -48,13 +48,8 @@ const CheckAuth = ({ isAuthenticated, user, children }) => {
     return <Navigate to="/unauth-page" />;
   }
 
-  if (
-    isAuthenticated &&
-    user?.role === "admin" &&
-    location.pathname.includes("shop")
-  ) {
-    return <Navigate to="/admin/dashboard" />;
-  }
+  // Removed the restriction that prevented admins from accessing shop routes
+  // Now admins can access both admin and shop routes
 
   return <>{children}</>;
 };

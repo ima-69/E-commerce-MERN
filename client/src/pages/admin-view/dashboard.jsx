@@ -3,12 +3,14 @@ import { Button } from "@/components/ui/button";
 import { addFeatureImage, getFeatureImages } from "@/store/common-slice";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function AdminDashboard() {
   const [imageFile, setImageFile] = useState(null);
   const [uploadedImageUrl, setUploadedImageUrl] = useState("");
   const [imageLoadingState, setImageLoadingState] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { featureImageList } = useSelector((state) => state.commonFeature);
 
   console.log(uploadedImageUrl, "uploadedImageUrl");
@@ -23,6 +25,10 @@ function AdminDashboard() {
     });
   }
 
+  const handleNavigateToUserHome = () => {
+    navigate("/shop/home");
+  };
+
   useEffect(() => {
     dispatch(getFeatureImages());
   }, [dispatch]);
@@ -31,6 +37,17 @@ function AdminDashboard() {
 
   return (
     <div>
+      {/* Button to navigate to user home page */}
+      <div className="mb-6">
+        <Button 
+          onClick={handleNavigateToUserHome} 
+          variant="outline" 
+          className="w-full sm:w-auto"
+        >
+          🛍️ Go to User Home Page
+        </Button>
+      </div>
+
       <ProductImageUpload
         imageFile={imageFile}
         setImageFile={setImageFile}
