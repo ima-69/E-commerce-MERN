@@ -229,9 +229,6 @@ function ShoppingHeader() {
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="w-full max-w-xs">
-            <div className="mb-4">
-              <SearchInput />
-            </div>
             <MenuItems />
             <HeaderRightContent />
           </SheetContent>
