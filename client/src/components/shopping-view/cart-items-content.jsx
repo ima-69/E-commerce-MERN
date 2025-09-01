@@ -2,77 +2,116 @@ import { Minus, Plus, Trash } from "lucide-react";
 import { Button } from "../ui/button";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCartItem, updateCartQuantity } from "@/store/shop/cart-slice";
+import { updateGuestCartQuantity, removeFromGuestCart } from "@/store/guest-cart-slice";
 import { toast } from "sonner";
 
 
-const UserCartItemsContent = ({ cartItem }) => {
+const UserCartItemsContent = ({ cartItem, isGuest = false }) => {
   const { user } = useSelector((state) => state.auth);
   const { cartItems } = useSelector((state) => state.shopCart);
   const { productList } = useSelector((state) => state.shopProducts);
   const dispatch = useDispatch();
 
   const handleUpdateQuantity = (getCartItem, typeOfAction) => {
-    if (typeOfAction == "plus") {
-      let getCartItems = cartItems.items || [];
+    if (isGuest) {
+      // Handle guest cart quantity update
+      const newQuantity = typeOfAction === "plus" 
+        ? getCartItem?.quantity + 1 
+        : getCartItem?.quantity - 1;
 
-      if (getCartItems.length) {
-        const indexOfCurrentCartItem = getCartItems.findIndex(
-          (item) => item.productId === getCartItem?.productId
-        );
+      // Check stock limit for guest cart
+      if (typeOfAction === "plus") {
+        const product = getCartItem?.product;
+        if (product && newQuantity > product.totalStock) {
+          toast.error(`Only ${product.totalStock} quantity can be added for this item`);
+          return;
+        }
+      }
 
-        const getCurrentProductIndex = productList.findIndex(
-          (product) => product._id === getCartItem?.productId
-        );
-        const getTotalStock = productList[getCurrentProductIndex].totalStock;
+      dispatch(updateGuestCartQuantity({
+        productId: getCartItem?.productId,
+        quantity: newQuantity
+      }));
+      toast.success("Cart item is updated successfully");
+    } else {
+      // Handle authenticated user cart quantity update
+      if (typeOfAction == "plus") {
+        let getCartItems = cartItems.items || [];
 
-        console.log(getCurrentProductIndex, getTotalStock, "getTotalStock");
+        if (getCartItems.length) {
+          const indexOfCurrentCartItem = getCartItems.findIndex(
+            (item) => item.productId === getCartItem?.productId
+          );
 
-        if (indexOfCurrentCartItem > -1) {
-          const getQuantity = getCartItems[indexOfCurrentCartItem].quantity;
-          if (getQuantity + 1 > getTotalStock) {
-            toast.error(`Only ${getTotalStock} quantity can be added for this item`);
+          const getCurrentProductIndex = productList.findIndex(
+            (product) => product._id === getCartItem?.productId
+          );
+          const getTotalStock = productList[getCurrentProductIndex].totalStock;
 
-            return;
+          console.log(getCurrentProductIndex, getTotalStock, "getTotalStock");
+
+          if (indexOfCurrentCartItem > -1) {
+            const getQuantity = getCartItems[indexOfCurrentCartItem].quantity;
+            if (getQuantity + 1 > getTotalStock) {
+              toast.error(`Only ${getTotalStock} quantity can be added for this item`);
+              return;
+            }
           }
         }
       }
-    }
 
-    dispatch(
-      updateCartQuantity({
-        userId: user?.id,
-        productId: getCartItem?.productId,
-        quantity:
-          typeOfAction === "plus"
-            ? getCartItem?.quantity + 1
-            : getCartItem?.quantity - 1,
-      })
-    ).then((data) => {
-      if (data?.payload?.success) {
-        toast.success("Cart item is updated successfully");
-      }
-    });
+      dispatch(
+        updateCartQuantity({
+          userId: user?.id,
+          productId: getCartItem?.productId,
+          quantity:
+            typeOfAction === "plus"
+              ? getCartItem?.quantity + 1
+              : getCartItem?.quantity - 1,
+        })
+      ).then((data) => {
+        if (data?.payload?.success) {
+          toast.success("Cart item is updated successfully");
+        }
+      });
+    }
   }
 
   const handleCartItemDelete = (getCartItem) => {
-    dispatch(
-      deleteCartItem({ userId: user?.id, productId: getCartItem?.productId })
-    ).then((data) => {
-      if (data?.payload?.success) {
-        toast.success("Cart item is deleted successfully");
-      }
-    });
+    if (isGuest) {
+      // Handle guest cart item deletion
+      dispatch(removeFromGuestCart({
+        productId: getCartItem?.productId
+      }));
+      toast.success("Cart item is deleted successfully");
+    } else {
+      // Handle authenticated user cart item deletion
+      dispatch(
+        deleteCartItem({ userId: user?.id, productId: getCartItem?.productId })
+      ).then((data) => {
+        if (data?.payload?.success) {
+          toast.success("Cart item is deleted successfully");
+        }
+      });
+    }
   }
+
+  // Get the correct data based on guest or authenticated user
+  const itemImage = isGuest ? cartItem?.product?.image : cartItem?.image;
+  const itemTitle = isGuest ? cartItem?.product?.title : cartItem?.title;
+  const itemPrice = isGuest 
+    ? (cartItem?.product?.salePrice > 0 ? cartItem?.product?.salePrice : cartItem?.product?.price)
+    : (cartItem?.salePrice > 0 ? cartItem?.salePrice : cartItem?.price);
 
   return (
     <div className="flex items-center space-x-4"> 
       <img
-        src={cartItem?.image}
-        alt={cartItem?.title}
+        src={itemImage}
+        alt={itemTitle}
         className="w-20 h-20 rounded object-cover"
       />
       <div className="flex-1">
-        <h3 className="font-extrabold">{cartItem?.title}</h3>
+        <h3 className="font-extrabold">{itemTitle}</h3>
         <div className="flex items-center gap-2 mt-1">
           <Button
             variant="outline"
@@ -92,17 +131,13 @@ const UserCartItemsContent = ({ cartItem }) => {
             onClick={() => handleUpdateQuantity(cartItem, "plus")}
           >
             <Plus className="w-4 h-4" />
-            <span className="sr-only">Decrease</span>
+            <span className="sr-only">Increase</span>
           </Button>
         </div>
       </div>
       <div className="flex flex-col items-end">
         <p className="font-semibold">
-          $
-          {(
-            (cartItem?.salePrice > 0 ? cartItem?.salePrice : cartItem?.price) *
-            cartItem?.quantity
-          ).toFixed(2)}
+          ${(itemPrice * cartItem?.quantity).toFixed(2)}
         </p>
         <Trash
           onClick={() => handleCartItemDelete(cartItem)}

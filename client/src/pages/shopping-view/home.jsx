@@ -27,6 +27,7 @@ import {
 import ShoppingProductTile from "@/components/shopping-view/product-tile";
 import { useNavigate } from "react-router-dom";
 import { addToCart, fetchCartItems } from "@/store/shop/cart-slice";
+import { addToGuestCart } from "@/store/guest-cart-slice";
 import { toast } from "sonner";
 import ProductDetailsDialog from "@/components/shopping-view/product-details";
 import { getFeatureImages } from "@/store/common-slice";
@@ -57,7 +58,7 @@ const ShoppingHome = () => {
 
   const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
 
-  const { user } = useSelector((state) => state.auth);
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -77,19 +78,33 @@ const ShoppingHome = () => {
     dispatch(fetchProductDetails(getCurrentProductId));
   }
 
-  const handleAddtoCart = (getCurrentProductId) => {
-    dispatch(
-      addToCart({
-        userId: user?.id,
-        productId: getCurrentProductId,
-        quantity: 1,
-      })
-    ).then((data) => {
-      if (data?.payload?.success) {
-        dispatch(fetchCartItems(user?.id));
+  const handleAddtoCart = (getCurrentProductId, getTotalStock) => {
+    if (!isAuthenticated) {
+      // Handle guest cart
+      const product = productList.find(p => p._id === getCurrentProductId);
+      if (product) {
+        dispatch(addToGuestCart({
+          productId: getCurrentProductId,
+          quantity: 1,
+          product: product
+        }));
         toast.success("Product is added to cart");
       }
-    });
+    } else {
+      // Handle authenticated user cart
+      dispatch(
+        addToCart({
+          userId: user?.id,
+          productId: getCurrentProductId,
+          quantity: 1,
+        })
+      ).then((data) => {
+        if (data?.payload?.success) {
+          dispatch(fetchCartItems(user?.id));
+          toast.success("Product is added to cart");
+        }
+      });
+    }
   }
 
   useEffect(() => {

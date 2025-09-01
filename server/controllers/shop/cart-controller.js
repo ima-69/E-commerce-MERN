@@ -229,9 +229,85 @@ const deleteCartItem = async (req, res) => {
   }
 };
 
+const mergeGuestCart = async (req, res) => {
+  try {
+    const { userId, guestCartItems } = req.body;
+
+    if (!userId || !guestCartItems || !Array.isArray(guestCartItems)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid data provided!",
+      });
+    }
+
+    // Get or create user cart
+    let cart = await Cart.findOne({ userId });
+
+    if (!cart) {
+      cart = new Cart({ userId, items: [] });
+    }
+
+    // Merge guest cart items with user cart
+    for (const guestItem of guestCartItems) {
+      const { productId, quantity } = guestItem;
+
+      // Verify product exists
+      const product = await Product.findById(productId);
+      if (!product) {
+        continue; // Skip invalid products
+      }
+
+      // Check if product already exists in cart
+      const existingItemIndex = cart.items.findIndex(
+        (item) => item.productId.toString() === productId
+      );
+
+      if (existingItemIndex === -1) {
+        // Add new item
+        cart.items.push({ productId, quantity });
+      } else {
+        // Update existing item quantity
+        cart.items[existingItemIndex].quantity += quantity;
+      }
+    }
+
+    await cart.save();
+
+    // Populate and return the updated cart
+    await cart.populate({
+      path: "items.productId",
+      select: "image title price salePrice",
+    });
+
+    const populateCartItems = cart.items.map((item) => ({
+      productId: item.productId ? item.productId._id : null,
+      image: item.productId ? item.productId.image : null,
+      title: item.productId ? item.productId.title : "Product not found",
+      price: item.productId ? item.productId.price : null,
+      salePrice: item.productId ? item.productId.salePrice : null,
+      quantity: item.quantity,
+    }));
+
+    res.status(200).json({
+      success: true,
+      data: {
+        ...cart._doc,
+        items: populateCartItems,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: "Error merging cart",
+    });
+  }
+};
+
 module.exports = {
   addToCart,
   updateCartItemQty,
   deleteCartItem,
   fetchCartItems,
+  mergeGuestCart,
 };

@@ -16,6 +16,7 @@ import {
   fetchProductDetails, 
 } from "@/store/shop/products-slice";
 import { addToCart, fetchCartItems } from "@/store/shop/cart-slice";
+import { addToGuestCart } from "@/store/guest-cart-slice";
 import { ArrowUpDownIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -42,7 +43,7 @@ const ShoppingListing = () => {
   const dispatch = useDispatch();
   const { productList, productDetails } = useSelector((state) => state.shopProducts);
   const { cartItems } = useSelector((state) => state.shopCart);
-  const { user } = useSelector((state) => state.auth);
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -81,34 +82,48 @@ const ShoppingListing = () => {
   };
 
   const handleAddtoCart = (getCurrentProductId, getTotalStock) => {
-    console.log(cartItems);
-    let getCartItems = cartItems.items || [];
-
-    if (getCartItems.length) {
-      const indexOfCurrentItem = getCartItems.findIndex(
-        (item) => item.productId === getCurrentProductId
-      );
-      if (indexOfCurrentItem > -1) {
-        const getQuantity = getCartItems[indexOfCurrentItem].quantity;
-        if (getQuantity + 1 > getTotalStock) {
-          toast.error(`Only ${getQuantity} quantity can be added for this item`); 
-          return;
-        }
-      }
-    }
-
-    dispatch(
-      addToCart({
-        userId: user?.id,
-        productId: getCurrentProductId,
-        quantity: 1,
-      })
-    ).then((data) => {
-      if (data?.payload?.success) {
-        dispatch(fetchCartItems(user?.id));
+    if (!isAuthenticated) {
+      // Handle guest cart
+      const product = productList.find(p => p._id === getCurrentProductId);
+      if (product) {
+        dispatch(addToGuestCart({
+          productId: getCurrentProductId,
+          quantity: 1,
+          product: product
+        }));
         toast.success("Product is added to cart");
       }
-    });
+    } else {
+      // Handle authenticated user cart
+      console.log(cartItems);
+      let getCartItems = cartItems.items || [];
+
+      if (getCartItems.length) {
+        const indexOfCurrentItem = getCartItems.findIndex(
+          (item) => item.productId === getCurrentProductId
+        );
+        if (indexOfCurrentItem > -1) {
+          const getQuantity = getCartItems[indexOfCurrentItem].quantity;
+          if (getQuantity + 1 > getTotalStock) {
+            toast.error(`Only ${getQuantity} quantity can be added for this item`); 
+            return;
+          }
+        }
+      }
+
+      dispatch(
+        addToCart({
+          userId: user?.id,
+          productId: getCurrentProductId,
+          quantity: 1,
+        })
+      ).then((data) => {
+        if (data?.payload?.success) {
+          dispatch(fetchCartItems(user?.id));
+          toast.success("Product is added to cart");
+        }
+      });
+    }
   }
 
   useEffect(() => {

@@ -6,6 +6,7 @@ import { Separator } from "../ui/separator";
 import { Input } from "../ui/input";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, fetchCartItems } from "@/store/shop/cart-slice";
+import { addToGuestCart } from "@/store/guest-cart-slice";
 import { toast } from "sonner";
 import { setProductDetails } from "@/store/shop/products-slice";
 import { Label } from "../ui/label";
@@ -17,7 +18,7 @@ const ProductDetailsDialog = ({ open, setOpen, productDetails }) => {
   const [reviewMsg, setReviewMsg] = useState("");
   const [rating, setRating] = useState(0);
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
   const { cartItems } = useSelector((state) => state.shopCart);
   const { reviews } = useSelector((state) => state.shopReview);
 
@@ -32,34 +33,47 @@ const ProductDetailsDialog = ({ open, setOpen, productDetails }) => {
   }
 
   const handleAddToCart = (getCurrentProductId, getTotalStock) => {
-    let getCartItems = cartItems.items || [];
+    if (!isAuthenticated) {
+      // Handle guest cart
+      if (productDetails) {
+        dispatch(addToGuestCart({
+          productId: getCurrentProductId,
+          quantity: 1,
+          product: productDetails
+        }));
+        toast.success("Product is added to cart");
+      }
+    } else {
+      // Handle authenticated user cart
+      let getCartItems = cartItems.items || [];
 
-    if (getCartItems.length) {
-      const indexOfCurrentItem = getCartItems.findIndex(
-        (item) => item.productId === getCurrentProductId
-      );
-      if (indexOfCurrentItem > -1) {
-        const getQuantity = getCartItems[indexOfCurrentItem].quantity;
-        if (getQuantity + 1 > getTotalStock) {
-          toast.error(`Only ${getTotalStock} quantity can be added for this item`);
-          return;
+      if (getCartItems.length) {
+        const indexOfCurrentItem = getCartItems.findIndex(
+          (item) => item.productId === getCurrentProductId
+        );
+        if (indexOfCurrentItem > -1) {
+          const getQuantity = getCartItems[indexOfCurrentItem].quantity;
+          if (getQuantity + 1 > getTotalStock) {
+            toast.error(`Only ${getTotalStock} quantity can be added for this item`);
+            return;
+          }
         }
       }
+      dispatch(
+        addToCart({
+          userId: user?.id,
+          productId: getCurrentProductId,
+          quantity: 1,
+        })
+      ).then((data) => {
+        if (data?.payload?.success) {
+          dispatch(fetchCartItems(user?.id));
+          toast.success("Product added to cart successfully");
+        } else {
+          toast.error("Failed to add product to cart");
+        }
+      });
     }
-    dispatch(
-      addToCart({
-        userId: user?.id,
-        productId: getCurrentProductId,
-        quantity: 1,
-      })
-    ).then((data) => {
-      if (data?.payload?.success) {
-        dispatch(fetchCartItems(user?.id));
-        toast.success("Product added to cart successfully");
-      } else {
-        toast.error("Failed to add product to cart");
-      }
-    });
   }
 
   const handleDialogClose = () => {

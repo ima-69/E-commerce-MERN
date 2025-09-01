@@ -103,6 +103,7 @@ const MenuItems = () => {
 const HeaderRightContent = () => {
   const { user, isAuthenticated } = useSelector((state) => state.auth);
   const { cartItems } = useSelector((state) => state.shopCart);
+  const { guestCartItems } = useSelector((state) => state.guestCart);
   const [openCartSheet, setOpenCartSheet] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -122,6 +123,28 @@ const HeaderRightContent = () => {
     return (
       <div className="flex lg:items-center lg:flex-row flex-col gap-4">
         <SearchInput />
+        
+        {/* Guest Cart Button */}
+        <Sheet open={openCartSheet} onOpenChange={() => setOpenCartSheet(false)}>
+          <Button
+            onClick={() => setOpenCartSheet(true)}
+            variant="outline"
+            size="icon"
+            className="relative"
+          >
+            <ShoppingCart className="w-6 h-6" />
+            <span className="absolute top-[-5px] right-[2px] font-bold text-sm">
+              {guestCartItems?.length || 0}
+            </span> 
+            <span className="sr-only">Guest cart</span>
+          </Button>
+          <UserCartWrapper
+            setOpenCartSheet={setOpenCartSheet}
+            cartItems={guestCartItems || []}
+            isGuest={true}
+          />
+        </Sheet>
+
         <Button
           onClick={() => navigate("/auth/login")}
           variant="default"
@@ -178,6 +201,7 @@ const HeaderRightContent = () => {
               ? cartItems.items
               : []
           }
+          isGuest={false}
         />
       </Sheet>  
 

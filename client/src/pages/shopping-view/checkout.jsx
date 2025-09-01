@@ -5,18 +5,42 @@ import UserCartItemsContent from "@/components/shopping-view/cart-items-content"
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { createNewOrder } from "@/store/shop/order-slice";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 const ShoppingCheckout = () => {
   const { cartItems } = useSelector((state) => state.shopCart);
-  const { user } = useSelector((state) => state.auth);
+  const { guestCartItems } = useSelector((state) => state.guestCart);
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
   const { approvalURL } = useSelector((state) => state.shopOrder);
   const [currentSelectedAddress, setCurrentSelectedAddress] = useState(null);
   const [isPaymentStart, setIsPaymemntStart] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   console.log(currentSelectedAddress, "cartItems");
+
+  // Redirect guest users to login
+  if (!isAuthenticated) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[400px] p-8">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold mb-4">Login Required</h2>
+          <p className="text-gray-600 mb-6">
+            Please login to proceed with checkout. Your cart items will be preserved.
+          </p>
+          <div className="space-x-4">
+            <Button onClick={() => navigate("/auth/login")} variant="default">
+              Login
+            </Button>
+            <Button onClick={() => navigate("/auth/register")} variant="outline">
+              Register
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const totalCartAmount =
     cartItems && cartItems.items && cartItems.items.length > 0
