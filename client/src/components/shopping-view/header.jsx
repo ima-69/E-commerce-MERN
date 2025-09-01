@@ -65,7 +65,7 @@ const MenuItems = () => {
 }
 
 const HeaderRightContent = () => {
-  const { user } = useSelector((state) => state.auth);
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
   const { cartItems } = useSelector((state) => state.shopCart);
   const [openCartSheet, setOpenCartSheet] = useState(false);
   const navigate = useNavigate();
@@ -76,11 +76,34 @@ const HeaderRightContent = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchCartItems(user?.id));
-  }, [dispatch]);
+    if (user?.id) {
+      dispatch(fetchCartItems(user.id));
+    }
+  }, [dispatch, user?.id]);
 
-  
+  // Show login button for non-authenticated users
+  if (!isAuthenticated) {
+    return (
+      <div className="flex lg:items-center lg:flex-row flex-col gap-4">
+        <Button
+          onClick={() => navigate("/auth/login")}
+          variant="default"
+          size="sm"
+        >
+          Login
+        </Button>
+        <Button
+          onClick={() => navigate("/auth/register")}
+          variant="outline"
+          size="sm"
+        >
+          Register
+        </Button>
+      </div>
+    );
+  }
 
+  // Show authenticated user content
   return (
     <div className="flex lg:items-center lg:flex-row flex-col gap-4">
       {/* Admin Mode Button - Only show for admin users */}
@@ -155,7 +178,7 @@ function ShoppingHeader() {
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
       <div className="flex h-16 items-center justify-between px-4 md:px-6">
-        <Link to="/shop/home" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2">
           <HousePlug className="h-6 w-6" />
           <span className="font-bold">SHOPZY</span>
         </Link>

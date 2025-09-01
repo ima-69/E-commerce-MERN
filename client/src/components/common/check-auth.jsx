@@ -6,9 +6,22 @@ const CheckAuth = ({ isAuthenticated, user, children }) => {
 
   console.log(location.pathname, isAuthenticated);
 
+  // Define public routes that don't require authentication
+  const publicRoutes = [
+    "/",
+    "/shop/home",
+    "/shop/listing",
+    "/shop/search"
+  ];
+
+  const isPublicRoute = publicRoutes.some(route => 
+    location.pathname === route || location.pathname.startsWith(route + "/")
+  );
+
+  // Handle root path redirect
   if (location.pathname === "/") {
     if (!isAuthenticated) {
-      return <Navigate to="/auth/login" />;
+      return <Navigate to="/shop/home" />;
     } else {
       if (user?.role === "admin") {
         return <Navigate to="/admin/dashboard" />;
@@ -18,6 +31,12 @@ const CheckAuth = ({ isAuthenticated, user, children }) => {
     }
   }
 
+  // Allow public access to public routes
+  if (isPublicRoute) {
+    return <>{children}</>;
+  }
+
+  // Redirect to login for protected routes if not authenticated
   if (
     !isAuthenticated &&
     !(
@@ -28,6 +47,7 @@ const CheckAuth = ({ isAuthenticated, user, children }) => {
     return <Navigate to="/auth/login" />;
   }
 
+  // Redirect authenticated users away from login/register pages
   if (
     isAuthenticated &&
     (location.pathname.includes("/login") ||
@@ -40,6 +60,7 @@ const CheckAuth = ({ isAuthenticated, user, children }) => {
     }
   }
 
+  // Block non-admin users from admin routes
   if (
     isAuthenticated &&
     user?.role !== "admin" &&
