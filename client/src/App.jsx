@@ -23,6 +23,15 @@ import { Skeleton } from "@/components/ui/skeleton";
 import PaypalReturnPage from "./pages/shopping-view/paypal-return";
 import PaymentSuccessPage from "./pages/shopping-view/payment-success";
 import SearchProducts from "./pages/shopping-view/search";
+import OrderTracking from "./pages/shopping-view/order-tracking";
+import SizeGuide from "./pages/shopping-view/size-guide";
+import ReturnsExchanges from "./pages/shopping-view/returns-exchanges";
+import FAQ from "./pages/shopping-view/faq";
+import ContactUs from "./pages/shopping-view/contact-us";
+import PrivacyPolicy from "./pages/shopping-view/privacy-policy";
+import TermsOfService from "./pages/shopping-view/terms-of-service";
+import CookiePolicy from "./pages/shopping-view/cookie-policy";
+import Sitemap from "./pages/shopping-view/sitemap";
 
 function App() {
   const { user, isAuthenticated, isLoading } = useSelector(
@@ -90,6 +99,15 @@ function App() {
           <Route path="paypal-return" element={<PaypalReturnPage />} />
           <Route path="payment-success" element={<PaymentSuccessPage />} />
           <Route path="search" element={<SearchProducts />} />
+          <Route path="order-tracking" element={<OrderTracking />} />
+          <Route path="size-guide" element={<SizeGuide />} />
+          <Route path="returns-exchanges" element={<ReturnsExchanges />} />
+          <Route path="faq" element={<FAQ />} />
+          <Route path="contact-us" element={<ContactUs />} />
+          <Route path="privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="terms-of-service" element={<TermsOfService />} />
+          <Route path="cookie-policy" element={<CookiePolicy />} />
+          <Route path="sitemap" element={<Sitemap />} />
         </Route>
         <Route path="/unauth-page" element={<UnauthPage />} />
         <Route path="*" element={<NotFound />} />
