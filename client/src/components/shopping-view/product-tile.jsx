@@ -2,6 +2,7 @@ import { Card, CardContent, CardFooter } from "../ui/card";
 import { Button } from "../ui/button";
 import { brandOptionsMap, categoryOptionsMap } from "@/config";
 import { Badge } from "../ui/badge";
+import WishlistButton from "../common/wishlist-button";
 
 const ShoppingProductTile = ({
   product,
@@ -17,7 +18,7 @@ const ShoppingProductTile = ({
           <img
             src={product?.image}
             alt={product?.title}
-            className="w-full h-[250px] object-cover rounded-t-lg"
+            className="w-full h-[180px] object-cover rounded-t-lg"
           />
           {product?.totalStock === 0 ? (
             <Badge className="absolute top-2 left-2 bg-red-500 hover:bg-red-600">
@@ -33,33 +34,33 @@ const ShoppingProductTile = ({
             </Badge>
           ) : null}
         </div>
-        <CardContent className="p-4">
-          <h2 className="text-xl font-bold mb-2">{product?.title}</h2>
-          <div className="flex justify-between items-center mb-2">
-            <span className="text-[16px] text-muted-foreground">
+        <CardContent className="p-2">
+          <h2 className="text-base font-bold mb-1 line-clamp-2">{product?.title}</h2>
+          <div className="flex justify-between items-center mb-1">
+            <span className="text-xs text-muted-foreground">
               {categoryOptionsMap[product?.category]} 
             </span>
-            <span className="text-[16px] text-muted-foreground">
+            <span className="text-xs text-muted-foreground">
               {brandOptionsMap[product?.brand]}
             </span>
           </div>
-          <div className="flex justify-between items-center mb-2">
+          <div className="flex justify-between items-center">
             <span
               className={`${
                 product?.salePrice > 0 ? "line-through" : ""
-              } text-lg font-semibold text-primary`}
+              } text-sm font-semibold text-primary`}
             >
               ${product?.price}
             </span>
             {product?.salePrice > 0 ? (
-              <span className="text-lg font-semibold text-primary">
+              <span className="text-sm font-semibold text-primary">
                 ${product?.salePrice}
               </span>
             ) : null}
           </div>
         </CardContent>
       </div>
-      <CardFooter>
+      <CardFooter className="flex flex-col gap-1 p-2 pt-0">
         {product?.totalStock === 0 ? (
           <Button className="w-full opacity-60 cursor-not-allowed">
             Out Of Stock
@@ -72,6 +73,7 @@ const ShoppingProductTile = ({
             Add to cart
           </Button>
         )}
+        <WishlistButton productId={product?._id} className="w-full" />
       </CardFooter>
     </Card>
   );

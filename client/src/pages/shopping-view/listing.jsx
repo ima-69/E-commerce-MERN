@@ -17,6 +17,7 @@ import {
 } from "@/store/shop/products-slice";
 import { addToCart, fetchCartItems } from "@/store/shop/cart-slice";
 import { addToGuestCart } from "@/store/guest-cart-slice";
+import { checkWishlistStatus } from "@/store/shop/wishlist-slice";
 import { ArrowUpDownIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -144,6 +145,15 @@ const ShoppingListing = () => {
         fetchAllFilteredProducts({ filterParams: filters, sortParams: sort })
       );
   }, [dispatch, sort, filters]);
+
+  // Check wishlist status for all products when product list changes
+  useEffect(() => {
+    if (isAuthenticated && user?.id && productList && productList.length > 0) {
+      productList.forEach((product) => {
+        dispatch(checkWishlistStatus({ userId: user.id, productId: product._id }));
+      });
+    }
+  }, [dispatch, isAuthenticated, user?.id, productList]);
 
   useEffect(() => {
     console.log("productDetails changed:", productDetails);

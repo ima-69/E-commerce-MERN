@@ -11,6 +11,7 @@ import shopCartSlice from "./shop/cart-slice";
 import shopAddressSlice from "./shop/address-slice";
 import shopOrderSlice from "./shop/order-slice";
 import shopSearchSlice from "./shop/search-slice";
+import shopWishlistSlice from "./shop/wishlist-slice";
 
 import guestCartSlice from "./guest-cart-slice";
 
@@ -29,6 +30,7 @@ const store = configureStore({
         shopAddress: shopAddressSlice,
         shopOrder: shopOrderSlice,
         shopSearch: shopSearchSlice,
+        shopWishlist: shopWishlistSlice,
 
         guestCart: guestCartSlice,
 
