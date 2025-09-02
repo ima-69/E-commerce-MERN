@@ -59,16 +59,23 @@ function AdminDashboard() {
         // isEditMode={currentEditedId !== null}
       />
       <Button onClick={handleUploadFeatureImage} className="mt-5 w-full">
-        Upload
+        Upload Feature Image
       </Button>
       <div className="flex flex-col gap-4 mt-5">
         {featureImageList && featureImageList.length > 0
-          ? featureImageList.map((featureImgItem) => (
-              <div className="relative">
-                <img
-                  src={featureImgItem.image}
-                  className="w-full h-[300px] object-cover rounded-t-lg"
-                />
+          ? featureImageList.map((featureImgItem, index) => (
+              <div key={index} className="relative">
+                {featureImgItem.image && featureImgItem.image.trim() !== "" ? (
+                  <img
+                    src={featureImgItem.image}
+                    alt={`Feature image ${index + 1}`}
+                    className="w-full h-[300px] object-cover rounded-t-lg"
+                  />
+                ) : (
+                  <div className="w-full h-[300px] bg-gray-200 rounded-t-lg flex items-center justify-center">
+                    <p className="text-gray-500">No image available</p>
+                  </div>
+                )}
               </div>
             ))
           : null}

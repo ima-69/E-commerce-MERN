@@ -6,6 +6,7 @@ const initialState = {
   isLoading: false,
   productList: [],
   productDetails: null,
+  newArrivals: [],
 };
 
 export const fetchAllFilteredProducts = createAsyncThunk(
@@ -54,6 +55,25 @@ export const fetchProductDetails = createAsyncThunk(
   }
 );
 
+export const fetchNewArrivals = createAsyncThunk(
+  "/products/fetchNewArrivals",
+  async (limit = 8) => {
+    const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+    console.log('Fetching new arrivals from:', `${backendUrl}/api/shop/products/get?sortBy=createdAt-desc&limit=${limit}`);
+    
+    try {
+      const result = await axios.get(
+        `${backendUrl}/api/shop/products/get?sortBy=createdAt-desc&limit=${limit}`
+      );
+      console.log('New arrivals result:', result);
+      return result?.data;
+    } catch (error) {
+      console.error('Error fetching new arrivals:', error);
+      throw error;
+    }
+  }
+);
+
 const shoppingProductSlice = createSlice({
   name: "shoppingProducts",
   initialState,
@@ -85,6 +105,17 @@ const shoppingProductSlice = createSlice({
       .addCase(fetchProductDetails.rejected, (state, action) => {
         state.isLoading = false;
         state.productDetails = null;
+      })
+      .addCase(fetchNewArrivals.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchNewArrivals.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.newArrivals = action.payload.data;
+      })
+      .addCase(fetchNewArrivals.rejected, (state, action) => {
+        state.isLoading = false;
+        state.newArrivals = [];
       });
   },
 });

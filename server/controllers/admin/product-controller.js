@@ -3,6 +3,11 @@ const Product = require("../../models/Product");
 
 const handleImageUpload = async (req, res) => {
   try {
+    console.log("Image upload request received");
+    console.log("Request headers:", req.headers);
+    console.log("Request file:", req.file);
+    console.log("Request body:", req.body);
+    
     // Check if file exists
     if (!req.file) {
       console.error("No file uploaded");
@@ -15,13 +20,16 @@ const handleImageUpload = async (req, res) => {
     // Check if required environment variables are set
     if (!process.env.cloudinaryCloudName || !process.env.cloudinaryApiKey || !process.env.cloudinaryApiSecret) {
       console.error("Cloudinary environment variables not configured");
+      console.error("Cloud name:", process.env.cloudinaryCloudName ? "Set" : "Not set");
+      console.error("API key:", process.env.cloudinaryApiKey ? "Set" : "Not set");
+      console.error("API secret:", process.env.cloudinaryApiSecret ? "Set" : "Not set");
       return res.status(500).json({
         success: false,
         message: "Image upload service not configured",
       });
     }
 
-    console.log("Processing file:", req.file.originalname, "Size:", req.file.size);
+    console.log("Processing file:", req.file.originalname, "Size:", req.file.size, "Type:", req.file.mimetype);
     
     const b64 = Buffer.from(req.file.buffer).toString("base64");
     const url = "data:" + req.file.mimetype + ";base64," + b64;

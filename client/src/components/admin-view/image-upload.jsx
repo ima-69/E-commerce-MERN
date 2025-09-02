@@ -22,13 +22,16 @@ const ProductImageUpload =  ({
   console.log(isEditMode, "isEditMode");
 
   const handleImageFileChange = (event) => {
-    console.log(event.target.files, "event.target.files");
+    console.log("File input changed:", event.target.files);
     const selectedFile = event.target.files?.[0];
-    console.log(selectedFile);
+    console.log("Selected file:", selectedFile);
 
     if (selectedFile) {
+      console.log("Setting image file:", selectedFile.name, selectedFile.size, selectedFile.type);
       setImageFile(selectedFile);
       setUploadError(null); // Clear any previous errors
+    } else {
+      console.log("No file selected");
     }
   };
 
@@ -38,10 +41,16 @@ const ProductImageUpload =  ({
 
   const handleDrop = (event) => {
     event.preventDefault();
+    console.log("File dropped:", event.dataTransfer.files);
     const droppedFile = event.dataTransfer.files?.[0];
+    console.log("Dropped file:", droppedFile);
+    
     if (droppedFile) {
+      console.log("Setting dropped file:", droppedFile.name, droppedFile.size, droppedFile.type);
       setImageFile(droppedFile);
       setUploadError(null); // Clear any previous errors
+    } else {
+      console.log("No file dropped");
     }
   };        
 
@@ -53,23 +62,53 @@ const ProductImageUpload =  ({
   };
 
   const uploadImageToCloudinary = async () => {
+    console.log("uploadImageToCloudinary called with imageFile:", imageFile);
     setImageLoadingState(true);
     setUploadError(null); // Clear any previous errors
     
+    let timeoutId = null;
+    
     try {
+      // Validate file before upload
+      if (!imageFile) {
+        console.error("No file selected for upload");
+        throw new Error("No file selected");
+      }
+      
+      console.log("File validation passed:", imageFile.name, imageFile.size, imageFile.type);
+
+      // Check file size (max 10MB)
+      if (imageFile.size > 10 * 1024 * 1024) {
+        throw new Error("File size too large. Maximum size is 10MB.");
+      }
+
+      // Check file type
+      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+      if (!allowedTypes.includes(imageFile.type)) {
+        throw new Error("Invalid file type. Please upload JPEG, PNG, or WebP images only.");
+      }
+
       const data = new FormData();
       data.append("my_file", imageFile);
       
       // Add timeout to the request
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+      timeoutId = setTimeout(() => controller.abort(), 60000); // 60 second timeout
+      
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+      console.log("Uploading to:", `${backendUrl}/api/admin/products/upload-image`);
+      console.log("FormData contents:", data.get('my_file'));
       
       const response = await axios.post(
-        "http://localhost:5000/api/admin/products/upload-image",
+        `${backendUrl}/api/admin/products/upload-image`,
         data,
         {
           signal: controller.signal,
-          timeout: 30000
+          timeout: 60000,
+          withCredentials: true, // This will send cookies automatically
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
         }
       );
       
@@ -79,22 +118,33 @@ const ProductImageUpload =  ({
       if (response?.data?.success) {
         setUploadedImageUrl(response.data.result.url);
         setImageLoadingState(false);
+        console.log("Image uploaded successfully:", response.data.result.url);
       } else {
         console.error("Upload failed:", response?.data?.message);
         setUploadError(response?.data?.message || "Upload failed");
         setImageLoadingState(false);
       }
     } catch (error) {
-      clearTimeout(timeoutId);
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
       console.error("Upload error:", error);
       setImageLoadingState(false);
       
       if (error.code === 'ECONNABORTED' || error.name === 'AbortError') {
         console.error("Upload timed out");
         setUploadError("Upload timed out. Please try again.");
+      } else if (error.response?.status === 401) {
+        console.error("Authentication failed");
+        setUploadError("Authentication failed. Please log in again.");
+      } else if (error.response?.status === 403) {
+        console.error("Access denied");
+        setUploadError("Access denied. Admin role required.");
       } else if (error.response) {
         console.error("Server error:", error.response.data);
         setUploadError(error.response.data?.message || "Server error occurred");
+      } else if (error.message) {
+        setUploadError(error.message);
       } else {
         console.error("Network error:", error.message);
         setUploadError("Network error. Please check your connection.");
@@ -103,7 +153,9 @@ const ProductImageUpload =  ({
   }
 
   useEffect(() => {
+    console.log("useEffect triggered, imageFile:", imageFile);
     if (imageFile !== null) {
+      console.log("Starting upload for file:", imageFile.name);
       uploadImageToCloudinary();
     }
     
@@ -149,27 +201,46 @@ const ProductImageUpload =  ({
             <span className="text-sm text-muted-foreground">Uploading image...</span>
           </div>
         ) : (
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <FileCheckIcon className="w-8 text-primary mr-2 h-8" />
+          <div className="flex flex-col items-center justify-center h-32">
+            <div className="flex items-center mb-2">
+              <FileCheckIcon className="w-8 text-green-600 mr-2 h-8" />
+              <p className="text-sm font-medium">{imageFile.name}</p>
             </div>
-            <p className="text-sm font-medium">{imageFile.name}</p>
+            {uploadedImageUrl && (
+              <div className="mb-2">
+                <p className="text-xs text-green-600 font-medium">✓ Upload successful!</p>
+              </div>
+            )}
             <Button
               variant="ghost"
-              size="icon"
-              className="text-muted-foreground hover:text-foreground"
+              size="sm"
+              className="text-red-600 hover:text-red-700 hover:bg-red-50"
               onClick={handleRemoveImage}
             >
-              <XIcon className="w-4 h-4" />
-              <span className="sr-only">Remove File</span>
+              <XIcon className="w-4 h-4 mr-1" />
+              Remove
             </Button>
           </div>
         )}
       </div>
       
+      {/* Image Preview */}
+      {uploadedImageUrl && (
+        <div className="mt-4">
+          <Label className="text-sm font-medium mb-2 block">Image Preview:</Label>
+          <div className="border rounded-lg p-2 bg-gray-50">
+            <img 
+              src={uploadedImageUrl} 
+              alt="Uploaded product" 
+              className="w-full h-32 object-cover rounded"
+            />
+          </div>
+        </div>
+      )}
+
       {/* Error Display */}
       {uploadError && (
-        <div className="mt-2 p-2 bg-red-50 border border-red-200 rounded-md">
+        <div className="mt-2 p-3 bg-red-50 border border-red-200 rounded-md">
           <p className="text-sm text-red-600 mb-2">{uploadError}</p>
           <Button 
             variant="outline" 

@@ -119,7 +119,12 @@ const authMiddleware = async (req, res, next) => {
 
 //admin middleware
 const adminMiddleware = async (req, res, next) => {
-  const token = req.cookies.token;
+  // Check for token in Authorization header first, then cookies
+  let token = req.headers.authorization?.replace('Bearer ', '');
+  if (!token) {
+    token = req.cookies.token;
+  }
+  
   if (!token)
     return res.status(401).json({
       success: false,
