@@ -171,7 +171,7 @@ const ShoppingListing = () => {
         <div className="p-4 border-b flex items-center justify-between">
           <h2 className="text-lg font-extrabold">All Products</h2>
           <div className="flex items-center gap-3">
-            <Button 
+            {/* <Button 
               onClick={() => {
                 console.log("Test button clicked");
                 setOpenDetailsDialog(true);
@@ -180,7 +180,7 @@ const ShoppingListing = () => {
               size="sm"
             >
               Test Dialog
-            </Button>
+            </Button> */}
             <span className="text-muted-foreground">
               {productList?.length} Products
             </span>

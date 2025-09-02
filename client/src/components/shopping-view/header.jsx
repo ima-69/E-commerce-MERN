@@ -1,4 +1,4 @@
-import { HousePlug, LogOut, Menu, ShoppingCart, UserCog, Settings, Search } from "lucide-react";
+import { HousePlug, LogOut, Menu, ShoppingCart, UserCog, Settings, Search, LogIn } from "lucide-react";
 import {
   Link,
   useLocation,
@@ -147,17 +147,10 @@ const HeaderRightContent = () => {
 
         <Button
           onClick={() => navigate("/auth/login")}
-          variant="default"
-          size="sm"
+          className="inline-flex gap-2 items-center rounded-md px-4 py-2 text-sm font-medium shadow"
         >
+          <LogIn />
           Login
-        </Button>
-        <Button
-          onClick={() => navigate("/auth/register")}
-          variant="outline"
-          size="sm"
-        >
-          Register
         </Button>
       </div>
     );
@@ -213,7 +206,7 @@ const HeaderRightContent = () => {
             </AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>
-        <DropdownMenuContent side="right" className="w-56">
+        <DropdownMenuContent side="bottom" className="w-56">
           <DropdownMenuLabel>Logged in as {user?.userName}</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem 

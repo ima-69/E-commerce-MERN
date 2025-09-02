@@ -40,7 +40,7 @@ const AdminProducts = () => {
   const [uploadedImageUrl, setUploadedImageUrl] = useState("");
   const [imageLoadingState, setImageLoadingState] = useState(false);
   const [currentEditedId, setCurrentEditedId] = useState(null);
-  const { productList } = useSelector((state) => state.adminProducts);
+  const { productList, isLoading, error } = useSelector((state) => state.adminProducts);
   const dispatch = useDispatch();
 
   const onSubmit = (event) => {
@@ -109,7 +109,18 @@ const AdminProducts = () => {
     dispatch(fetchAllProducts());
   }, [dispatch]);
 
-  console.log(formData, "productList");
+  console.log(formData, "productList", isLoading, error);
+
+  if (error) {
+    return (
+      <div className="flex flex-col items-center justify-center h-64">
+        <p className="text-red-500 mb-4">Error loading products: {error}</p>
+        <Button onClick={() => dispatch(fetchAllProducts())}>
+          Retry
+        </Button>
+      </div>
+    );
+  }
 
   return (
     <Fragment>
@@ -118,19 +129,31 @@ const AdminProducts = () => {
           Add New Product
         </Button>
       </div>
-      <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
-        {productList && productList.length > 0
-          ? productList.map((productItem) => (
-              <AdminProductTile
-                setFormData={setFormData}
-                setOpenCreateProductsDialog={setOpenCreateProductsDialog}
-                setCurrentEditedId={setCurrentEditedId}
-                product={productItem}
-                handleDelete={handleDelete}
-              />    
-            ))
-          : null} 
-      </div>
+      
+      {isLoading ? (
+        <div className="flex justify-center items-center h-64">
+          <div className="text-lg">Loading products...</div>
+        </div>
+      ) : (
+        <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
+          {productList && productList.length > 0
+            ? productList.map((productItem) => (
+                <AdminProductTile
+                  key={productItem._id}
+                  setFormData={setFormData}
+                  setOpenCreateProductsDialog={setOpenCreateProductsDialog}
+                  setCurrentEditedId={setCurrentEditedId}
+                  product={productItem}
+                  handleDelete={handleDelete}
+                />    
+              ))
+            : (
+                <div className="col-span-full flex justify-center items-center h-32">
+                  <p className="text-gray-500">No products found. Add your first product!</p>
+                </div>
+              )} 
+        </div>
+      )}
       <Sheet
         open={openCreateProductsDialog}
         onOpenChange={() => {
