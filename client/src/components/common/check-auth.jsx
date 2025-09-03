@@ -41,17 +41,20 @@ const CheckAuth = ({ isAuthenticated, user, children }) => {
     !isAuthenticated &&
     !(
       location.pathname.includes("/login") ||
-      location.pathname.includes("/register")
+      location.pathname.includes("/register") ||
+      location.pathname.includes("/forgot-password") ||
+      location.pathname.includes("/reset-password")
     )
   ) {
     return <Navigate to="/auth/login" />;
   }
 
-  // Redirect authenticated users away from login/register pages
+  // Redirect authenticated users away from auth pages (except reset-password)
   if (
     isAuthenticated &&
     (location.pathname.includes("/login") ||
-      location.pathname.includes("/register"))
+      location.pathname.includes("/register") ||
+      location.pathname.includes("/forgot-password"))
   ) {
     if (user?.role === "admin") {
       return <Navigate to="/admin/dashboard" />;

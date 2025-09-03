@@ -71,7 +71,14 @@ const AuthLogin = () => {
       
       if (result?.payload?.success) {
         toast.success(result.payload.message || "Login successful");
-        navigate("/shop/home");
+        
+        // Redirect based on user role
+        const userRole = result?.payload?.user?.role;
+        if (userRole === "admin") {
+          navigate("/admin/dashboard");
+        } else {
+          navigate("/shop/home");
+        }
       } else {
         const msg = result?.payload?.message || result?.error?.message || "Login failed";
         toast.error(msg);
@@ -157,6 +164,25 @@ const AuthLogin = () => {
               {isLoading ? "Signing In..." : "Sign In"}
             </Button>
           </form>
+          
+          <div className="mt-6 space-y-3 text-center">
+            <div>
+              <Link
+                to="/auth/forgot-password"
+                className="text-sm text-primary hover:underline"
+              >
+                Forgot your password?
+              </Link>
+            </div>
+            <div>
+              <Link
+                to="/auth/register"
+                className="text-sm text-primary hover:underline"
+              >
+                Don't have an account? Sign up
+              </Link>
+            </div>
+          </div>
         </CardContent>
       </Card>
     </div>
