@@ -49,14 +49,23 @@ const registerUser = async (req, res) => {
 //login
 
 const loginUser = async (req, res) => {
-  const { email, password } = req.body;
+  const { emailOrUsername, password } = req.body;
 
   try {
-    const checkUser = await User.findOne({ email });
+    // Check if the input is an email or username
+    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailOrUsername);
+    
+    let checkUser;
+    if (isEmail) {
+      checkUser = await User.findOne({ email: emailOrUsername });
+    } else {
+      checkUser = await User.findOne({ userName: emailOrUsername });
+    }
+
     if (!checkUser)
       return res.json({
         success: false,
-        message: "User doesn't exists! Please register first",
+        message: "User doesn't exist! Please register first",
       });
 
     const checkPasswordMatch = await bcrypt.compare(

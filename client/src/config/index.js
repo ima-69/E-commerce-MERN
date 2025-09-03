@@ -51,11 +51,11 @@ export const registerFormControls = [
 
 export const loginFormControls = [
   {
-    name: "email",
-    label: "Email",
-    placeholder: "Enter your email",
+    name: "emailOrUsername",
+    label: "Email or Username",
+    placeholder: "Enter your email or username",
     componentType: "input",
-    type: "email",
+    type: "text",
   },
   {
     name: "password",
