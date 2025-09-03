@@ -4,18 +4,29 @@ const User = require("../../models/User");
 
 //register
 const registerUser = async (req, res) => {
-  const { userName, email, password } = req.body;
+  const { firstName, lastName, userName, email, password } = req.body;
 
   try {
-    const checkUser = await User.findOne({ email });
-    if (checkUser)
+    // Check if user exists with email
+    const checkUserByEmail = await User.findOne({ email });
+    if (checkUserByEmail)
       return res.json({
         success: false,
-        message: "User Already exists with the same email! Please try again",
+        message: "User already exists with the same email! Please try again",
+      });
+
+    // Check if user exists with username
+    const checkUserByUsername = await User.findOne({ userName });
+    if (checkUserByUsername)
+      return res.json({
+        success: false,
+        message: "Username already taken! Please choose a different username",
       });
 
     const hashPassword = await bcrypt.hash(password, 12);
     const newUser = new User({
+      firstName,
+      lastName,
       userName,
       email,
       password: hashPassword,
@@ -30,7 +41,7 @@ const registerUser = async (req, res) => {
     console.log(e);
     res.status(500).json({
       success: false,
-      message: "Some error occured",
+      message: "Some error occurred",
     });
   }
 };
@@ -64,6 +75,8 @@ const loginUser = async (req, res) => {
         role: checkUser.role,
         email: checkUser.email,
         userName: checkUser.userName,
+        firstName: checkUser.firstName,
+        lastName: checkUser.lastName,
       },
       "CLIENT_SECRET_KEY",
       { expiresIn: "60m" }
@@ -77,6 +90,8 @@ const loginUser = async (req, res) => {
         role: checkUser.role,
         id: checkUser._id,
         userName: checkUser.userName,
+        firstName: checkUser.firstName,
+        lastName: checkUser.lastName,
       },
     });
   } catch (e) {
