@@ -16,7 +16,7 @@ const sendPasswordResetEmail = async (email, resetToken, firstName) => {
   try {
     const transporter = createTransporter();
     
-    const resetUrl = `${process.env.FRONTEND_URL}/auth/reset-password?token=${resetToken}`;
+    const resetUrl = `${process.env.VITE_FRONTEND_URL}/auth/reset-password?token=${resetToken}`;
     
     const mailOptions = {
       from: process.env.EMAIL_USER,
@@ -95,7 +95,7 @@ const sendPasswordResetConfirmation = async (email, firstName) => {
               You can now log in with your new password.
             </p>
             <div style="margin: 30px 0;">
-              <a href="${process.env.FRONTEND_URL}/auth/login" 
+              <a href="${process.env.VITE_FRONTEND_URL}/auth/login" 
                  style="background-color: #28a745; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
                 Login to Your Account
               </a>
