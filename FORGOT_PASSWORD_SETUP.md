@@ -38,7 +38,7 @@ EMAIL_USER=your-email@gmail.com
 EMAIL_PASS=your-app-password
 
 # Frontend URL (for reset links)
-FRONTEND_URL=http://localhost:3000
+VITE_FRONTEND_URL=http://localhost:5173
 ```
 
 ### Gmail Setup (Recommended)
@@ -167,7 +167,7 @@ Both emails include:
 - Check server logs for errors
 
 ### Reset Link Not Working
-- Verify `FRONTEND_URL` in environment
+- Verify `VITE_FRONTEND_URL` in environment
 - Check token hasn't expired
 - Ensure user exists in database
 
