@@ -25,7 +25,7 @@ import { useEffect, useState } from "react";
 import { fetchCartItems } from "@/store/shop/cart-slice";
 import { Label } from "../ui/label";
 
-const SearchInput = () => {
+const SearchInput = ({ isMobile = false }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
@@ -36,6 +36,28 @@ const SearchInput = () => {
       setSearchTerm("");
     }
   };
+
+  if (isMobile) {
+    return (
+      <form onSubmit={handleSearch} className="relative w-full">
+        <Input
+          type="text"
+          placeholder="Search products..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-full pr-10"
+        />
+        <Button
+          type="submit"
+          size="sm"
+          variant="ghost"
+          className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+        >
+          <Search className="h-4 w-4" />
+        </Button>
+      </form>
+    );
+  }
 
   return (
     <form onSubmit={handleSearch} className="relative">
@@ -58,7 +80,7 @@ const SearchInput = () => {
   );
 };
 
-const MenuItems = () => {
+const MenuItems = ({ isMobile = false }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -83,8 +105,26 @@ const MenuItems = () => {
       : navigate(getCurrentMenuItem.path);
   }
 
+  if (isMobile) {
+    return (
+      <nav className="space-y-1">
+        {shoppingViewHeaderMenuItems
+          .filter((menuItem) => menuItem.id !== "search") // Remove search from menu items
+          .map((menuItem) => (
+            <button
+              key={menuItem.id}
+              onClick={() => handleNavigate(menuItem)}
+              className="w-full text-left px-4 py-3 text-base font-medium text-gray-900 hover:bg-gray-100 transition-colors"
+            >
+              {menuItem.label}
+            </button>
+          ))}
+      </nav>
+    );
+  }
+
   return (
-    <nav className="flex flex-col mb-3 lg:mb-0 lg:items-center gap-6 lg:flex-row">
+    <nav className="flex lg:items-center gap-6 lg:flex-row">
       {shoppingViewHeaderMenuItems
         .filter((menuItem) => menuItem.id !== "search") // Remove search from menu items
         .map((menuItem) => (
@@ -100,7 +140,25 @@ const MenuItems = () => {
   );
 }
 
-const HeaderRightContent = () => {
+const MobileLoginButton = () => {
+  const navigate = useNavigate();
+  const { isAuthenticated } = useSelector((state) => state.auth);
+
+  if (isAuthenticated) return null;
+
+  return (
+    <Button
+      onClick={() => navigate("/auth/login")}
+      className="inline-flex gap-2 items-center rounded-md px-3 py-2 text-sm font-medium shadow"
+      size="sm"
+    >
+      <LogIn className="h-4 w-4" />
+      Login
+    </Button>
+  );
+}
+
+const HeaderRightContent = ({ isMobile = false }) => {
   const { user, isAuthenticated } = useSelector((state) => state.auth);
   const { cartItems } = useSelector((state) => state.shopCart);
   const { guestCartItems } = useSelector((state) => state.guestCart);
@@ -121,8 +179,8 @@ const HeaderRightContent = () => {
   // Show login button for non-authenticated users
   if (!isAuthenticated) {
     return (
-      <div className="flex lg:items-center lg:flex-row flex-col gap-4">
-        <SearchInput />
+      <div className={`flex ${isMobile ? 'items-center gap-2' : 'lg:items-center lg:flex-row flex-col gap-4'}`}>
+        {!isMobile && <SearchInput />}
         
         {/* Guest Cart Button */}
         <Sheet open={openCartSheet} onOpenChange={() => setOpenCartSheet(false)}>
@@ -145,22 +203,24 @@ const HeaderRightContent = () => {
           />
         </Sheet>
 
-        <Button
-          onClick={() => navigate("/auth/login")}
-          className="inline-flex gap-2 items-center rounded-md px-4 py-2 text-sm font-medium shadow"
-        >
-          <LogIn />
-          Login
-        </Button>
+        {!isMobile && (
+          <Button
+            onClick={() => navigate("/auth/login")}
+            className="inline-flex gap-2 items-center rounded-md px-4 py-2 text-sm font-medium shadow"
+          >
+            <LogIn />
+            Login
+          </Button>
+        )}
       </div>
     );
   }
 
   // Show authenticated user content
   return (
-    <div className="flex lg:items-center lg:flex-row flex-col gap-4">
-      {/* Admin Mode Button - Only show for admin users */}
-      {user?.role === "admin" && (
+    <div className={`flex ${isMobile ? 'items-center gap-2' : 'lg:items-center lg:flex-row flex-col gap-4'}`}>
+      {/* Admin Mode Button - Only show for admin users on desktop */}
+      {user?.role === "admin" && !isMobile && (
         <Button
           onClick={() => navigate("/admin/dashboard")}
           variant="outline"
@@ -172,7 +232,7 @@ const HeaderRightContent = () => {
         </Button>
       )}
 
-      <SearchInput />
+      {!isMobile && <SearchInput />}
 
       <Sheet open={openCartSheet} onOpenChange={() => setOpenCartSheet(false)}>
         <Button
@@ -200,16 +260,16 @@ const HeaderRightContent = () => {
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-                  <Avatar className="bg-gray-200 cursor-pointer">
-          <AvatarImage
-            src={user?.profilePicture}
-            alt="Profile"
-            className="object-cover"
-          />
-          <AvatarFallback className="bg-gray-200 text-gray-700 font-bold text-sm">
-            {user?.firstName?.[0]?.toUpperCase()}{user?.lastName?.[0]?.toUpperCase()}
-          </AvatarFallback>
-        </Avatar>
+          <Avatar className="bg-gray-200 cursor-pointer">
+            <AvatarImage
+              src={user?.profilePicture}
+              alt="Profile"
+              className="object-cover"
+            />
+            <AvatarFallback className="bg-gray-200 text-gray-700 font-bold text-sm">
+              {user?.firstName?.[0]?.toUpperCase()}{user?.lastName?.[0]?.toUpperCase()}
+            </AvatarFallback>
+          </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent side="bottom" className="w-56">
           <DropdownMenuLabel>
@@ -240,34 +300,156 @@ const HeaderRightContent = () => {
 
 function ShoppingHeader() {
   const { isAuthenticated } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
+  const { cartItems } = useSelector((state) => state.shopCart);
+  const { guestCartItems } = useSelector((state) => state.guestCart);
+  const [openCartSheet, setOpenCartSheet] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (user?.id) {
+      dispatch(fetchCartItems(user.id));
+    }
+  }, [dispatch, user?.id]);
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
-      <div className="flex h-16 items-center justify-between px-4 md:px-6">
-        <Link to="/" className="flex items-center gap-2">
-          <HousePlug className="h-6 w-6" />
-          <span className="font-bold">Shopzy</span>
-        </Link>
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="outline" size="icon" className="lg:hidden">
-              <Menu className="h-6 w-6" />
-              <span className="sr-only">Toggle header menu</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left" className="w-full max-w-xs">
-            <MenuItems />
-            <HeaderRightContent />
-          </SheetContent>
-        </Sheet>
-         <div className="hidden lg:block">
-          <MenuItems /> 
+      {/* Mobile Header - 2 Rows */}
+      <div className="lg:hidden bg-white border-b">
+        {/* Row 1: Logo, Cart, Profile, Hamburger */}
+        <div className="flex h-16 items-center justify-between px-4">
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-2 flex-shrink-0">
+            <HousePlug className="h-6 w-6 text-blue-600" />
+            <span className="font-bold text-lg text-gray-900">Shopzy</span>
+          </Link>
+          
+          {/* Right side: Cart, Profile/Login, Hamburger */}
+          <div className="flex items-center gap-2">
+            {/* Cart */}
+            <Sheet open={openCartSheet} onOpenChange={() => setOpenCartSheet(false)}>
+              <Button
+                onClick={() => setOpenCartSheet(true)}
+                variant="outline"
+                size="icon"
+                className="relative"
+              >
+                <ShoppingCart className="w-5 h-5" />
+                <span className="absolute top-[-5px] right-[2px] font-bold text-xs">
+                  {isAuthenticated ? (cartItems?.items?.length || 0) : (guestCartItems?.length || 0)}
+                </span> 
+                <span className="sr-only">Cart</span>
+              </Button>
+              <UserCartWrapper
+                setOpenCartSheet={setOpenCartSheet}
+                cartItems={
+                  isAuthenticated 
+                    ? (cartItems && cartItems.items && cartItems.items.length > 0 ? cartItems.items : [])
+                    : (guestCartItems || [])
+                }
+                isGuest={!isAuthenticated}
+              />
+            </Sheet>
+
+            {/* Profile or Login */}
+            {isAuthenticated ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Avatar className="bg-gray-200 cursor-pointer w-8 h-8">
+                    <AvatarImage
+                      src={user?.profilePicture}
+                      alt="Profile"
+                      className="object-cover"
+                    />
+                    <AvatarFallback className="bg-gray-200 text-gray-700 font-bold text-xs">
+                      {user?.firstName?.[0]?.toUpperCase()}{user?.lastName?.[0]?.toUpperCase()}
+                    </AvatarFallback>
+                  </Avatar>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent side="bottom" className="w-56">
+                  <DropdownMenuLabel>
+                    {user?.firstName && user?.lastName 
+                      ? `${user.firstName} ${user.lastName}` 
+                      : user?.userName || 'User'
+                    }
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem 
+                    onClick={() => navigate("/shop/account")}
+                  >
+                    <UserCog className="mr-2 h-4 w-4" />
+                    Account
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem 
+                    onClick={() => dispatch(logoutUser())}
+                  >
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Logout
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button
+                onClick={() => navigate("/auth/login")}
+                className="inline-flex gap-2 items-center rounded-md px-3 py-2 text-sm font-medium shadow"
+                size="sm"
+              >
+                <LogIn className="h-4 w-4" />
+                Login
+              </Button>
+            )}
+
+            {/* Hamburger Menu */}
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="outline" size="icon">
+                  <Menu className="h-5 w-5" />
+                  <span className="sr-only">Toggle header menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-full max-w-sm">
+                <div className="flex flex-col h-full">
+                  {/* Header */}
+                  <div className="flex items-center justify-between mb-6 px-4 pt-4">
+                    <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                      <HousePlug className="h-6 w-6 text-blue-600" />
+                      <span className="font-bold text-lg text-gray-900">Shopzy</span>
+                    </Link>
+                  </div>
+                  
+                  {/* Navigation Menu */}
+                  <div className="flex-1 overflow-y-auto">
+                    <MenuItems isMobile={true} />
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
 
-        <div className="hidden lg:block">
-          <HeaderRightContent />
+        {/* Row 2: Search Bar */}
+        <div className="px-4 pb-3">
+          <SearchInput isMobile={true} />
         </div>
-      </div> 
+      </div>
+
+      {/* Desktop Header */}
+      <div className="hidden lg:flex h-16 items-center justify-between px-4 md:px-6 bg-white shadow-sm">
+        <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+          <HousePlug className="h-6 w-6 text-blue-600" />
+          <span className="font-bold text-lg text-gray-900">Shopzy</span>
+        </Link>
+        
+        <div className="flex items-center gap-8">
+          <MenuItems isMobile={false} />
+        </div>
+
+        <div className="flex items-center">
+          <HeaderRightContent isMobile={false} />
+        </div>
+      </div>
     </header>
   );
 }
