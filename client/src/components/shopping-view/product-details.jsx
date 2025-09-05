@@ -1,7 +1,7 @@
 import { StarIcon } from "lucide-react";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { Button } from "../ui/button";
-import { Dialog, DialogContent } from "../ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "../ui/dialog";
 import { Separator } from "../ui/separator";
 import { Input } from "../ui/input";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,12 +22,10 @@ const ProductDetailsDialog = ({ open, setOpen, productDetails }) => {
   const { cartItems } = useSelector((state) => state.shopCart);
   const { reviews } = useSelector((state) => state.shopReview);
 
-  console.log("ProductDetailsDialog props:", { open, productDetails });
 
  
 
   const handleRatingChange = (getRating) => {
-    console.log(getRating, "getRating");
 
     setRating(getRating);
   }
@@ -108,7 +106,6 @@ const ProductDetailsDialog = ({ open, setOpen, productDetails }) => {
     if (productDetails !== null) dispatch(getReviews(productDetails?._id));
   }, [productDetails]);
 
-  console.log(reviews, "reviews");
 
   const averageReview =
     reviews && reviews.length > 0
@@ -116,11 +113,14 @@ const ProductDetailsDialog = ({ open, setOpen, productDetails }) => {
         reviews.length
       : 0;
 
-  console.log("Dialog render - open:", open, "productDetails:", productDetails);
   
   return (
     <Dialog open={open} onOpenChange={handleDialogClose}>
       <DialogContent className="grid grid-cols-2 gap-8 sm:p-12 max-w-[90vw] sm:max-w-[80vw] lg:max-w-[70vw]">
+        <DialogTitle className="sr-only">Product Details</DialogTitle>
+        <DialogDescription className="sr-only">
+          View product details, add to cart, and submit reviews
+        </DialogDescription>
         <div className="relative overflow-hidden rounded-lg">
           <img
             src={productDetails?.image}

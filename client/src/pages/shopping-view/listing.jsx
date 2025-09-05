@@ -36,8 +36,6 @@ const createSearchParamsHelper = (filterParams) => {
     }
   }
 
-  console.log(queryParams, "queryParams");
-
   return queryParams.join("&");
 }
 
@@ -89,7 +87,6 @@ const ShoppingListing = () => {
   }
 
   const handleGetProductDetails = (getCurrentProductId) => {
-    console.log("handleGetProductDetails called with ID:", getCurrentProductId);
     dispatch(fetchProductDetails(getCurrentProductId));
   };
 
@@ -107,7 +104,6 @@ const ShoppingListing = () => {
       }
     } else {
       // Handle authenticated user cart
-      console.log(cartItems);
       let getCartItems = cartItems.items || [];
 
       if (getCartItems.length) {
@@ -167,20 +163,10 @@ const ShoppingListing = () => {
   }, [dispatch, isAuthenticated, user?.id, user?._id, productList]);
 
   useEffect(() => {
-    console.log("productDetails changed:", productDetails);
     if (productDetails !== null) {
-      console.log("Setting dialog to open");
       setOpenDetailsDialog(true);
     }
   }, [productDetails]);
-
-  console.log("Current state:", { 
-    productList: productList?.length, 
-    productDetails, 
-    openDetailsDialog,
-    filters,
-    sort
-  });
 
   return (
     <div className="min-h-screen bg-background">
@@ -311,6 +297,6 @@ const ShoppingListing = () => {
       /> 
     </div>
   );
-}
+};
 
 export default ShoppingListing;

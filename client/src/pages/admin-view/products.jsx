@@ -56,7 +56,6 @@ const AdminProducts = () => {
             },
           })
         ).then((data) => {
-          console.log(data, "edit");
 
           if (data?.payload?.success) {
             dispatch(fetchAllProducts());
@@ -109,7 +108,6 @@ const AdminProducts = () => {
     dispatch(fetchAllProducts());
   }, [dispatch]);
 
-  console.log(formData, "productList", isLoading, error);
 
   if (error) {
     return (

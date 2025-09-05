@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const User = require('../models/User');
 
 // Auth middleware
 const authenticateToken = async (req, res, next) => {
@@ -11,6 +12,24 @@ const authenticateToken = async (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, "CLIENT_SECRET_KEY");
+    
+    // Check if user exists and is active
+    const user = await User.findById(decoded.id);
+    
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "User not found!",
+      });
+    }
+    
+    if (!user.isActive) {
+      return res.status(401).json({
+        success: false,
+        message: "Account is deactivated!",
+      });
+    }
+    
     req.user = decoded;
     next();
   } catch (error) {
@@ -53,8 +72,42 @@ const adminMiddleware = async (req, res, next) => {
   }
 };
 
+// Browsing middleware - allows deactivated users to browse but not perform actions
+const browsingMiddleware = async (req, res, next) => {
+  const token = req.cookies.token;
+  if (!token) {
+    return res.status(401).json({
+      success: false,
+      message: "Unauthorised user!",
+    });
+  }
+
+  try {
+    const decoded = jwt.verify(token, "CLIENT_SECRET_KEY");
+    const user = await User.findById(decoded.id);
+    
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "User not found!",
+      });
+    }
+    
+    // Allow both active and inactive users to browse
+    req.user = decoded;
+    req.user.isActive = user.isActive; // Add isActive to req.user
+    next();
+  } catch (error) {
+    res.status(401).json({
+      success: false,
+      message: "Unauthorised user!",
+    });
+  }
+};
+
 module.exports = {
   authenticateToken,
-  adminMiddleware
+  adminMiddleware,
+  browsingMiddleware
 };
 

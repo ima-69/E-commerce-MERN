@@ -18,7 +18,6 @@ const getAllOrdersOfAllUsers = async (req, res) => {
       data: orders,
     });
   } catch (e) {
-    console.log(e);
     res.status(500).json({
       success: false,
       message: "Some error occured!",
@@ -44,7 +43,6 @@ const getOrderDetailsForAdmin = async (req, res) => {
       data: order,
     });
   } catch (e) {
-    console.log(e);
     res.status(500).json({
       success: false,
       message: "Some error occured!",
@@ -66,7 +64,7 @@ const updateOrderStatus = async (req, res) => {
       });
     }
 
-    await Order.findByIdAndUpdate(id, { orderStatus });
+    const updatedOrder = await Order.findByIdAndUpdate(id, { orderStatus }, { new: true });
 
     // Send order status update email
     try {
@@ -91,9 +89,9 @@ const updateOrderStatus = async (req, res) => {
     res.status(200).json({
       success: true,
       message: "Order status is updated successfully!",
+      data: updatedOrder,
     });
   } catch (e) {
-    console.log(e);
     res.status(500).json({
       success: false,
       message: "Some error occured!",

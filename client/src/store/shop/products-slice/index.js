@@ -12,7 +12,6 @@ const initialState = {
 export const fetchAllFilteredProducts = createAsyncThunk(
   "/products/fetchAllProducts",
   async ({ filterParams, sortParams }) => {
-    console.log("fetchAllFilteredProducts called with:", { filterParams, sortParams });
 
     const query = new URLSearchParams({
       ...filterParams,
@@ -20,14 +19,12 @@ export const fetchAllFilteredProducts = createAsyncThunk(
     });
 
     const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
-    console.log('Fetching products from:', `${backendUrl}/api/shop/products/get?${query}`);
 
     try {
       const result = await axios.get(
         `${backendUrl}/api/shop/products/get?${query}`
       );
 
-      console.log("Products result:", result);
       return result?.data;
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -40,13 +37,11 @@ export const fetchProductDetails = createAsyncThunk(
   "/products/fetchProductDetails",
   async (id) => {
     const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
-    console.log('Fetching product details from:', `${backendUrl}/api/shop/products/get/${id}`);
     
     try {
       const result = await axios.get(
         `${backendUrl}/api/shop/products/get/${id}`
       );
-      console.log('Product details result:', result);
       return result?.data;
     } catch (error) {
       console.error('Error fetching product details:', error);
@@ -59,13 +54,11 @@ export const fetchNewArrivals = createAsyncThunk(
   "/products/fetchNewArrivals",
   async (limit = 8) => {
     const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
-    console.log('Fetching new arrivals from:', `${backendUrl}/api/shop/products/get?sortBy=createdAt-desc&limit=${limit}`);
     
     try {
       const result = await axios.get(
         `${backendUrl}/api/shop/products/get?sortBy=createdAt-desc&limit=${limit}`
       );
-      console.log('New arrivals result:', result);
       return result?.data;
     } catch (error) {
       console.error('Error fetching new arrivals:', error);

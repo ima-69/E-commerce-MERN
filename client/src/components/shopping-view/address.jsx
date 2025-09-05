@@ -52,9 +52,6 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
     
     // Check each required field
     const requiredFields = addressFormControls.filter(control => control.required);
-    requiredFields.forEach(control => {
-      console.log(`${control.name}:`, formData[control.name], "Required:", control.required);
-    });
 
 
     const userId = user?._id || user?.id;
@@ -131,8 +128,6 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
       dispatch(fetchAllAddresses(userId));
     }
   }, [dispatch, user]);
-
-  console.log(addressList, "addressList");
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

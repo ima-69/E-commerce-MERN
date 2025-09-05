@@ -53,7 +53,6 @@ const adminOrderSlice = createSlice({
   initialState,
   reducers: {
     resetOrderDetails: (state) => {
-      console.log("resetOrderDetails");
 
       state.orderDetails = null;
     },
@@ -87,6 +86,40 @@ const adminOrderSlice = createSlice({
         state.isLoading = false;
         state.orderDetails = null;
         state.error = action.error.message || 'Failed to fetch order details';
+      })
+      .addCase(updateOrderStatus.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(updateOrderStatus.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        
+        // Check if we have valid data
+        if (action.payload && action.payload.data) {
+          const updatedOrder = action.payload.data;
+          
+          // Ensure updatedOrder has an _id
+          if (updatedOrder && updatedOrder._id) {
+            const index = state.orderList.findIndex(order => order._id === updatedOrder._id);
+            if (index !== -1) {
+              // Create a new array to ensure React detects the change
+              state.orderList = [
+                ...state.orderList.slice(0, index),
+                updatedOrder,
+                ...state.orderList.slice(index + 1)
+              ];
+            }
+            // Update order details if it's the same order
+            if (state.orderDetails && state.orderDetails._id === updatedOrder._id) {
+              state.orderDetails = updatedOrder;
+            }
+          }
+        }
+      })
+      .addCase(updateOrderStatus.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message || 'Failed to update order status';
       });
   },
 });

@@ -15,6 +15,9 @@ export const addToCart = createAsyncThunk(
         userId,
         productId,
         quantity,
+      },
+      {
+        withCredentials: true,
       }
     );
 
@@ -26,7 +29,10 @@ export const fetchCartItems = createAsyncThunk(
   "cart/fetchCartItems",
   async (userId) => {
     const response = await axios.get(
-      `${import.meta.env.VITE_BACKEND_URL}/api/shop/cart/get/${userId}`
+      `${import.meta.env.VITE_BACKEND_URL}/api/shop/cart/get/${userId}`,
+      {
+        withCredentials: true,
+      }
     );
 
     return response.data;
@@ -37,7 +43,10 @@ export const deleteCartItem = createAsyncThunk(
   "cart/deleteCartItem",
   async ({ userId, productId }) => {
     const response = await axios.delete(
-      `${import.meta.env.VITE_BACKEND_URL}/api/shop/cart/${userId}/${productId}`
+      `${import.meta.env.VITE_BACKEND_URL}/api/shop/cart/${userId}/${productId}`,
+      {
+        withCredentials: true,
+      }
     );
 
     return response.data;
@@ -53,6 +62,9 @@ export const updateCartQuantity = createAsyncThunk(
         userId,
         productId,
         quantity,
+      },
+      {
+        withCredentials: true,
       }
     );
 
@@ -68,6 +80,9 @@ export const mergeGuestCart = createAsyncThunk(
       {
         userId,
         guestCartItems,
+      },
+      {
+        withCredentials: true,
       }
     );
 

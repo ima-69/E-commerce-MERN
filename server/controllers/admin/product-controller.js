@@ -3,9 +3,6 @@ const Product = require("../../models/Product");
 
 const handleImageUpload = async (req, res) => {
   try {
-    console.log("Image upload request received");
-    console.log("Request file:", req.file);
-    console.log("Request body:", req.body);
     
     // Check if file exists
     if (!req.file) {
@@ -60,7 +57,6 @@ const addProduct = async (req, res) => {
       averageReview,
     } = req.body;
 
-    console.log(averageReview, "averageReview");
 
     const newlyCreatedProduct = new Product({
       image,
@@ -80,7 +76,6 @@ const addProduct = async (req, res) => {
       data: newlyCreatedProduct,
     });
   } catch (e) {
-    console.log(e);
     res.status(500).json({
       success: false,
       message: "Error occured",
@@ -98,7 +93,6 @@ const fetchAllProducts = async (req, res) => {
       data: listOfProducts,
     });
   } catch (e) {
-    console.log(e);
     res.status(500).json({
       success: false,
       message: "Error occured",
@@ -145,7 +139,6 @@ const editProduct = async (req, res) => {
       data: findProduct,
     });
   } catch (e) {
-    console.log(e);
     res.status(500).json({
       success: false,
       message: "Error occured",
@@ -168,7 +161,6 @@ const deleteProduct = async (req, res) => {
       message: "Product deleted successfully",
     });
   } catch (e) {
-    console.log(e);
     res.status(500).json({
       success: false,
       message: "Error occured",

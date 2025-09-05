@@ -1,14 +1,13 @@
 import { useState } from "react";
 import CommonForm from "../common/form";
-import { DialogContent } from "../ui/dialog";
+import { DialogContent, DialogTitle, DialogDescription } from "../ui/dialog";
 import { Label } from "../ui/label";
 import { Separator } from "../ui/separator";
 import { Badge } from "../ui/badge";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getAllOrdersForAdmin,
-  getOrderDetailsForAdmin,
   updateOrderStatus,
+  getAllOrdersForAdmin,
 } from "@/store/admin/order-slice";
 import { toast } from "sonner";
 
@@ -22,7 +21,6 @@ const AdminOrderDetailsView = ({ orderDetails }) => {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  console.log(orderDetails, "orderDetailsorderDetails");
 
   const handleUpdateStatus = (event) => {
     event.preventDefault();
@@ -32,10 +30,10 @@ const AdminOrderDetailsView = ({ orderDetails }) => {
       updateOrderStatus({ id: orderDetails?._id, orderStatus: status })
     ).then((data) => {
       if (data?.payload?.success) {
-        dispatch(getOrderDetailsForAdmin(orderDetails?._id));
-        dispatch(getAllOrdersForAdmin());
         setFormData(initialFormData);
         toast.success(data?.payload?.message);
+        // Refresh the orders list to show updated status
+        dispatch(getAllOrdersForAdmin());
       } else {
         toast.error(data?.payload?.message);
       }
@@ -44,6 +42,10 @@ const AdminOrderDetailsView = ({ orderDetails }) => {
 
   return (
     <DialogContent className="sm:max-w-[600px]">
+      <DialogTitle className="sr-only">Order Details</DialogTitle>
+      <DialogDescription className="sr-only">
+        View and update order details including status, items, and shipping information
+      </DialogDescription>
       <div className="grid gap-6">
         <div className="grid gap-2">
           <div className="flex mt-6 items-center justify-between">

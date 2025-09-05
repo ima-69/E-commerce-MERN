@@ -19,19 +19,13 @@ const ProductImageUpload =  ({
   const inputRef = useRef(null);
   const [uploadError, setUploadError] = useState(null);
 
-  console.log(isEditMode, "isEditMode");
 
   const handleImageFileChange = (event) => {
-    console.log("File input changed:", event.target.files);
     const selectedFile = event.target.files?.[0];
-    console.log("Selected file:", selectedFile);
 
     if (selectedFile) {
-      console.log("Setting image file:", selectedFile.name, selectedFile.size, selectedFile.type);
       setImageFile(selectedFile);
       setUploadError(null); // Clear any previous errors
-    } else {
-      console.log("No file selected");
     }
   };
 
@@ -41,16 +35,11 @@ const ProductImageUpload =  ({
 
   const handleDrop = (event) => {
     event.preventDefault();
-    console.log("File dropped:", event.dataTransfer.files);
     const droppedFile = event.dataTransfer.files?.[0];
-    console.log("Dropped file:", droppedFile);
     
     if (droppedFile) {
-      console.log("Setting dropped file:", droppedFile.name, droppedFile.size, droppedFile.type);
       setImageFile(droppedFile);
       setUploadError(null); // Clear any previous errors
-    } else {
-      console.log("No file dropped");
     }
   };        
 
@@ -62,7 +51,6 @@ const ProductImageUpload =  ({
   };
 
   const uploadImageToCloudinary = async () => {
-    console.log("uploadImageToCloudinary called with imageFile:", imageFile);
     setImageLoadingState(true);
     setUploadError(null); // Clear any previous errors
     
@@ -74,8 +62,6 @@ const ProductImageUpload =  ({
         console.error("No file selected for upload");
         throw new Error("No file selected");
       }
-      
-      console.log("File validation passed:", imageFile.name, imageFile.size, imageFile.type);
 
       // Check file size (max 10MB)
       if (imageFile.size > 10 * 1024 * 1024) {
@@ -96,8 +82,6 @@ const ProductImageUpload =  ({
       timeoutId = setTimeout(() => controller.abort(), 60000); // 60 second timeout
       
       const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
-      console.log("Uploading to:", `${backendUrl}/api/admin/products/upload-image`);
-      console.log("FormData contents:", data.get('my_file'));
       
       const response = await axios.post(
         `${backendUrl}/api/admin/products/upload-image`,
@@ -113,12 +97,10 @@ const ProductImageUpload =  ({
       );
       
       clearTimeout(timeoutId);
-      console.log(response, "response");
 
       if (response?.data?.success) {
         setUploadedImageUrl(response.data.result.url);
         setImageLoadingState(false);
-        console.log("Image uploaded successfully:", response.data.result.url);
       } else {
         console.error("Upload failed:", response?.data?.message);
         setUploadError(response?.data?.message || "Upload failed");
@@ -153,9 +135,7 @@ const ProductImageUpload =  ({
   }
 
   useEffect(() => {
-    console.log("useEffect triggered, imageFile:", imageFile);
     if (imageFile !== null) {
-      console.log("Starting upload for file:", imageFile.name);
       uploadImageToCloudinary();
     }
     

@@ -18,7 +18,6 @@ const ShoppingCheckout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  console.log(currentSelectedAddress, "cartItems");
 
   // Redirect guest users to login
   if (!isAuthenticated) {
@@ -30,7 +29,7 @@ const ShoppingCheckout = () => {
             Please login to proceed with checkout. Your cart items will be preserved.
           </p>
           <div className="space-x-4">
-            <Button onClick={() => navigate("/auth/login")} variant="default">
+            <Button onClick={() => navigate("/auth/login?redirect=/shop/checkout")} variant="default">
               Login
             </Button>
             <Button onClick={() => navigate("/auth/register")} variant="outline">

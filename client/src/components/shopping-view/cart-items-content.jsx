@@ -1,7 +1,7 @@
 import { Minus, Plus, Trash } from "lucide-react";
 import { Button } from "../ui/button";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteCartItem, updateCartQuantity } from "@/store/shop/cart-slice";
+import { deleteCartItem, updateCartQuantity, fetchCartItems } from "@/store/shop/cart-slice";
 import { updateGuestCartQuantity, removeFromGuestCart } from "@/store/guest-cart-slice";
 import { toast } from "sonner";
 
@@ -48,7 +48,6 @@ const UserCartItemsContent = ({ cartItem, isGuest = false }) => {
           );
           const getTotalStock = productList[getCurrentProductIndex].totalStock;
 
-          console.log(getCurrentProductIndex, getTotalStock, "getTotalStock");
 
           if (indexOfCurrentCartItem > -1) {
             const getQuantity = getCartItems[indexOfCurrentCartItem].quantity;
@@ -62,7 +61,7 @@ const UserCartItemsContent = ({ cartItem, isGuest = false }) => {
 
       dispatch(
         updateCartQuantity({
-          userId: user?.id,
+          userId: user?.id || user?._id,
           productId: getCartItem?.productId,
           quantity:
             typeOfAction === "plus"
@@ -71,8 +70,15 @@ const UserCartItemsContent = ({ cartItem, isGuest = false }) => {
         })
       ).then((data) => {
         if (data?.payload?.success) {
+          // Refresh cart items after successful update
+          dispatch(fetchCartItems(user?.id || user?._id));
           toast.success("Cart item is updated successfully");
+        } else {
+          toast.error("Failed to update cart item");
         }
+      }).catch((error) => {
+        console.error("Error updating cart item:", error);
+        toast.error("Failed to update cart item");
       });
     }
   }
@@ -87,11 +93,18 @@ const UserCartItemsContent = ({ cartItem, isGuest = false }) => {
     } else {
       // Handle authenticated user cart item deletion
       dispatch(
-        deleteCartItem({ userId: user?.id, productId: getCartItem?.productId })
+        deleteCartItem({ userId: user?.id || user?._id, productId: getCartItem?.productId })
       ).then((data) => {
         if (data?.payload?.success) {
+          // Refresh cart items after successful deletion
+          dispatch(fetchCartItems(user?.id || user?._id));
           toast.success("Cart item is deleted successfully");
+        } else {
+          toast.error("Failed to delete cart item");
         }
+      }).catch((error) => {
+        console.error("Error deleting cart item:", error);
+        toast.error("Failed to delete cart item");
       });
     }
   }

@@ -252,15 +252,26 @@ const mergeGuestCart = async (req, res) => {
       cart = new Cart({ userId, items: [] });
     }
 
+    // Create a map to track processed items and avoid duplicates
+    const processedItems = new Map();
+
     // Merge guest cart items with user cart
     for (const guestItem of guestCartItems) {
       const { productId, quantity } = guestItem;
+
+      // Skip if we've already processed this item in this request
+      if (processedItems.has(productId)) {
+        continue;
+      }
 
       // Verify product exists
       const product = await Product.findById(productId);
       if (!product) {
         continue; // Skip invalid products
       }
+
+      // Mark as processed
+      processedItems.set(productId, true);
 
       // Check if product already exists in cart
       const existingItemIndex = cart.items.findIndex(

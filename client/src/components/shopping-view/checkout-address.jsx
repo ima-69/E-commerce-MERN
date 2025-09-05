@@ -52,9 +52,6 @@ function CheckoutAddress({ setCurrentSelectedAddress, selectedId }) {
     
     // Check each required field
     const requiredFields = addressFormControls.filter(control => control.required);
-    requiredFields.forEach(control => {
-      console.log(`${control.name}:`, formData[control.name], "Required:", control.required);
-    });
 
 
     const userId = user?._id || user?.id;
@@ -131,8 +128,6 @@ function CheckoutAddress({ setCurrentSelectedAddress, selectedId }) {
       dispatch(fetchAllAddresses(userId));
     }
   }, [dispatch, user]);
-
-  console.log(addressList, "addressList");
 
   return (
     <div className="space-y-6">

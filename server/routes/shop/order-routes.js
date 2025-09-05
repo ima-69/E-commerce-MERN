@@ -1,4 +1,5 @@
 const express = require("express");
+const { authenticateToken } = require("../../middleware/auth");
 
 const {
   createOrder,
@@ -9,9 +10,9 @@ const {
 
 const router = express.Router();
 
-router.post("/create", createOrder);
-router.post("/capture", capturePayment);
-router.get("/list/:userId", getAllOrdersByUser);
-router.get("/details/:id", getOrderDetails);
+router.post("/create", authenticateToken, createOrder);
+router.post("/capture", authenticateToken, capturePayment);
+router.get("/list/:userId", authenticateToken, getAllOrdersByUser);
+router.get("/details/:id", authenticateToken, getOrderDetails);
 
 module.exports = router;

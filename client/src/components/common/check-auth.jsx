@@ -4,8 +4,6 @@ import { Navigate, useLocation } from "react-router-dom";
 const CheckAuth = ({ isAuthenticated, user, children }) => {
   const location = useLocation();
 
-  console.log(location.pathname, isAuthenticated);
-
   // Define public routes that don't require authentication
   const publicRoutes = [
     "/",
@@ -46,7 +44,12 @@ const CheckAuth = ({ isAuthenticated, user, children }) => {
       location.pathname.includes("/reset-password")
     )
   ) {
-    return <Navigate to="/auth/login" />;
+    // If user was on a protected route and is now not authenticated, 
+    // they likely just logged out, so redirect to home instead of login
+    if (location.pathname.includes("/admin") || location.pathname.includes("/shop/account")) {
+      return <Navigate to="/shop/home" />;
+    }
+    return <Navigate to={`/auth/login?redirect=${encodeURIComponent(location.pathname)}`} />;
   }
 
   // Redirect authenticated users away from auth pages (except reset-password)

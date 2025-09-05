@@ -47,7 +47,6 @@ const SearchProducts = () => {
       }
     } else {
       // Handle authenticated user cart
-      console.log(cartItems);
       let getCartItems = cartItems.items || [];
 
       if (getCartItems.length) {
@@ -79,7 +78,6 @@ const SearchProducts = () => {
   }
 
   const handleGetProductDetails = (getCurrentProductId) => {
-    console.log(getCurrentProductId);
     dispatch(fetchProductDetails(getCurrentProductId));
   }
 
@@ -87,7 +85,6 @@ const SearchProducts = () => {
     if (productDetails !== null) setOpenDetailsDialog(true);
   }, [productDetails]);
 
-  console.log(searchResults, "searchResults");
 
   return (
     <div className="container mx-auto md:px-6 px-4 py-8">

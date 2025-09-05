@@ -11,6 +11,7 @@ const profileRouter = require("./routes/auth/profile-routes");
 
 const adminProductRouter = require("./routes/admin/products-routes");
 const adminOrderRouter = require("./routes/admin/order-routes");
+const adminUserRouter = require("./routes/admin/user-routes");
 
 const shopProductRouter = require("./routes/shop/products-routes");
 const shopReviewRouter = require("./routes/shop/review-routes");
@@ -54,6 +55,7 @@ app.use("/api/profile", profileRouter);
 
 app.use("/api/admin/products", adminProductRouter);
 app.use("/api/admin/orders", adminOrderRouter);
+app.use("/api/admin/users", adminUserRouter);
 
 app.use("/api/shop/products", shopProductRouter);
 app.use("/api/shop/review", shopReviewRouter);

@@ -32,7 +32,6 @@ function AdminOrdersView() {
     dispatch(getAllOrdersForAdmin());
   }, [dispatch]);
 
-  console.log(orderDetails, "orderList", isLoading, error);
 
   useEffect(() => {
     if (orderDetails !== null) setOpenDetailsDialog(true);
@@ -80,8 +79,10 @@ function AdminOrdersView() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {orderList && orderList.length > 0
-                ? orderList.map((orderItem) => (
+              {orderList && orderList.length > 0 && orderList.filter((orderItem) => orderItem?.orderStatus !== "delivered").length > 0
+                ? orderList
+                    .filter((orderItem) => orderItem?.orderStatus !== "delivered")
+                    .map((orderItem) => (
                     <TableRow key={orderItem._id}>
                       <TableCell>{orderItem?._id}</TableCell>
                       <TableCell>{orderItem?.orderDate.split("T")[0]}</TableCell>
@@ -122,7 +123,12 @@ function AdminOrdersView() {
                 : (
                     <TableRow>
                       <TableCell colSpan={5} className="text-center py-8">
-                        <p className="text-gray-500">No orders found.</p>
+                        <p className="text-gray-500">
+                          {orderList && orderList.length > 0 
+                            ? "All orders have been delivered." 
+                            : "No orders found."
+                          }
+                        </p>
                       </TableCell>
                     </TableRow>
                   )}

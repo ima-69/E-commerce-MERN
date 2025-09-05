@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { toast } from "sonner";
 import { loginUser } from "@/store/auth-slice";
@@ -22,6 +22,10 @@ const AuthLogin = () => {
   
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+  
+  // Get redirect URL from query params
+  const redirectTo = new URLSearchParams(location.search).get('redirect');
 
   const validateForm = () => {
     const newErrors = {};
@@ -72,12 +76,13 @@ const AuthLogin = () => {
       if (result?.payload?.success) {
         toast.success(result.payload.message || "Login successful");
         
-        // Redirect based on user role
+        // Redirect based on user role or redirect URL
         const userRole = result?.payload?.user?.role;
         if (userRole === "admin") {
           navigate("/admin/dashboard");
         } else {
-          navigate("/shop/home");
+          // If there's a redirect URL, go there, otherwise go to home
+          navigate(redirectTo || "/shop/home");
         }
       } else {
         const msg = result?.payload?.message || result?.error?.message || "Login failed";

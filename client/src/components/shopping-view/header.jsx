@@ -167,7 +167,11 @@ const HeaderRightContent = ({ isMobile = false }) => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    dispatch(logoutUser());
+    navigate("/shop/home");
+    // Add a small delay to ensure navigation happens before state update
+    setTimeout(() => {
+      dispatch(logoutUser());
+    }, 100);
   };
 
   useEffect(() => {
@@ -385,7 +389,13 @@ function ShoppingHeader() {
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem 
-                    onClick={() => dispatch(logoutUser())}
+                    onClick={() => {
+                      navigate("/shop/home");
+                      // Add a small delay to ensure navigation happens before state update
+                      setTimeout(() => {
+                        dispatch(logoutUser());
+                      }, 100);
+                    }}
                   >
                     <LogOut className="mr-2 h-4 w-4" />
                     Logout

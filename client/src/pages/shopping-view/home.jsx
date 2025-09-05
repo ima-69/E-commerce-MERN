@@ -150,8 +150,6 @@ const ShoppingHome = () => {
     dispatch(fetchNewArrivals(8));
   }, [dispatch]);
 
-  console.log(productList, "productList");
-
   useEffect(() => {
     dispatch(getFeatureImages());
   }, [dispatch]);

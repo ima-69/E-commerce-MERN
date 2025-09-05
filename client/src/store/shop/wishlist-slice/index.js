@@ -11,6 +11,9 @@ export const addToWishlist = createAsyncThunk(
         {
           userId,
           productId,
+        },
+        {
+          withCredentials: true,
         }
       );
       return response.data;
@@ -29,6 +32,9 @@ export const removeFromWishlist = createAsyncThunk(
         {
           userId,
           productId,
+        },
+        {
+          withCredentials: true,
         }
       );
       return response.data;
@@ -43,7 +49,10 @@ export const fetchWishlist = createAsyncThunk(
   async (userId, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/shop/wishlist/${userId}`
+        `${import.meta.env.VITE_BACKEND_URL}/api/shop/wishlist/${userId}`,
+        {
+          withCredentials: true,
+        }
       );
       return response.data;
     } catch (error) {
@@ -57,7 +66,10 @@ export const checkWishlistStatus = createAsyncThunk(
   async ({ userId, productId }, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/shop/wishlist/status/${userId}/${productId}`
+        `${import.meta.env.VITE_BACKEND_URL}/api/shop/wishlist/status/${userId}/${productId}`,
+        {
+          withCredentials: true,
+        }
       );
       return response.data;
     } catch (error) {

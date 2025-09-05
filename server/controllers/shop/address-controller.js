@@ -2,7 +2,6 @@ const Address = require("../../models/Address");
 
 const addAddress = async (req, res) => {
   try {
-    console.log("Received request body:", req.body);
     
     const { 
       userId, 
@@ -18,12 +17,7 @@ const addAddress = async (req, res) => {
       deliveryInstructions 
     } = req.body;
 
-    console.log("Extracted fields:", {
-      userId, addressLine1, city, state, postalCode, country, phone, addressType
-    });
-
     if (!userId || !addressLine1 || !city || !state || !postalCode || !country || !phone || !addressType) {
-      console.log("Validation failed - missing required fields");
       return res.status(400).json({
         success: false,
         message: "Invalid data provided! Required fields: addressLine1, city, state, postalCode, country, phone, addressType",
@@ -51,7 +45,6 @@ const addAddress = async (req, res) => {
       data: newlyCreatedAddress,
     });
   } catch (e) {
-    console.log(e);
     res.status(500).json({
       success: false,
       message: "Error",
@@ -76,7 +69,6 @@ const fetchAllAddress = async (req, res) => {
       data: addressList,
     });
   } catch (e) {
-    console.log(e);
     res.status(500).json({
       success: false,
       message: "Error",
@@ -135,7 +127,6 @@ const editAddress = async (req, res) => {
       data: address,
     });
   } catch (e) {
-    console.log(e);
     res.status(500).json({
       success: false,
       message: "Error",
@@ -167,7 +158,6 @@ const deleteAddress = async (req, res) => {
       message: "Address deleted successfully",
     });
   } catch (e) {
-    console.log(e);
     res.status(500).json({
       success: false,
       message: "Error",

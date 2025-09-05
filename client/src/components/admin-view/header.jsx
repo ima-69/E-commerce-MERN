@@ -2,13 +2,19 @@ import React from "react";
 import { AlignJustify, LogOut } from "lucide-react";
 import { Button } from "../ui/button";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { logoutUser } from "@/store/auth-slice";
 
 const AdminHeader = ({ setOpen }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
-    dispatch(logoutUser());
+    navigate("/shop/home");
+    // Add a small delay to ensure navigation happens before state update
+    setTimeout(() => {
+      dispatch(logoutUser());
+    }, 100);
   };
 
   return (
