@@ -17,8 +17,13 @@ async function imageUploadUtil(file) {
     }
 
     console.log("Starting Cloudinary upload...");
-    const result = await cloudinary.uploader.upload(file, {
+    
+    // Convert buffer to data URI
+    const dataUri = `data:${file.mimetype};base64,${file.buffer.toString('base64')}`;
+    
+    const result = await cloudinary.uploader.upload(dataUri, {
       resource_type: "auto",
+      folder: "profile-pictures",
       timeout: 60000, // 60 second timeout
     });
 

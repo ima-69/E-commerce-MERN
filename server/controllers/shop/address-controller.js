@@ -2,22 +2,46 @@ const Address = require("../../models/Address");
 
 const addAddress = async (req, res) => {
   try {
-    const { userId, address, city, pincode, phone, notes } = req.body;
+    console.log("Received request body:", req.body);
+    
+    const { 
+      userId, 
+      addressLine1, 
+      addressLine2, 
+      city, 
+      state, 
+      postalCode, 
+      country, 
+      phone, 
+      countryCode, 
+      addressType, 
+      deliveryInstructions 
+    } = req.body;
 
-    if (!userId || !address || !city || !pincode || !phone || !notes) {
+    console.log("Extracted fields:", {
+      userId, addressLine1, city, state, postalCode, country, phone, addressType
+    });
+
+    if (!userId || !addressLine1 || !city || !state || !postalCode || !country || !phone || !addressType) {
+      console.log("Validation failed - missing required fields");
       return res.status(400).json({
         success: false,
-        message: "Invalid data provided!",
+        message: "Invalid data provided! Required fields: addressLine1, city, state, postalCode, country, phone, addressType",
       });
     }
 
     const newlyCreatedAddress = new Address({
       userId,
-      address,
+      addressLine1,
+      addressLine2: addressLine2 || "",
       city,
-      pincode,
-      notes,
+      state,
+      postalCode,
+      country,
       phone,
+      countryCode: countryCode || "+1",
+      addressType,
+      deliveryInstructions: deliveryInstructions || "",
     });
 
     await newlyCreatedAddress.save();
@@ -69,6 +93,24 @@ const editAddress = async (req, res) => {
       return res.status(400).json({
         success: false,
         message: "User and address id is required!",
+      });
+    }
+
+    // Validate required fields for update
+    const { 
+      addressLine1, 
+      city, 
+      state, 
+      postalCode, 
+      country, 
+      phone, 
+      addressType 
+    } = formData;
+
+    if (!addressLine1 || !city || !state || !postalCode || !country || !phone || !addressType) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid data provided! Required fields: addressLine1, city, state, postalCode, country, phone, addressType",
       });
     }
 

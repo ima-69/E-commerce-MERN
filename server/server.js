@@ -7,6 +7,7 @@ const cors = require('cors');
 dotenv.config();
 
 const authRouter = require("./routes/auth/auth-routes");
+const profileRouter = require("./routes/auth/profile-routes");
 
 const adminProductRouter = require("./routes/admin/products-routes");
 const adminOrderRouter = require("./routes/admin/order-routes");
@@ -48,6 +49,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use("/api/auth", authRouter);
+app.use("/api/profile", profileRouter);
 
 app.use("/api/admin/products", adminProductRouter);
 app.use("/api/admin/orders", adminOrderRouter);

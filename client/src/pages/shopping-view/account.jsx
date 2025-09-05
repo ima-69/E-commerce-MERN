@@ -3,6 +3,8 @@ import accImg from "../../assets/account.jpg";
 import Address from "@/components/shopping-view/address";
 import ShoppingOrders from "@/components/shopping-view/orders";
 import ShoppingWishlist from "@/components/shopping-view/wishlist";
+import Profile from "@/components/shopping-view/profile";
+import { User, MapPin, Heart, Package } from "lucide-react";
 
 const ShoppingAccount = () => {
   return (
@@ -15,20 +17,36 @@ const ShoppingAccount = () => {
       </div>
       <div className="container mx-auto grid grid-cols-1 gap-8 py-8">
         <div className="flex flex-col rounded-lg border bg-background p-6 shadow-sm">
-          <Tabs defaultValue="orders">
+          <Tabs defaultValue="profile">
             <TabsList>
-              <TabsTrigger value="orders">Orders</TabsTrigger>
-              <TabsTrigger value="wishlist">Wishlist</TabsTrigger>
-              <TabsTrigger value="address">Address</TabsTrigger>
+              <TabsTrigger value="profile" className="flex items-center gap-2">
+                <User className="h-4 w-4" />
+                Profile
+              </TabsTrigger>
+              <TabsTrigger value="address" className="flex items-center gap-2">
+                <MapPin className="h-4 w-4" />
+                Address
+              </TabsTrigger>
+              <TabsTrigger value="wishlist" className="flex items-center gap-2">
+                <Heart className="h-4 w-4" />
+                Wishlist
+              </TabsTrigger>
+              <TabsTrigger value="orders" className="flex items-center gap-2">
+                <Package className="h-4 w-4" />
+                Orders
+              </TabsTrigger>
             </TabsList>
-            <TabsContent value="orders">
-              <ShoppingOrders />
+            <TabsContent value="profile">
+              <Profile />
+            </TabsContent>
+            <TabsContent value="address">
+              <Address />
             </TabsContent>
             <TabsContent value="wishlist">
               <ShoppingWishlist />
             </TabsContent>
-            <TabsContent value="address">
-              <Address />
+            <TabsContent value="orders">
+              <ShoppingOrders />
             </TabsContent>
           </Tabs>
         </div>

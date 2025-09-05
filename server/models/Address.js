@@ -3,11 +3,20 @@ const mongoose = require("mongoose");
 const AddressSchema = new mongoose.Schema(
   {
     userId: String,
-    address: String,
+    addressLine1: String,
+    addressLine2: String,
     city: String,
-    pincode: String,
+    state: String,
+    postalCode: String,
+    country: String,
     phone: String,
-    notes: String,
+    countryCode: String,
+    addressType: {
+      type: String,
+      enum: ["home", "work", "other"],
+      default: "home"
+    },
+    deliveryInstructions: String,
   },
   { timestamps: true }
 );

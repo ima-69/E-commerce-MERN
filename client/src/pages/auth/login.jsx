@@ -165,23 +165,13 @@ const AuthLogin = () => {
             </Button>
           </form>
           
-          <div className="mt-6 space-y-3 text-center">
-            <div>
-              <Link
-                to="/auth/forgot-password"
-                className="text-sm text-primary hover:underline"
-              >
-                Forgot your password?
-              </Link>
-            </div>
-            <div>
-              <Link
-                to="/auth/register"
-                className="text-sm text-primary hover:underline"
-              >
-                Don't have an account? Sign up
-              </Link>
-            </div>
+          <div className="mt-6 text-center">
+            <Link
+              to="/auth/forgot-password"
+              className="text-sm text-primary hover:underline"
+            >
+              Forgot your password?
+            </Link>
           </div>
         </CardContent>
       </Card>

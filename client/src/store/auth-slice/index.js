@@ -67,6 +67,85 @@ export const checkAuth = createAsyncThunk(
   }
 );
 
+// Get user profile
+export const getUserProfile = createAsyncThunk(
+  "/profile/get",
+  async () => {
+    const response = await axios.get(
+      `${import.meta.env.VITE_BACKEND_URL}/api/profile/`,
+      {
+        withCredentials: true,
+      }
+    );
+    return response.data;
+  }
+);
+
+// Update user profile
+export const updateUserProfile = createAsyncThunk(
+  "/profile/update",
+  async (profileData) => {
+    const response = await axios.put(
+      `${import.meta.env.VITE_BACKEND_URL}/api/profile/`,
+      profileData,
+      {
+        withCredentials: true,
+      }
+    );
+    return response.data;
+  }
+);
+
+// Upload profile picture
+export const uploadProfilePicture = createAsyncThunk(
+  "/profile/upload-picture",
+  async (file) => {
+    const formData = new FormData();
+    formData.append('profilePicture', file);
+    
+    const response = await axios.post(
+      `${import.meta.env.VITE_BACKEND_URL}/api/profile/picture`,
+      formData,
+      {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    );
+    return response.data;
+  }
+);
+
+// Delete profile picture
+export const deleteProfilePicture = createAsyncThunk(
+  "/profile/delete-picture",
+  async () => {
+    const response = await axios.delete(
+      `${import.meta.env.VITE_BACKEND_URL}/api/profile/picture`,
+      {
+        withCredentials: true,
+      }
+    );
+    return response.data;
+  }
+);
+
+// Change password
+export const changePassword = createAsyncThunk(
+  "/profile/change-password",
+  async (passwordData) => {
+    const response = await axios.put(
+      `${import.meta.env.VITE_BACKEND_URL}/api/profile/password`,
+      passwordData,
+      {
+        withCredentials: true,
+      }
+    );
+    return response.data;
+  }
+);
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -119,6 +198,26 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.user = null;
         state.isAuthenticated = false;
+      })
+      .addCase(getUserProfile.fulfilled, (state, action) => {
+        if (action.payload.success) {
+          state.user = action.payload.user;
+        }
+      })
+      .addCase(updateUserProfile.fulfilled, (state, action) => {
+        if (action.payload.success) {
+          state.user = action.payload.user;
+        }
+      })
+      .addCase(uploadProfilePicture.fulfilled, (state, action) => {
+        if (action.payload.success) {
+          state.user = action.payload.user;
+        }
+      })
+      .addCase(deleteProfilePicture.fulfilled, (state, action) => {
+        if (action.payload.success) {
+          state.user = action.payload.user;
+        }
       });
   },
 });

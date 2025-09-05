@@ -18,7 +18,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { Avatar, AvatarFallback } from "../ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { logoutUser } from "@/store/auth-slice";
 import UserCartWrapper from "./cart-wrapper";
 import { useEffect, useState } from "react";
@@ -200,11 +200,16 @@ const HeaderRightContent = () => {
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Avatar className="bg-black">
-            <AvatarFallback className="bg-black text-white font-extrabold">
-              {user?.firstName?.[0]?.toUpperCase()}{user?.lastName?.[0]?.toUpperCase()}
-            </AvatarFallback>
-          </Avatar>
+                  <Avatar className="bg-gray-200 cursor-pointer">
+          <AvatarImage
+            src={user?.profilePicture}
+            alt="Profile"
+            className="object-cover"
+          />
+          <AvatarFallback className="bg-gray-200 text-gray-700 font-bold text-sm">
+            {user?.firstName?.[0]?.toUpperCase()}{user?.lastName?.[0]?.toUpperCase()}
+          </AvatarFallback>
+        </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent side="bottom" className="w-56">
           <DropdownMenuLabel>
