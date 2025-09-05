@@ -106,7 +106,6 @@ const removeFromWishlist = async (req, res) => {
 const getWishlist = async (req, res) => {
   try {
     const { userId } = req.params;
-    console.log("Fetching wishlist for userId:", userId);
 
     if (!userId) {
       return res.status(400).json({
@@ -121,14 +120,12 @@ const getWishlist = async (req, res) => {
     });
 
     if (!user) {
-      console.log("User not found for wishlist:", userId);
       return res.status(404).json({
         success: false,
         message: "User not found",
       });
     }
 
-    console.log("Found wishlist items:", user.wishlist.length);
 
     res.status(200).json({
       success: true,

@@ -29,6 +29,17 @@ export const addFeatureImage = createAsyncThunk(
   }
 );
 
+export const deleteFeatureImage = createAsyncThunk(
+  "/order/deleteFeatureImage",
+  async (id) => {
+    const response = await axios.delete(
+      `${import.meta.env.VITE_BACKEND_URL}/api/common/feature/delete/${id}`
+    );
+
+    return response.data;
+  }
+);
+
 const commonSlice = createSlice({
   name: "commonSlice",
   initialState,
@@ -45,6 +56,32 @@ const commonSlice = createSlice({
       .addCase(getFeatureImages.rejected, (state) => {
         state.isLoading = false;
         state.featureImageList = [];
+      })
+      .addCase(addFeatureImage.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(addFeatureImage.fulfilled, (state, action) => {
+        state.isLoading = false;
+        if (action.payload.success) {
+          state.featureImageList.push(action.payload.data);
+        }
+      })
+      .addCase(addFeatureImage.rejected, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(deleteFeatureImage.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteFeatureImage.fulfilled, (state, action) => {
+        state.isLoading = false;
+        if (action.payload.success) {
+          state.featureImageList = state.featureImageList.filter(
+            (image) => image._id !== action.payload.data._id
+          );
+        }
+      })
+      .addCase(deleteFeatureImage.rejected, (state) => {
+        state.isLoading = false;
       });
   },
 });

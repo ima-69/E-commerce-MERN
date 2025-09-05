@@ -33,48 +33,15 @@ const ShoppingOrders = () => {
 
   useEffect(() => {
     if (isAuthenticated && (user?.id || user?._id)) {
-      console.log("Fetching orders for user:", user?.id || user?._id);
       dispatch(getAllOrdersByUserId(user?.id || user?._id));
-    } else {
-      console.log("Not authenticated or no user ID available for fetching orders");
     }
   }, [dispatch, isAuthenticated, user?.id, user?._id]);
 
-  // Temporary: Also fetch all orders to see if there are any orders in the database
-  useEffect(() => {
-    if (isAuthenticated) {
-      console.log("Fetching ALL orders to check database...");
-      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/admin/orders/get`, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      })
-      .then(res => res.json())
-      .then(data => {
-        console.log("ALL orders in database:", data);
-        if (data.success && data.data) {
-          console.log("Total orders in database:", data.data.length);
-          console.log("Sample order:", data.data[0]);
-        }
-      })
-      .catch(err => console.error("Error fetching all orders:", err));
-    }
-  }, [isAuthenticated]);
 
   useEffect(() => {
     if (orderDetails !== null) setOpenDetailsDialog(true);
   }, [orderDetails]);
 
-  console.log("Orders component state:", { 
-    orderList, 
-    orderDetails, 
-    user: user?.id || user?._id,
-    userObject: user,
-    isLoading,
-    isAuthenticated,
-    orderListLength: orderList?.length,
-    error
-  });
 
   const getStatusIcon = (status) => {
     switch (status) {

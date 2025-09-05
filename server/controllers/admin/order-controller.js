@@ -72,7 +72,6 @@ const updateOrderStatus = async (req, res) => {
     try {
       const user = await User.findById(order.userId);
       if (user && user.email) {
-        console.log("Sending order status update email to:", user.email);
         const emailResult = await sendOrderStatusUpdateEmail(
           user.email,
           user.userName || user.firstName || 'Customer',
@@ -80,13 +79,9 @@ const updateOrderStatus = async (req, res) => {
           orderStatus
         );
         
-        if (emailResult.success) {
-          console.log("Order status update email sent successfully");
-        } else {
+        if (!emailResult.success) {
           console.error("Failed to send order status update email:", emailResult.error);
         }
-      } else {
-        console.log("User not found or no email address for order:", order._id);
       }
     } catch (emailError) {
       console.error("Error sending order status update email:", emailError);

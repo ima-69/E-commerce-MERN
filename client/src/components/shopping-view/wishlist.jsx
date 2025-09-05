@@ -16,20 +16,10 @@ const ShoppingWishlist = () => {
   const { wishlistItems, loading, error } = useSelector((state) => state.shopWishlist);
   const { cartItems } = useSelector((state) => state.shopCart);
 
-  console.log("Wishlist component state:", { 
-    wishlistItems, 
-    loading, 
-    error,
-    isAuthenticated, 
-    user: user?.id || user?._id 
-  });
 
   useEffect(() => {
     if (isAuthenticated && (user?.id || user?._id)) {
-      console.log("Fetching wishlist for user:", user?.id || user?._id);
       dispatch(fetchWishlist(user?.id || user?._id));
-    } else {
-      console.log("Not authenticated or no user ID for wishlist");
     }
   }, [dispatch, isAuthenticated, user?.id, user?._id]);
 

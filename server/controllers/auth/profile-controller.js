@@ -94,9 +94,6 @@ const uploadProfilePicture = async (req, res) => {
   try {
     const userId = req.user.id;
     
-    console.log("Upload profile picture request received");
-    console.log("File:", req.file ? "Present" : "Missing");
-    console.log("User ID:", userId);
     
     if (!req.file) {
       return res.status(400).json({

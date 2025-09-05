@@ -4,7 +4,6 @@ const Product = require("../../models/Product");
 const handleImageUpload = async (req, res) => {
   try {
     console.log("Image upload request received");
-    console.log("Request headers:", req.headers);
     console.log("Request file:", req.file);
     console.log("Request body:", req.body);
     
@@ -29,14 +28,8 @@ const handleImageUpload = async (req, res) => {
       });
     }
 
-    console.log("Processing file:", req.file.originalname, "Size:", req.file.size, "Type:", req.file.mimetype);
     
-    const b64 = Buffer.from(req.file.buffer).toString("base64");
-    const url = "data:" + req.file.mimetype + ";base64," + b64;
-    
-    console.log("Uploading to Cloudinary...");
-    const result = await imageUploadUtil(url);
-    console.log("Upload successful:", result.secure_url);
+    const result = await imageUploadUtil(req.file);
 
     res.json({
       success: true,

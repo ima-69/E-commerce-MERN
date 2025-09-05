@@ -2,12 +2,6 @@ const nodemailer = require('nodemailer');
 
 // Create transporter for sending emails
 const createTransporter = () => {
-  console.log('Creating email transporter with config:', {
-    service: process.env.EMAIL_SERVICE || 'gmail',
-    user: process.env.EMAIL_USER ? 'configured' : 'missing',
-    pass: process.env.EMAIL_PASS ? 'configured' : 'missing'
-  });
-  
   return nodemailer.createTransport({
     service: process.env.EMAIL_SERVICE || 'gmail',
     auth: {
@@ -70,7 +64,6 @@ const sendPasswordResetEmail = async (email, resetToken, firstName) => {
     };
 
     const result = await transporter.sendMail(mailOptions);
-    console.log('Password reset email sent successfully:', result.messageId);
     return { success: true, messageId: result.messageId };
   } catch (error) {
     console.error('Error sending password reset email:', error);
@@ -120,7 +113,6 @@ const sendPasswordResetConfirmation = async (email, firstName) => {
     };
 
     const result = await transporter.sendMail(mailOptions);
-    console.log('Password reset confirmation email sent successfully:', result.messageId);
     return { success: true, messageId: result.messageId };
   } catch (error) {
     console.error('Error sending password reset confirmation email:', error);
@@ -131,13 +123,6 @@ const sendPasswordResetConfirmation = async (email, firstName) => {
 // Send order confirmation email
 const sendOrderConfirmationEmail = async (email, firstName, orderData) => {
   try {
-    console.log('Sending order confirmation email to:', email);
-    console.log('Order data:', {
-      orderId: orderData._id,
-      totalAmount: orderData.totalAmount,
-      itemsCount: orderData.cartItems?.length
-    });
-    
     const transporter = createTransporter();
     
     const orderItems = orderData.cartItems.map(item => `
@@ -152,7 +137,7 @@ const sendOrderConfirmationEmail = async (email, firstName, orderData) => {
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: email,
-      subject: `Order Confirmation #${orderData._id.slice(-8)} - Shopzy`,
+      subject: `Order Confirmation #${String(orderData._id).slice(-8)} - Shopzy`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
           <div style="background-color: #f8f9fa; padding: 30px; border-radius: 10px;">
@@ -166,7 +151,7 @@ const sendOrderConfirmationEmail = async (email, firstName, orderData) => {
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px;">
                 <div>
                   <strong>Order ID:</strong><br>
-                  <span style="color: #666;">#${orderData._id.slice(-8)}</span>
+                  <span style="color: #666;">#${String(orderData._id).slice(-8)}</span>
                 </div>
                 <div>
                   <strong>Order Date:</strong><br>
@@ -239,24 +224,10 @@ const sendOrderConfirmationEmail = async (email, firstName, orderData) => {
       `,
     };
 
-    console.log('Attempting to send email with options:', {
-      from: mailOptions.from,
-      to: mailOptions.to,
-      subject: mailOptions.subject
-    });
-    
     const result = await transporter.sendMail(mailOptions);
-    console.log('✅ Order confirmation email sent successfully:', result.messageId);
-    console.log('Email response:', result.response);
     return { success: true, messageId: result.messageId };
   } catch (error) {
-    console.error('❌ Error sending order confirmation email:', error);
-    console.error('Error details:', {
-      message: error.message,
-      code: error.code,
-      command: error.command,
-      response: error.response
-    });
+    console.error('Error sending order confirmation email:', error);
     return { success: false, error: error.message };
   }
 };
@@ -264,9 +235,6 @@ const sendOrderConfirmationEmail = async (email, firstName, orderData) => {
 // Send order status update email
 const sendOrderStatusUpdateEmail = async (email, firstName, orderData, newStatus) => {
   try {
-    console.log('Sending order status update email to:', email);
-    console.log('Order status:', newStatus);
-    
     const transporter = createTransporter();
     
     const statusMessages = {
@@ -290,7 +258,7 @@ const sendOrderStatusUpdateEmail = async (email, firstName, orderData, newStatus
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: email,
-      subject: `Order Status Update #${orderData._id.slice(-8)} - Shopzy`,
+      subject: `Order Status Update #${String(orderData._id).slice(-8)} - Shopzy`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
           <div style="background-color: #f8f9fa; padding: 30px; border-radius: 10px;">
@@ -304,7 +272,7 @@ const sendOrderStatusUpdateEmail = async (email, firstName, orderData, newStatus
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px;">
                 <div>
                   <strong>Order ID:</strong><br>
-                  <span style="color: #666;">#${orderData._id.slice(-8)}</span>
+                  <span style="color: #666;">#${String(orderData._id).slice(-8)}</span>
                 </div>
                 <div>
                   <strong>New Status:</strong><br>
@@ -338,12 +306,10 @@ const sendOrderStatusUpdateEmail = async (email, firstName, orderData, newStatus
       `,
     };
 
-    console.log('Attempting to send order status update email...');
     const result = await transporter.sendMail(mailOptions);
-    console.log('✅ Order status update email sent successfully:', result.messageId);
     return { success: true, messageId: result.messageId };
   } catch (error) {
-    console.error('❌ Error sending order status update email:', error);
+    console.error('Error sending order status update email:', error);
     return { success: false, error: error.message };
   }
 };
@@ -351,23 +317,15 @@ const sendOrderStatusUpdateEmail = async (email, firstName, orderData, newStatus
 // Simple email test function
 const testEmail = async () => {
   try {
-    console.log("=== EMAIL SYSTEM TEST ===");
-    console.log("EMAIL_SERVICE:", process.env.EMAIL_SERVICE || 'gmail');
-    console.log("EMAIL_USER:", process.env.EMAIL_USER ? "✅ Set" : "❌ Missing");
-    console.log("EMAIL_PASS:", process.env.EMAIL_PASS ? "✅ Set" : "❌ Missing");
-    console.log("VITE_FRONTEND_URL:", process.env.VITE_FRONTEND_URL || "❌ Missing");
-    
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-      console.log("❌ Email configuration incomplete");
       return { success: false, message: "Email configuration incomplete" };
     }
     
     const transporter = createTransporter();
     await transporter.verify();
-    console.log("✅ Email system ready");
     return { success: true, message: "Email system ready" };
   } catch (error) {
-    console.error("❌ Email test failed:", error.message);
+    console.error("Email test failed:", error.message);
     return { success: false, error: error.message };
   }
 };

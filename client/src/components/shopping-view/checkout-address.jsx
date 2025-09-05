@@ -43,12 +43,6 @@ function CheckoutAddress({ setCurrentSelectedAddress, selectedId }) {
       return;
     }
 
-    // Debug: Log the form data being sent
-    console.log("Form data being sent:", formData);
-    console.log("User object:", user);
-    console.log("User ID (id):", user?.id);
-    console.log("User ID (_id):", user?._id);
-    console.log("Form validation result:", isFormValid());
     
     // Check if user is authenticated
     if (!user?._id && !user?.id) {

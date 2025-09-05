@@ -126,7 +126,6 @@ const wishlistSlice = createSlice({
       })
       .addCase(fetchWishlist.fulfilled, (state, action) => {
         state.loading = false;
-        console.log("Wishlist fetched successfully:", action.payload.data);
         state.wishlistItems = action.payload.data;
         // Update wishlist status for all products
         action.payload.data.forEach((product) => {

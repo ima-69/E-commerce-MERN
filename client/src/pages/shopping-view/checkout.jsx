@@ -67,9 +67,6 @@ const ShoppingCheckout = () => {
       return;
     }
 
-    console.log("Creating order with user ID:", user?.id || user?._id);
-    console.log("User object:", user);
-    
     const orderData = {
       userId: user?.id || user?._id,
       cartId: cartItems?._id,
