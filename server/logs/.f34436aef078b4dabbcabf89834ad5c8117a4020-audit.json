@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 7
+    },
+    "auditLog": "E:\\MERN\\E-commerce-MERN\\server\\logs\\.f34436aef078b4dabbcabf89834ad5c8117a4020-audit.json",
+    "files": [
+        {
+            "date": 1757085913004,
+            "name": "E:\\MERN\\E-commerce-MERN\\server\\logs\\http-2025-09-05.log",
+            "hash": "bd395c9d7c3ff5cb7f65cdd546a4045161e2d3bd75038db47174d024b2813dae"
+        }
+    ],
+    "hashType": "sha256"
+}

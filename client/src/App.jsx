@@ -19,6 +19,7 @@ import ShoppingAccount from "./pages/shopping-view/account";
 import CheckAuth from "./components/common/check-auth";
 import CartMerger from "./components/common/cart-merger";
 import ScrollToTop from "./components/common/scroll-to-top";
+import ErrorBoundary from "./components/common/error-boundary";
 import UnauthPage from "./pages/unauth-page";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -51,10 +52,11 @@ function App() {
 
 
   return (
-    <div className="flex flex-col overflow-hidden bg-white">
-      <ScrollToTop />
-      <CartMerger />
-      <Routes>
+    <ErrorBoundary>
+      <div className="flex flex-col overflow-hidden bg-white">
+        <ScrollToTop />
+        <CartMerger />
+        <Routes>
         <Route
           path="/"
           element={
@@ -119,7 +121,8 @@ function App() {
         <Route path="/unauth-page" element={<UnauthPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </div>
+      </div>
+    </ErrorBoundary>
   );
 }
 

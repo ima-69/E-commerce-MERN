@@ -2,6 +2,8 @@ const User = require("../../models/User");
 const bcrypt = require("bcryptjs");
 const cloudinary = require("cloudinary").v2;
 const { imageUploadUtil } = require("../../helpers/cloudinary");
+const { asyncHandler, createError } = require("../../utils/errorHandler");
+const logger = require("../../utils/logger");
 
 // Get user profile
 const getUserProfile = async (req, res) => {

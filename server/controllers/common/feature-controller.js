@@ -1,4 +1,6 @@
 const Feature = require("../../models/Feature");
+const { asyncHandler, createError } = require("../../utils/errorHandler");
+const logger = require("../../utils/logger");
 
 const addFeatureImage = async (req, res) => {
   try {

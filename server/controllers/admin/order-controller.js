@@ -1,131 +1,119 @@
 const Order = require("../../models/Order");
 const User = require("../../models/User");
 const { sendOrderStatusUpdateEmail } = require("../../helpers/emailService");
+const { asyncHandler, createError } = require("../../utils/errorHandler");
+const logger = require("../../utils/logger");
 
-const getAllOrdersOfAllUsers = async (req, res) => {
-  try {
-    const orders = await Order.find({});
+const getAllOrdersOfAllUsers = asyncHandler(async (req, res) => {
+  const orders = await Order.find({}).populate('userId', 'firstName lastName email');
 
-    if (!orders.length) {
-      return res.status(404).json({
-        success: false,
-        message: "No orders found!",
-      });
-    }
-
-    res.status(200).json({
-      success: true,
-      data: orders,
-    });
-  } catch (e) {
-    res.status(500).json({
-      success: false,
-      message: "Some error occured!",
-    });
+  if (!orders.length) {
+    throw createError.notFound("No orders found!");
   }
-};
 
-const getOrderDetailsForAdmin = async (req, res) => {
-  try {
-    const { id } = req.params;
+  logger.info('All orders fetched for admin', { count: orders.length });
 
-    const order = await Order.findById(id);
+  res.status(200).json({
+    success: true,
+    data: orders,
+  });
+});
 
-    if (!order) {
-      return res.status(404).json({
-        success: false,
-        message: "Order not found!",
-      });
-    }
+const getOrderDetailsForAdmin = asyncHandler(async (req, res) => {
+  const { id } = req.params;
 
-    res.status(200).json({
-      success: true,
-      data: order,
-    });
-  } catch (e) {
-    res.status(500).json({
-      success: false,
-      message: "Some error occured!",
-    });
+  const order = await Order.findById(id).populate('userId', 'firstName lastName email');
+
+  if (!order) {
+    throw createError.notFound("Order not found!");
   }
-};
 
-const updateOrderStatus = async (req, res) => {
+  logger.info('Order details fetched for admin', { orderId: id });
+
+  res.status(200).json({
+    success: true,
+    data: order,
+  });
+});
+
+const updateOrderStatus = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const { orderStatus } = req.body;
+
+  if (!orderStatus) {
+    throw createError.badRequest("Order status is required");
+  }
+
+  const order = await Order.findById(id);
+  if (!order) {
+    throw createError.notFound("Order not found!");
+  }
+
+  const updatedOrder = await Order.findByIdAndUpdate(id, { orderStatus }, { new: true });
+
+  // Send order status update email
   try {
-    const { id } = req.params;
-    const { orderStatus } = req.body;
-
-    const order = await Order.findById(id);
-
-    if (!order) {
-      return res.status(404).json({
-        success: false,
-        message: "Order not found!",
-      });
-    }
-
-    const updatedOrder = await Order.findByIdAndUpdate(id, { orderStatus }, { new: true });
-
-    // Send order status update email
-    try {
-      const user = await User.findById(order.userId);
-      if (user && user.email) {
-        const emailResult = await sendOrderStatusUpdateEmail(
-          user.email,
-          user.userName || user.firstName || 'Customer',
-          order,
-          orderStatus
-        );
-        
-        if (!emailResult.success) {
-          console.error("Failed to send order status update email:", emailResult.error);
-        }
+    const user = await User.findById(order.userId);
+    if (user && user.email) {
+      const emailResult = await sendOrderStatusUpdateEmail(
+        user.email,
+        user.userName || user.firstName || 'Customer',
+        order,
+        orderStatus
+      );
+      
+      if (!emailResult.success) {
+        logger.warn('Failed to send order status update email', {
+          orderId: id,
+          userId: order.userId,
+          error: emailResult.error
+        });
       }
-    } catch (emailError) {
-      console.error("Error sending order status update email:", emailError);
-      // Don't fail the status update if email fails
     }
-
-    res.status(200).json({
-      success: true,
-      message: "Order status is updated successfully!",
-      data: updatedOrder,
+  } catch (emailError) {
+    logger.warn('Error sending order status update email', {
+      orderId: id,
+      userId: order.userId,
+      error: emailError.message
     });
-  } catch (e) {
-    res.status(500).json({
-      success: false,
-      message: "Some error occured!",
-    });
+    // Don't fail the status update if email fails
   }
-};
 
-const deleteOrder = async (req, res) => {
-  try {
-    const { id } = req.params;
+  logger.info('Order status updated', { 
+    orderId: id, 
+    oldStatus: order.orderStatus, 
+    newStatus: orderStatus 
+  });
 
-    const order = await Order.findById(id);
+  res.status(200).json({
+    success: true,
+    message: "Order status is updated successfully!",
+    data: updatedOrder,
+  });
+});
 
-    if (!order) {
-      return res.status(404).json({
-        success: false,
-        message: "Order not found!",
-      });
-    }
+const deleteOrder = asyncHandler(async (req, res) => {
+  const { id } = req.params;
 
-    await Order.findByIdAndDelete(id);
-
-    res.status(200).json({
-      success: true,
-      message: "Order deleted successfully!",
-      data: id,
-    });
-  } catch (e) {
-    res.status(500).json({
-      success: false,
-      message: "Some error occurred!",
-    });
+  const order = await Order.findById(id);
+  if (!order) {
+    throw createError.notFound("Order not found!");
   }
-};
+
+  await Order.findByIdAndDelete(id);
+
+  logger.info('Order deleted by admin', { 
+    orderId: id,
+    userId: order.userId,
+    totalAmount: order.totalAmount
+  });
+
+  res.status(200).json({
+    success: true,
+    message: "Order deleted successfully!",
+    data: id,
+  });
+});
 
 module.exports = {
   getAllOrdersOfAllUsers,

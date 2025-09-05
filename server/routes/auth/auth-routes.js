@@ -8,16 +8,17 @@ const {
   resetPassword,
   verifyResetToken
 } = require("../../controllers/auth/auth-controller");
+const { authValidation, handleValidationErrors } = require("../../utils/validators");
 
 const router = express.Router();
 
-router.post("/register", registerUser);
-router.post("/login", loginUser);
+router.post("/register", authValidation.register, handleValidationErrors, registerUser);
+router.post("/login", authValidation.login, handleValidationErrors, loginUser);
 router.post("/logout", logoutUser);
 
 // Forgot Password Routes
-router.post("/forgot-password", forgotPassword);
-router.post("/reset-password", resetPassword);
+router.post("/forgot-password", authValidation.forgotPassword, handleValidationErrors, forgotPassword);
+router.post("/reset-password", authValidation.resetPassword, handleValidationErrors, resetPassword);
 router.get("/verify-reset-token/:token", verifyResetToken);
 
 router.get("/check-auth", authMiddleware, (req, res) => {
