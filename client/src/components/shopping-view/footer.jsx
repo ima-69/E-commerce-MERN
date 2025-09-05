@@ -1,7 +1,14 @@
 import { HousePlug, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 import { Link } from "react-router-dom";
+import useScrollToTop from "../../hooks/useScrollToTop";
 
 const Footer = () => {
+  const scrollToTop = useScrollToTop();
+
+  const handleLinkClick = () => {
+    scrollToTop();
+  };
+
   return (
     <footer className="bg-gray-900 text-white">
       {/* Main Footer Content */}
@@ -40,32 +47,32 @@ const Footer = () => {
             <h3 className="text-lg font-semibold">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/shop/home" className="text-gray-300 hover:text-white transition-colors text-sm">
+                <Link to="/shop/home" onClick={handleLinkClick} className="text-gray-300 hover:text-white transition-colors text-sm">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/shop/listing" className="text-gray-300 hover:text-white transition-colors text-sm">
+                <Link to="/shop/listing" onClick={handleLinkClick} className="text-gray-300 hover:text-white transition-colors text-sm">
                   All Products
                 </Link>
               </li>
               <li>
-                <Link to="/shop/listing?category=men" className="text-gray-300 hover:text-white transition-colors text-sm">
+                <Link to="/shop/listing?category=men" onClick={handleLinkClick} className="text-gray-300 hover:text-white transition-colors text-sm">
                   Men's Collection
                 </Link>
               </li>
               <li>
-                <Link to="/shop/listing?category=women" className="text-gray-300 hover:text-white transition-colors text-sm">
+                <Link to="/shop/listing?category=women" onClick={handleLinkClick} className="text-gray-300 hover:text-white transition-colors text-sm">
                   Women's Collection
                 </Link>
               </li>
               <li>
-                <Link to="/shop/listing?category=kids" className="text-gray-300 hover:text-white transition-colors text-sm">
+                <Link to="/shop/listing?category=kids" onClick={handleLinkClick} className="text-gray-300 hover:text-white transition-colors text-sm">
                   Kids Collection
                 </Link>
               </li>
               <li>
-                <Link to="/shop/listing?category=accessories" className="text-gray-300 hover:text-white transition-colors text-sm">
+                <Link to="/shop/listing?category=accessories" onClick={handleLinkClick} className="text-gray-300 hover:text-white transition-colors text-sm">
                   Accessories
                 </Link>
               </li>
@@ -77,32 +84,32 @@ const Footer = () => {
             <h3 className="text-lg font-semibold">Customer Service</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/shop/account" className="text-gray-300 hover:text-white transition-colors text-sm">
+                <Link to="/shop/account" onClick={handleLinkClick} className="text-gray-300 hover:text-white transition-colors text-sm">
                   My Account
                 </Link>
               </li>
               <li>
-                <Link to="/shop/order-tracking" className="text-gray-300 hover:text-white transition-colors text-sm">
+                <Link to="/shop/order-tracking" onClick={handleLinkClick} className="text-gray-300 hover:text-white transition-colors text-sm">
                   Order Tracking
                 </Link>
               </li>
               <li>
-                <Link to="/shop/size-guide" className="text-gray-300 hover:text-white transition-colors text-sm">
+                <Link to="/shop/size-guide" onClick={handleLinkClick} className="text-gray-300 hover:text-white transition-colors text-sm">
                   Size Guide
                 </Link>
               </li>
               <li>
-                <Link to="/shop/returns-exchanges" className="text-gray-300 hover:text-white transition-colors text-sm">
+                <Link to="/shop/returns-exchanges" onClick={handleLinkClick} className="text-gray-300 hover:text-white transition-colors text-sm">
                   Returns & Exchanges
                 </Link>
               </li>
               <li>
-                <Link to="/shop/faq" className="text-gray-300 hover:text-white transition-colors text-sm">
+                <Link to="/shop/faq" onClick={handleLinkClick} className="text-gray-300 hover:text-white transition-colors text-sm">
                   FAQ
                 </Link>
               </li>
               <li>
-                <Link to="/shop/contact-us" className="text-gray-300 hover:text-white transition-colors text-sm">
+                <Link to="/shop/contact-us" onClick={handleLinkClick} className="text-gray-300 hover:text-white transition-colors text-sm">
                   Contact Us
                 </Link>
               </li>
@@ -170,16 +177,16 @@ const Footer = () => {
               © 2025 SHOPZY. All rights reserved.
             </div>
             <div className="flex flex-wrap gap-6 text-sm">
-              <Link to="/shop/privacy-policy" className="text-gray-400 hover:text-white transition-colors">
+              <Link to="/shop/privacy-policy" onClick={handleLinkClick} className="text-gray-400 hover:text-white transition-colors">
                 Privacy Policy
               </Link>
-              <Link to="/shop/terms-of-service" className="text-gray-400 hover:text-white transition-colors">
+              <Link to="/shop/terms-of-service" onClick={handleLinkClick} className="text-gray-400 hover:text-white transition-colors">
                 Terms of Service
               </Link>
-              <Link to="/shop/cookie-policy" className="text-gray-400 hover:text-white transition-colors">
+              <Link to="/shop/cookie-policy" onClick={handleLinkClick} className="text-gray-400 hover:text-white transition-colors">
                 Cookie Policy
               </Link>
-              <Link to="/shop/sitemap" className="text-gray-400 hover:text-white transition-colors">
+              <Link to="/shop/sitemap" onClick={handleLinkClick} className="text-gray-400 hover:text-white transition-colors">
                 Sitemap
               </Link>
             </div>

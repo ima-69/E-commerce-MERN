@@ -19,7 +19,7 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { logoutUser } from "@/store/auth-slice";
+import { logoutUser, getUserProfile } from "@/store/auth-slice";
 import UserCartWrapper from "./cart-wrapper";
 import { useEffect, useState } from "react";
 import { fetchCartItems } from "@/store/shop/cart-slice";
@@ -262,7 +262,7 @@ const HeaderRightContent = ({ isMobile = false }) => {
         <DropdownMenuTrigger asChild>
           <Avatar className="bg-gray-200 cursor-pointer">
             <AvatarImage
-              src={user?.profilePicture}
+              src={user?.profilePicture || undefined}
               alt="Profile"
               className="object-cover"
             />
@@ -299,7 +299,7 @@ const HeaderRightContent = ({ isMobile = false }) => {
 }
 
 function ShoppingHeader() {
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  const { isAuthenticated, isLoading } = useSelector((state) => state.auth);
   const { user } = useSelector((state) => state.auth);
   const { cartItems } = useSelector((state) => state.shopCart);
   const { guestCartItems } = useSelector((state) => state.guestCart);
@@ -310,6 +310,8 @@ function ShoppingHeader() {
   useEffect(() => {
     if (user?.id) {
       dispatch(fetchCartItems(user.id));
+      // Load complete user profile data including profile picture
+      dispatch(getUserProfile());
     }
   }, [dispatch, user?.id]);
 
@@ -358,7 +360,7 @@ function ShoppingHeader() {
                 <DropdownMenuTrigger asChild>
                   <Avatar className="bg-gray-200 cursor-pointer w-8 h-8">
                     <AvatarImage
-                      src={user?.profilePicture}
+                      src={user?.profilePicture || undefined}
                       alt="Profile"
                       className="object-cover"
                     />
