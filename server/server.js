@@ -21,6 +21,7 @@ const shopSearchRouter = require("./routes/shop/search-routes");
 const shopWishlistRouter = require("./routes/shop/wishlist-routes");
 
 const commonFeatureRouter = require("./routes/common/feature-routes");
+const { testEmail } = require("./helpers/emailService");
 
 mongoose
     .connect(process.env.mongodbURI)
@@ -64,6 +65,13 @@ app.use("/api/shop/wishlist", shopWishlistRouter);
 
 app.use("/api/common/feature", commonFeatureRouter);
 
+// Email test endpoint
+app.get("/api/test-email", async (req, res) => {
+  const result = await testEmail();
+  res.json(result);
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
+    console.log(`Email test: http://localhost:${PORT}/api/test-email`);
 });

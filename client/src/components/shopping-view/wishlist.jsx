@@ -12,20 +12,31 @@ import { addToCart, fetchCartItems } from "@/store/shop/cart-slice";
 
 const ShoppingWishlist = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
-  const { wishlistItems, loading } = useSelector((state) => state.shopWishlist);
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
+  const { wishlistItems, loading, error } = useSelector((state) => state.shopWishlist);
   const { cartItems } = useSelector((state) => state.shopCart);
 
+  console.log("Wishlist component state:", { 
+    wishlistItems, 
+    loading, 
+    error,
+    isAuthenticated, 
+    user: user?.id || user?._id 
+  });
+
   useEffect(() => {
-    if (user?.id) {
-      dispatch(fetchWishlist(user.id));
+    if (isAuthenticated && (user?.id || user?._id)) {
+      console.log("Fetching wishlist for user:", user?.id || user?._id);
+      dispatch(fetchWishlist(user?.id || user?._id));
+    } else {
+      console.log("Not authenticated or no user ID for wishlist");
     }
-  }, [dispatch, user?.id]);
+  }, [dispatch, isAuthenticated, user?.id, user?._id]);
 
   const handleRemoveFromWishlist = async (productId) => {
     try {
       await dispatch(removeFromWishlist({ 
-        userId: user.id, 
+        userId: user?.id || user?._id, 
         productId 
       })).unwrap();
       toast.success("Removed from wishlist");
@@ -53,20 +64,45 @@ const ShoppingWishlist = () => {
     try {
       const result = await dispatch(
         addToCart({
-          userId: user?.id,
+          userId: user?.id || user?._id,
           productId: productId,
           quantity: 1,
         })
       ).unwrap();
 
       if (result?.success) {
-        dispatch(fetchCartItems(user?.id));
+        dispatch(fetchCartItems(user?.id || user?._id));
         toast.success("Product added to cart");
       }
     } catch (error) {
       toast.error("Failed to add to cart");
     }
   };
+
+  if (!isAuthenticated) {
+    return (
+      <div className="space-y-6">
+        <Card>
+          <CardHeader className="bg-gray-50 border-b">
+            <CardTitle className="flex items-center gap-2 text-xl">
+              <div className="p-2 bg-gray-200 rounded-lg">
+                <Heart className="h-5 w-5 text-gray-600" />
+              </div>
+              My Wishlist
+            </CardTitle>
+            <CardDescription className="text-gray-600">
+              Your saved favorite items
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="text-center py-12">
+            <Heart className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Please Login</h3>
+            <p className="text-gray-600">You need to be logged in to view your wishlist.</p>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   if (loading) {
     return (
@@ -85,6 +121,31 @@ const ShoppingWishlist = () => {
           </CardHeader>
           <CardContent className="flex items-center justify-center p-8">
             <div className="text-gray-500">Loading wishlist...</div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="space-y-6">
+        <Card>
+          <CardHeader className="bg-gray-50 border-b">
+            <CardTitle className="flex items-center gap-2 text-xl">
+              <div className="p-2 bg-gray-200 rounded-lg">
+                <Heart className="h-5 w-5 text-gray-600" />
+              </div>
+              My Wishlist
+            </CardTitle>
+            <CardDescription className="text-gray-600">
+              Your saved favorite items
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="text-center py-12">
+            <Heart className="h-12 w-12 text-red-400 mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Error Loading Wishlist</h3>
+            <p className="text-gray-600">{error}</p>
           </CardContent>
         </Card>
       </div>

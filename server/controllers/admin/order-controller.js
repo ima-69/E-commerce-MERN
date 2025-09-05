@@ -1,4 +1,6 @@
 const Order = require("../../models/Order");
+const User = require("../../models/User");
+const { sendOrderStatusUpdateEmail } = require("../../helpers/emailService");
 
 const getAllOrdersOfAllUsers = async (req, res) => {
   try {
@@ -65,6 +67,31 @@ const updateOrderStatus = async (req, res) => {
     }
 
     await Order.findByIdAndUpdate(id, { orderStatus });
+
+    // Send order status update email
+    try {
+      const user = await User.findById(order.userId);
+      if (user && user.email) {
+        console.log("Sending order status update email to:", user.email);
+        const emailResult = await sendOrderStatusUpdateEmail(
+          user.email,
+          user.userName || user.firstName || 'Customer',
+          order,
+          orderStatus
+        );
+        
+        if (emailResult.success) {
+          console.log("Order status update email sent successfully");
+        } else {
+          console.error("Failed to send order status update email:", emailResult.error);
+        }
+      } else {
+        console.log("User not found or no email address for order:", order._id);
+      }
+    } catch (emailError) {
+      console.error("Error sending order status update email:", emailError);
+      // Don't fail the status update if email fails
+    }
 
     res.status(200).json({
       success: true,

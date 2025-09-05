@@ -1,4 +1,4 @@
-import Address from "@/components/shopping-view/address";
+import CheckoutAddress from "@/components/shopping-view/checkout-address";
 import img from "../../assets/account.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import UserCartItemsContent from "@/components/shopping-view/cart-items-content";
@@ -67,8 +67,11 @@ const ShoppingCheckout = () => {
       return;
     }
 
+    console.log("Creating order with user ID:", user?.id || user?._id);
+    console.log("User object:", user);
+    
     const orderData = {
-      userId: user?.id,
+      userId: user?.id || user?._id,
       cartId: cartItems?._id,
       cartItems: cartItems.items.map((singleCartItem) => ({
         productId: singleCartItem?.productId,
@@ -116,11 +119,13 @@ const ShoppingCheckout = () => {
       <div className="relative h-[300px] w-full overflow-hidden">
         <img src={img} className="h-full w-full object-cover object-center" />
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-5 p-5">
-        <Address
-          selectedId={currentSelectedAddress}
-          setCurrentSelectedAddress={setCurrentSelectedAddress}
-        />
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-5 p-5">
+        <div>
+          <CheckoutAddress
+            selectedId={currentSelectedAddress}
+            setCurrentSelectedAddress={setCurrentSelectedAddress}
+          />
+        </div>
         <div className="flex flex-col gap-4">
           {cartItems && cartItems.items && cartItems.items.length > 0
             ? cartItems.items.map((item) => (

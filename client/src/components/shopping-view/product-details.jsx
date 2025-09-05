@@ -61,13 +61,13 @@ const ProductDetailsDialog = ({ open, setOpen, productDetails }) => {
       }
       dispatch(
         addToCart({
-          userId: user?.id,
+          userId: user?.id || user?._id,
           productId: getCurrentProductId,
           quantity: 1,
         })
       ).then((data) => {
         if (data?.payload?.success) {
-          dispatch(fetchCartItems(user?.id));
+          dispatch(fetchCartItems(user?.id || user?._id));
           toast.success("Product added to cart successfully");
         } else {
           toast.error("Failed to add product to cart");
@@ -87,7 +87,7 @@ const ProductDetailsDialog = ({ open, setOpen, productDetails }) => {
     dispatch(
       addReview({
         productId: productDetails?._id,
-        userId: user?.id,
+        userId: user?.id || user?._id,
         userName: user?.userName,
         reviewMessage: reviewMsg,
         reviewValue: rating,

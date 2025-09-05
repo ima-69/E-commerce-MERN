@@ -115,13 +115,13 @@ const ShoppingHome = () => {
       // Handle authenticated user cart
       dispatch(
         addToCart({
-          userId: user?.id,
+          userId: user?.id || user?._id,
           productId: getCurrentProductId,
           quantity: 1,
         })
       ).then((data) => {
         if (data?.payload?.success) {
-          dispatch(fetchCartItems(user?.id));
+          dispatch(fetchCartItems(user?.id || user?._id));
           toast.success("Product is added to cart");
         }
       });

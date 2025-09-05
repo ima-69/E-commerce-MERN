@@ -5,8 +5,19 @@ import ShoppingOrders from "@/components/shopping-view/orders";
 import ShoppingWishlist from "@/components/shopping-view/wishlist";
 import Profile from "@/components/shopping-view/profile";
 import { User, MapPin, Heart, Package } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const ShoppingAccount = () => {
+  const [searchParams] = useSearchParams();
+  const [activeTab, setActiveTab] = useState('profile');
+
+  useEffect(() => {
+    const tabFromUrl = searchParams.get('tab');
+    if (tabFromUrl) {
+      setActiveTab(tabFromUrl);
+    }
+  }, [searchParams]);
   return (
     <div className="flex flex-col">
       <div className="relative h-[300px] w-full overflow-hidden">
@@ -17,7 +28,7 @@ const ShoppingAccount = () => {
       </div>
       <div className="container mx-auto grid grid-cols-1 gap-8 py-8">
         <div className="flex flex-col rounded-lg border bg-background p-6 shadow-sm">
-          <Tabs defaultValue="profile">
+          <Tabs value={activeTab} onValueChange={setActiveTab}>
             <TabsList>
               <TabsTrigger value="profile" className="flex items-center gap-2">
                 <User className="h-4 w-4" />

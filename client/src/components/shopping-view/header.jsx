@@ -308,12 +308,12 @@ function ShoppingHeader() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (user?.id) {
-      dispatch(fetchCartItems(user.id));
+    if (user?.id || user?._id) {
+      dispatch(fetchCartItems(user?.id || user?._id));
       // Load complete user profile data including profile picture
       dispatch(getUserProfile());
     }
-  }, [dispatch, user?.id]);
+  }, [dispatch, user?.id, user?._id]);
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">

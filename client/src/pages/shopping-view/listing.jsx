@@ -125,13 +125,13 @@ const ShoppingListing = () => {
 
       dispatch(
         addToCart({
-          userId: user?.id,
+          userId: user?.id || user?._id,
           productId: getCurrentProductId,
           quantity: 1,
         })
       ).then((data) => {
         if (data?.payload?.success) {
-          dispatch(fetchCartItems(user?.id));
+          dispatch(fetchCartItems(user?.id || user?._id));
           toast.success("Product is added to cart");
         }
       });
@@ -159,12 +159,12 @@ const ShoppingListing = () => {
 
   // Check wishlist status for all products when product list changes
   useEffect(() => {
-    if (isAuthenticated && user?.id && productList && productList.length > 0) {
+    if (isAuthenticated && (user?.id || user?._id) && productList && productList.length > 0) {
       productList.forEach((product) => {
-        dispatch(checkWishlistStatus({ userId: user.id, productId: product._id }));
+        dispatch(checkWishlistStatus({ userId: user?.id || user?._id, productId: product._id }));
       });
     }
-  }, [dispatch, isAuthenticated, user?.id, productList]);
+  }, [dispatch, isAuthenticated, user?.id, user?._id, productList]);
 
   useEffect(() => {
     console.log("productDetails changed:", productDetails);

@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { Badge } from "../ui/badge";
-import { DialogContent } from "../ui/dialog";
+import { DialogContent, DialogTitle, DialogDescription } from "../ui/dialog";
 import { Label } from "../ui/label";
 import { Separator } from "../ui/separator";
 
@@ -9,6 +9,10 @@ const ShoppingOrderDetailsView = ({ orderDetails }) => {
 
   return (
     <DialogContent className="sm:max-w-[600px]">
+      <DialogTitle>Order Details</DialogTitle>
+      <DialogDescription>
+        View detailed information about your order
+      </DialogDescription>
       <div className="grid gap-6">
         <div className="grid gap-2">
           <div className="flex mt-6 items-center justify-between">
@@ -51,25 +55,34 @@ const ShoppingOrderDetailsView = ({ orderDetails }) => {
         <Separator />
         <div className="grid gap-4">
           <div className="grid gap-2">
-            <div className="font-medium">Order Details</div>
-            <ul className="grid gap-3">
+            <div className="font-medium">Order Items</div>
+            <div className="space-y-3">
               {orderDetails?.cartItems && orderDetails?.cartItems.length > 0
-                ? orderDetails?.cartItems.map((item) => (
-                    <li className="flex items-center justify-between">
-                      <span>Title: {item.title}</span>
-                      <span>Quantity: {item.quantity}</span>
-                      <span>Price: ${item.price}</span>
-                    </li>
+                ? orderDetails?.cartItems.map((item, index) => (
+                    <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                      <div className="flex-1">
+                        <div className="font-medium">{item.title}</div>
+                        <div className="text-sm text-gray-600">Quantity: {item.quantity}</div>
+                      </div>
+                      <div className="text-right">
+                        <div className="font-medium">${item.price}</div>
+                        <div className="text-sm text-gray-600">Total: ${(item.price * item.quantity).toFixed(2)}</div>
+                      </div>
+                    </div>
                   ))
-                : null}
-            </ul>
+                : <div className="text-gray-500">No items found</div>}
+            </div>
+            <div className="flex justify-between items-center pt-3 border-t">
+              <span className="text-lg font-bold">Order Total:</span>
+              <span className="text-lg font-bold">${orderDetails?.totalAmount}</span>
+            </div>
           </div>
         </div>
         <div className="grid gap-4">
           <div className="grid gap-2">
             <div className="font-medium">Shipping Info</div>
             <div className="grid gap-0.5 text-muted-foreground">
-              <span>{user.userName}</span>
+              <span>{user?.userName || user?.firstName + ' ' + user?.lastName || 'User'}</span>
               <span>{orderDetails?.addressInfo?.address}</span>
               <span>{orderDetails?.addressInfo?.city}</span>
               <span>{orderDetails?.addressInfo?.pincode}</span>

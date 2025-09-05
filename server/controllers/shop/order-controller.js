@@ -2,6 +2,8 @@ const paypal = require("../../helpers/paypal");
 const Order = require("../../models/Order");
 const Cart = require("../../models/Cart");
 const Product = require("../../models/Product");
+const User = require("../../models/User");
+const { sendOrderConfirmationEmail } = require("../../helpers/emailService");
 
 const createOrder = async (req, res) => {
   try {
@@ -19,6 +21,14 @@ const createOrder = async (req, res) => {
       payerId,
       cartId,
     } = req.body;
+
+    console.log("Creating order with userId:", userId);
+    console.log("Order data:", {
+      userId,
+      cartItems: cartItems?.length,
+      totalAmount,
+      orderStatus
+    });
 
     const create_payment_json = {
       intent: "sale",
@@ -74,6 +84,18 @@ const createOrder = async (req, res) => {
         });
 
         await newlyCreatedOrder.save();
+        console.log("Order created successfully:", newlyCreatedOrder._id);
+        console.log("Order userId:", newlyCreatedOrder.userId);
+        console.log("Order data:", {
+          userId: newlyCreatedOrder.userId,
+          orderStatus: newlyCreatedOrder.orderStatus,
+          totalAmount: newlyCreatedOrder.totalAmount,
+          orderDate: newlyCreatedOrder.orderDate
+        });
+
+        // Verify the order was saved by fetching it
+        const savedOrder = await Order.findById(newlyCreatedOrder._id);
+        console.log("Verified saved order:", savedOrder ? "Found" : "Not found");
 
         const approvalURL = paymentInfo.links.find(
           (link) => link.rel === "approval_url"
@@ -132,6 +154,50 @@ const capturePayment = async (req, res) => {
     await Cart.findByIdAndDelete(getCartId);
 
     await order.save();
+    console.log("Order updated successfully:", order._id);
+
+    // Send order confirmation email
+    try {
+      console.log("=== EMAIL DEBUG START ===");
+      console.log("Order userId:", order.userId);
+      
+      const user = await User.findById(order.userId);
+      console.log("Found user:", user ? "Yes" : "No");
+      
+      if (user) {
+        console.log("User email:", user.email);
+        console.log("User name:", user.userName || user.firstName || 'Customer');
+      }
+      
+      if (user && user.email) {
+        console.log("Attempting to send order confirmation email to:", user.email);
+        const emailResult = await sendOrderConfirmationEmail(
+          user.email,
+          user.userName || user.firstName || 'Customer',
+          order
+        );
+        
+        console.log("Email result:", emailResult);
+        
+        if (emailResult.success) {
+          console.log("✅ Order confirmation email sent successfully");
+        } else {
+          console.error("❌ Failed to send order confirmation email:", emailResult.error);
+        }
+      } else {
+        console.log("❌ User not found or no email address for order:", order._id);
+        if (!user) {
+          console.log("User not found in database");
+        } else if (!user.email) {
+          console.log("User found but no email address");
+        }
+      }
+      console.log("=== EMAIL DEBUG END ===");
+    } catch (emailError) {
+      console.error("❌ Error sending order confirmation email:", emailError);
+      console.error("Email error stack:", emailError.stack);
+      // Don't fail the order if email fails
+    }
 
     res.status(200).json({
       success: true,
@@ -150,14 +216,25 @@ const capturePayment = async (req, res) => {
 const getAllOrdersByUser = async (req, res) => {
   try {
     const { userId } = req.params;
+    console.log("Fetching orders for userId:", userId);
+
+    if (!userId) {
+      console.log("No userId provided");
+      return res.status(400).json({
+        success: false,
+        message: "User ID is required",
+      });
+    }
 
     const orders = await Order.find({ userId });
+    console.log("Found orders:", orders.length);
+    console.log("Orders data:", orders);
 
-    if (!orders.length) {
-      return res.status(404).json({
-        success: false,
-        message: "No orders found!",
-      });
+    // Also check if there are any orders with different userId formats
+    const allOrders = await Order.find({});
+    console.log("Total orders in database:", allOrders.length);
+    if (allOrders.length > 0) {
+      console.log("Sample order userIds:", allOrders.map(o => ({ id: o._id, userId: o.userId })));
     }
 
     res.status(200).json({
@@ -165,7 +242,7 @@ const getAllOrdersByUser = async (req, res) => {
       data: orders,
     });
   } catch (e) {
-    console.log(e);
+    console.log("Error fetching orders:", e);
     res.status(500).json({
       success: false,
       message: "Some error occured!",

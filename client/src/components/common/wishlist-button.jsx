@@ -21,13 +21,13 @@ const WishlistButton = ({ productId, className = "" }) => {
     try {
       if (isInWishlist) {
         await dispatch(removeFromWishlist({ 
-          userId: user.id, 
+          userId: user?.id || user?._id, 
           productId 
         })).unwrap();
         toast.success("Removed from wishlist");
       } else {
         await dispatch(addToWishlist({ 
-          userId: user.id, 
+          userId: user?.id || user?._id, 
           productId 
         })).unwrap();
         toast.success("Added to wishlist");
