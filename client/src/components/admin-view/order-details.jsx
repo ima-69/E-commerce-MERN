@@ -84,6 +84,18 @@ const AdminOrderDetailsView = ({ orderDetails }) => {
               </Badge>
             </Label>
           </div>
+          <div className="flex mt-2 items-center justify-between">
+            <p className="font-medium">Purchase Date</p>
+            <Label>{orderDetails?.purchaseDate ? new Date(orderDetails.purchaseDate).toLocaleDateString() : "Not specified"}</Label>
+          </div>
+          <div className="flex mt-2 items-center justify-between">
+            <p className="font-medium">Preferred Delivery Time</p>
+            <Label>{orderDetails?.preferredDeliveryTime || "Not specified"}</Label>
+          </div>
+          <div className="flex mt-2 items-center justify-between">
+            <p className="font-medium">Receiving Date</p>
+            <Label>{orderDetails?.receivingDate ? new Date(orderDetails.receivingDate).toLocaleDateString() : "Not specified"}</Label>
+          </div>
         </div>
         <Separator />
         <div className="grid gap-4">

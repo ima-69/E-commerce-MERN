@@ -73,6 +73,7 @@ function AdminOrdersView() {
                 <TableHead>Order Date</TableHead>
                 <TableHead>Order Status</TableHead>
                 <TableHead>Order Price</TableHead>
+                <TableHead>Receiving Date</TableHead>
                 <TableHead>
                   <span className="sr-only">Details</span>
                 </TableHead>
@@ -101,6 +102,12 @@ function AdminOrdersView() {
                       </TableCell>
                       <TableCell>${orderItem?.totalAmount}</TableCell>
                       <TableCell>
+                        {orderItem?.receivingDate 
+                          ? new Date(orderItem.receivingDate).toLocaleDateString()
+                          : "Not specified"
+                        }
+                      </TableCell>
+                      <TableCell>
                         <Dialog
                           open={openDetailsDialog}
                           onOpenChange={() => {
@@ -122,7 +129,7 @@ function AdminOrdersView() {
                   ))
                 : (
                     <TableRow>
-                      <TableCell colSpan={5} className="text-center py-8">
+                      <TableCell colSpan={6} className="text-center py-8">
                         <p className="text-gray-500">
                           {orderList && orderList.length > 0 
                             ? "All orders have been delivered." 
