@@ -2,76 +2,58 @@ const Feature = require("../../models/Feature");
 const { asyncHandler, createError } = require("../../utils/errorHandler");
 const logger = require("../../utils/logger");
 
-const addFeatureImage = async (req, res) => {
-  try {
-    const { image } = req.body;
+const addFeatureImage = asyncHandler(async (req, res) => {
+  const { image } = req.body;
 
-
-    const featureImages = new Feature({
-      image,
-    });
-
-    await featureImages.save();
-
-    res.status(201).json({
-      success: true,
-      data: featureImages,
-    });
-  } catch (e) {
-    res.status(500).json({
-      success: false,
-      message: "Some error occured!",
-    });
+  if (!image) {
+    throw createError.badRequest("Image URL is required");
   }
-};
 
-const getFeatureImages = async (req, res) => {
-  try {
-    const images = await Feature.find({});
+  const featureImages = new Feature({
+    image,
+  });
 
-    res.status(200).json({
-      success: true,
-      data: images,
-    });
-  } catch (e) {
-    res.status(500).json({
-      success: false,
-      message: "Some error occured!",
-    });
+  await featureImages.save();
+
+  logger.info('Feature image added', { featureId: featureImages._id });
+
+  res.status(201).json({
+    success: true,
+    data: featureImages,
+  });
+});
+
+const getFeatureImages = asyncHandler(async (req, res) => {
+  const images = await Feature.find({});
+
+  logger.info('Feature images fetched', { count: images.length });
+
+  res.status(200).json({
+    success: true,
+    data: images,
+  });
+});
+
+const deleteFeatureImage = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+
+  if (!id) {
+    throw createError.badRequest("Feature image ID is required");
   }
-};
 
-const deleteFeatureImage = async (req, res) => {
-  try {
-    const { id } = req.params;
+  const deletedImage = await Feature.findByIdAndDelete(id);
 
-    if (!id) {
-      return res.status(400).json({
-        success: false,
-        message: "Feature image ID is required",
-      });
-    }
-
-    const deletedImage = await Feature.findByIdAndDelete(id);
-
-    if (!deletedImage) {
-      return res.status(404).json({
-        success: false,
-        message: "Feature image not found",
-      });
-    }
-
-    res.status(200).json({
-      success: true,
-      message: "Feature image deleted successfully",
-      data: deletedImage,
-    });
-  } catch (e) {
-    res.status(500).json({
-      success: false,
-      message: "Some error occured!",
-    });
+  if (!deletedImage) {
+    throw createError.notFound("Feature image not found");
   }
-};
+
+  logger.info('Feature image deleted', { featureId: id });
+
+  res.status(200).json({
+    success: true,
+    message: "Feature image deleted successfully",
+    data: deletedImage,
+  });
+});
 
 module.exports = { addFeatureImage, getFeatureImages, deleteFeatureImage };

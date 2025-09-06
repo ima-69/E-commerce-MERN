@@ -54,7 +54,7 @@ const addProductReview = async (req, res) => {
       success: true,
       data: newReview,
     });
-  } catch (e) {
+  } catch (error) {
     res.status(500).json({
       success: false,
       message: "Error",
@@ -71,7 +71,7 @@ const getProductReviews = async (req, res) => {
       success: true,
       data: reviews,
     });
-  } catch (e) {
+  } catch (error) {
     res.status(500).json({
       success: false,
       message: "Error",

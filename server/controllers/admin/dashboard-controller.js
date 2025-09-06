@@ -67,7 +67,7 @@ const getDashboardOverview = async (req, res) => {
       }
     });
   } catch (error) {
-    console.error("Error fetching dashboard overview:", error);
+    logger.error("Error fetching dashboard overview:", { error: error.message });
     res.status(500).json({
       success: false,
       message: "Error fetching dashboard data"

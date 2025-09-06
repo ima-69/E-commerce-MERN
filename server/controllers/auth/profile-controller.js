@@ -23,7 +23,7 @@ const getUserProfile = async (req, res) => {
       user
     });
   } catch (error) {
-    console.error("Get user profile error:", error);
+    logger.error("Get user profile error:", { error: error.message, userId });
     res.status(500).json({
       success: false,
       message: "Internal server error"
@@ -83,7 +83,7 @@ const updateUserProfile = async (req, res) => {
       user: updatedUser
     });
   } catch (error) {
-    console.error("Update user profile error:", error);
+    logger.error("Update user profile error:", { error: error.message, userId });
     res.status(500).json({
       success: false,
       message: "Internal server error"
@@ -119,7 +119,7 @@ const uploadProfilePicture = async (req, res) => {
         const publicId = currentUser.profilePicture.split('/').pop().split('.')[0];
         await cloudinary.uploader.destroy(`profile-pictures/${publicId}`);
       } catch (cloudinaryError) {
-        console.error("Cloudinary deletion error:", cloudinaryError);
+        logger.warn("Cloudinary deletion error:", { error: cloudinaryError.message, userId });
         // Continue with upload even if deletion fails
       }
     }
@@ -140,7 +140,7 @@ const uploadProfilePicture = async (req, res) => {
       user: updatedUser
     });
   } catch (error) {
-    console.error("Upload profile picture error:", error);
+    logger.error("Upload profile picture error:", { error: error.message, userId });
     res.status(500).json({
       success: false,
       message: "Internal server error"
@@ -168,7 +168,7 @@ const deleteProfilePicture = async (req, res) => {
         const publicId = user.profilePicture.split('/').pop().split('.')[0];
         await cloudinary.uploader.destroy(`profile-pictures/${publicId}`);
       } catch (cloudinaryError) {
-        console.error("Cloudinary deletion error:", cloudinaryError);
+        logger.warn("Cloudinary deletion error:", { error: cloudinaryError.message, userId });
         // Continue with database update even if Cloudinary deletion fails
       }
     }
@@ -186,7 +186,7 @@ const deleteProfilePicture = async (req, res) => {
       user: updatedUser
     });
   } catch (error) {
-    console.error("Delete profile picture error:", error);
+    logger.error("Delete profile picture error:", { error: error.message, userId });
     res.status(500).json({
       success: false,
       message: "Internal server error"
@@ -251,7 +251,7 @@ const changePassword = async (req, res) => {
       message: "Password changed successfully"
     });
   } catch (error) {
-    console.error("Change password error:", error);
+    logger.error("Change password error:", { error: error.message, userId });
     res.status(500).json({
       success: false,
       message: "Internal server error"

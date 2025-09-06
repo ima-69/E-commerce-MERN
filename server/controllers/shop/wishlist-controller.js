@@ -47,7 +47,7 @@ const addToWishlist = async (req, res) => {
       data: user.wishlist,
     });
   } catch (error) {
-    console.error("Error adding to wishlist:", error);
+    logger.error("Error adding to wishlist:", { error: error.message, userId, productId });
     res.status(500).json({
       success: false,
       message: "Internal server error",
@@ -94,7 +94,7 @@ const removeFromWishlist = async (req, res) => {
       data: user.wishlist,
     });
   } catch (error) {
-    console.error("Error removing from wishlist:", error);
+    logger.error("Error removing from wishlist:", { error: error.message, userId, productId });
     res.status(500).json({
       success: false,
       message: "Internal server error",
@@ -133,7 +133,7 @@ const getWishlist = async (req, res) => {
       data: user.wishlist,
     });
   } catch (error) {
-    console.error("Error getting wishlist:", error);
+    logger.error("Error getting wishlist:", { error: error.message, userId });
     res.status(500).json({
       success: false,
       message: "Internal server error",
@@ -169,7 +169,7 @@ const checkWishlistStatus = async (req, res) => {
       data: { isInWishlist },
     });
   } catch (error) {
-    console.error("Error checking wishlist status:", error);
+    logger.error("Error checking wishlist status:", { error: error.message, userId, productId });
     res.status(500).json({
       success: false,
       message: "Internal server error",

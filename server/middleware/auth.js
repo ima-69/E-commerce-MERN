@@ -1,5 +1,5 @@
-const jwt = require("jsonwebtoken");
 const User = require('../models/User');
+const { verifyToken } = require('../utils/jwt');
 
 // Auth middleware
 const authenticateToken = async (req, res, next) => {
@@ -7,11 +7,11 @@ const authenticateToken = async (req, res, next) => {
   if (!token)
     return res.status(401).json({
       success: false,
-      message: "Unauthorised user!",
+      message: "Unauthorized user!",
     });
 
   try {
-    const decoded = jwt.verify(token, "CLIENT_SECRET_KEY");
+    const decoded = verifyToken(token);
     
     // Check if user exists and is active
     const user = await User.findById(decoded.id);
@@ -35,7 +35,7 @@ const authenticateToken = async (req, res, next) => {
   } catch (error) {
     res.status(401).json({
       success: false,
-      message: "Unauthorised user!",
+      message: "Unauthorized user!",
     });
   }
 };
@@ -51,11 +51,11 @@ const adminMiddleware = async (req, res, next) => {
   if (!token)
     return res.status(401).json({
       success: false,
-      message: "Unauthorised user!",
+      message: "Unauthorized user!",
     });
 
   try {
-    const decoded = jwt.verify(token, "CLIENT_SECRET_KEY");
+    const decoded = verifyToken(token);
     if (decoded.role !== "admin") {
       return res.status(403).json({
         success: false,
@@ -67,7 +67,7 @@ const adminMiddleware = async (req, res, next) => {
   } catch (error) {
     res.status(401).json({
       success: false,
-      message: "Unauthorised user!",
+      message: "Unauthorized user!",
     });
   }
 };
@@ -78,12 +78,12 @@ const browsingMiddleware = async (req, res, next) => {
   if (!token) {
     return res.status(401).json({
       success: false,
-      message: "Unauthorised user!",
+      message: "Unauthorized user!",
     });
   }
 
   try {
-    const decoded = jwt.verify(token, "CLIENT_SECRET_KEY");
+    const decoded = verifyToken(token);
     const user = await User.findById(decoded.id);
     
     if (!user) {
@@ -100,7 +100,7 @@ const browsingMiddleware = async (req, res, next) => {
   } catch (error) {
     res.status(401).json({
       success: false,
-      message: "Unauthorised user!",
+      message: "Unauthorized user!",
     });
   }
 };

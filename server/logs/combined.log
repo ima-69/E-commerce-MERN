@@ -438,3 +438,2773 @@
   level: 'http',
   message: 'Outgoing Response'
 }
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=price-lowtohigh',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-05 20:59:53',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=createdAt-desc&limit=8',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-05 20:59:53',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-05 20:59:53',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=price-lowtohigh',
+  statusCode: 304,
+  duration: '104ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-05 20:59:53',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=createdAt-desc&limit=8',
+  statusCode: 304,
+  duration: '111ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-05 20:59:53',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  statusCode: 304,
+  duration: '114ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-05 20:59:53',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/auth/check-auth',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:27:16',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/auth/check-auth',
+  statusCode: 401,
+  duration: '9ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:27:16',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=price-lowtohigh',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:27:16',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=createdAt-desc&limit=8',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:27:16',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:27:16',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=createdAt-desc&limit=8',
+  statusCode: 304,
+  duration: '87ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:27:16',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=price-lowtohigh',
+  statusCode: 304,
+  duration: '110ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:27:16',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  statusCode: 304,
+  duration: '108ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:27:16',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=price-lowtohigh',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:27:28',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=price-lowtohigh',
+  statusCode: 304,
+  duration: '121ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:27:28',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'POST',
+  url: '/api/auth/login',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:27:45',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'POST',
+  url: '/api/auth/login',
+  statusCode: 500,
+  duration: '711ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:27:45',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'POST',
+  url: '/api/auth/login',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:32:44',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'POST',
+  url: '/api/auth/login',
+  statusCode: 500,
+  duration: '713ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:32:45',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  message: 'Received SIGINT, shutting down gracefully...',
+  level: 'info',
+  timestamp: '2025-09-06 12:32:52'
+}
+{
+  method: 'POST',
+  url: '/api/auth/login',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:11',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'POST',
+  url: '/api/auth/login',
+  statusCode: 200,
+  duration: '894ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:12',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:12',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:12',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  statusCode: 401,
+  duration: '2ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:12',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  statusCode: 304,
+  duration: '109ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:12',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'POST',
+  url: '/api/shop/cart/merge-guest-cart',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:12',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'POST',
+  url: '/api/shop/cart/merge-guest-cart',
+  statusCode: 200,
+  duration: '761ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:13',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68b892a59660ecffbc052229',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:13',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68b892a59660ecffbc052229',
+  statusCode: 200,
+  duration: '317ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:13',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:15',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  statusCode: 401,
+  duration: '6ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:15',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/auth/check-auth',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:18',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/auth/check-auth',
+  statusCode: 401,
+  duration: '2ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:18',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=createdAt-desc&limit=8',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:18',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=price-lowtohigh',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:18',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:18',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=price-lowtohigh',
+  statusCode: 304,
+  duration: '117ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:19',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  statusCode: 304,
+  duration: '115ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:19',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=createdAt-desc&limit=8',
+  statusCode: 304,
+  duration: '135ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:19',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'POST',
+  url: '/api/auth/login',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:28',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'POST',
+  url: '/api/auth/login',
+  statusCode: 200,
+  duration: '705ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:28',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:28',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  statusCode: 401,
+  duration: '1ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:28',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:28',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  statusCode: 304,
+  duration: '132ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:29',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/orders/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:32',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/orders/get',
+  statusCode: 401,
+  duration: '1ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:32',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/users',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:33',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/users/stats/overview',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:33',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/users',
+  statusCode: 304,
+  duration: '123ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:33',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/users/stats/overview',
+  statusCode: 304,
+  duration: '619ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:33',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/orders/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:34',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/orders/get',
+  statusCode: 401,
+  duration: '2ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:34',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:38',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/get',
+  statusCode: 401,
+  duration: '2ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:38',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:39',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  statusCode: 401,
+  duration: '2ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:39',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:39',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  statusCode: 304,
+  duration: '96ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:39',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:41',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  statusCode: 401,
+  duration: '2ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:41',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:42',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  statusCode: 401,
+  duration: '1ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:42',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:42',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  statusCode: 401,
+  duration: '1ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:33:42',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:38:20',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/get',
+  statusCode: 401,
+  duration: '16ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:38:20',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68b892a59660ecffbc052229',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:38:21',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/profile/',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:38:21',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=price-lowtohigh',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:38:21',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=createdAt-desc&limit=8',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:38:21',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:38:21',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=price-lowtohigh',
+  statusCode: 304,
+  duration: '125ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:38:21',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/profile/',
+  statusCode: 200,
+  duration: '229ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:38:21',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/profile/',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:38:21',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68b892a59660ecffbc052229',
+  statusCode: 304,
+  duration: '329ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:38:21',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68b892a59660ecffbc052229',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:38:21',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/profile/',
+  statusCode: 304,
+  duration: '193ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:38:22',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68b892a59660ecffbc052229',
+  statusCode: 304,
+  duration: '278ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:38:22',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68b892a59660ecffbc052229',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:38:22',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68b892a59660ecffbc052229',
+  statusCode: 304,
+  duration: '285ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:38:22',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  statusCode: 304,
+  duration: '854ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:38:22',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=createdAt-desc&limit=8',
+  statusCode: 304,
+  duration: '916ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:38:22',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/address/get/68b892a59660ecffbc052229',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:38:26',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/address/get/68b892a59660ecffbc052229',
+  statusCode: 304,
+  duration: '147ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:38:26',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'POST',
+  url: '/api/shop/order/create',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:38:35',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'POST',
+  url: '/api/shop/order/create',
+  statusCode: 201,
+  duration: '5619ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:38:41',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'POST',
+  url: '/api/shop/order/create',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:38:41',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'POST',
+  url: '/api/shop/order/create',
+  statusCode: 201,
+  duration: '1781ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:38:43',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/auth/check-auth',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:39:30',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/auth/check-auth',
+  statusCode: 401,
+  duration: '3ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:39:30',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'POST',
+  url: '/api/auth/login',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:39:41',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'POST',
+  url: '/api/auth/login',
+  statusCode: 200,
+  duration: '684ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:39:42',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:39:42',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  statusCode: 401,
+  duration: '2ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:39:42',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:39:42',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  statusCode: 304,
+  duration: '116ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:39:42',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68b892a59660ecffbc052229',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:39:47',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=price-lowtohigh',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:39:47',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/profile/',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:39:47',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=createdAt-desc&limit=8',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:39:47',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:39:47',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=price-lowtohigh',
+  statusCode: 304,
+  duration: '143ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:39:47',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  statusCode: 304,
+  duration: '116ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:39:48',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=createdAt-desc&limit=8',
+  statusCode: 304,
+  duration: '146ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:39:48',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/profile/',
+  statusCode: 304,
+  duration: '227ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:39:48',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/profile/',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:39:48',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68b892a59660ecffbc052229',
+  statusCode: 304,
+  duration: '344ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:39:48',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68b892a59660ecffbc052229',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:39:48',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/profile/',
+  statusCode: 304,
+  duration: '226ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:39:48',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68b892a59660ecffbc052229',
+  statusCode: 304,
+  duration: '305ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:39:48',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68b892a59660ecffbc052229',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:39:48',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68b892a59660ecffbc052229',
+  statusCode: 304,
+  duration: '267ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:39:48',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  message: 'Received SIGINT, shutting down gracefully...',
+  level: 'info',
+  timestamp: '2025-09-06 12:40:35'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:40:52',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  statusCode: 401,
+  duration: '9ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:40:52',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:40:52',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  statusCode: 304,
+  duration: '150ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:40:53',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:40:54',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  statusCode: 401,
+  duration: '3ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:40:54',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'POST',
+  url: '/api/auth/logout',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:40:55',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'POST',
+  url: '/api/auth/logout',
+  statusCode: 200,
+  duration: '5ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:40:55',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=price-lowtohigh',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:40:55',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68b892a59660ecffbc052229',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:40:55',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/profile/',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:40:55',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=createdAt-desc&limit=8',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:40:55',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:40:55',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=price-lowtohigh',
+  statusCode: 304,
+  duration: '120ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:40:55',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/profile/',
+  statusCode: 304,
+  duration: '361ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:40:55',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/profile/',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:40:55',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/profile/',
+  statusCode: 401,
+  duration: '3ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:40:55',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68b892a59660ecffbc052229',
+  statusCode: 304,
+  duration: '512ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:40:55',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68b892a59660ecffbc052229',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:40:55',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68b892a59660ecffbc052229',
+  statusCode: 401,
+  duration: '2ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:40:55',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  statusCode: 304,
+  duration: '962ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:40:56',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=createdAt-desc&limit=8',
+  statusCode: 304,
+  duration: '1050ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:40:56',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'POST',
+  url: '/api/auth/login',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:02',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'POST',
+  url: '/api/auth/login',
+  statusCode: 200,
+  duration: '692ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:03',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:03',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  statusCode: 401,
+  duration: '2ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:03',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:03',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  statusCode: 304,
+  duration: '107ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:03',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/orders/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:06',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/orders/get',
+  statusCode: 401,
+  duration: '2ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:06',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:08',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/get',
+  statusCode: 401,
+  duration: '2ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:08',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:09',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  statusCode: 401,
+  duration: '2ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:09',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:09',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  statusCode: 304,
+  duration: '219ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:09',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:10',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/get',
+  statusCode: 401,
+  duration: '2ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:10',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:28',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  statusCode: 401,
+  duration: '3ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:28',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:28',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  statusCode: 304,
+  duration: '108ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:28',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/users',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:29',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/users/stats/overview',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:29',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/users',
+  statusCode: 304,
+  duration: '100ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:29',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/users/stats/overview',
+  statusCode: 304,
+  duration: '747ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:30',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/orders/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:33',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/orders/get',
+  statusCode: 401,
+  duration: '1ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:33',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:34',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/get',
+  statusCode: 401,
+  duration: '2ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:34',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:35',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  statusCode: 401,
+  duration: '2ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:35',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:35',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  statusCode: 304,
+  duration: '104ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:36',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:39',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  statusCode: 401,
+  duration: '1ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:39',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:40',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  statusCode: 401,
+  duration: '1ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:41:40',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/auth/check-auth',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:05',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/auth/check-auth',
+  statusCode: 200,
+  duration: '12ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:05',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:05',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:05',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  statusCode: 304,
+  duration: '102ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:05',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  statusCode: 200,
+  duration: '667ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:06',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68b892a59660ecffbc052229',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:14',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/profile/',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:14',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=price-lowtohigh',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:14',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=createdAt-desc&limit=8',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:14',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:14',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=price-lowtohigh',
+  statusCode: 304,
+  duration: '109ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:14',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/profile/',
+  statusCode: 304,
+  duration: '216ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:14',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68b892a59660ecffbc052229',
+  statusCode: 304,
+  duration: '300ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:14',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68b892a59660ecffbc052229',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:14',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/profile/',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:14',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/profile/',
+  statusCode: 304,
+  duration: '249ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:14',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68b892a59660ecffbc052229',
+  statusCode: 304,
+  duration: '294ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:14',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68b892a59660ecffbc052229',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:14',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=createdAt-desc&limit=8',
+  statusCode: 304,
+  duration: '729ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:15',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  statusCode: 304,
+  duration: '749ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:15',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68b892a59660ecffbc052229',
+  statusCode: 304,
+  duration: '241ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:15',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'POST',
+  url: '/api/auth/logout',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:18',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'POST',
+  url: '/api/auth/logout',
+  statusCode: 200,
+  duration: '11ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:18',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?category=men&sortBy=price-lowtohigh',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:20',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?category=men&sortBy=price-lowtohigh',
+  statusCode: 200,
+  duration: '91ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:20',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?category=men&sortBy=price-lowtohigh',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:20',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?category=men&sortBy=price-lowtohigh',
+  statusCode: 304,
+  duration: '89ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:20',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'POST',
+  url: '/api/auth/login',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:54',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'POST',
+  url: '/api/auth/login',
+  statusCode: 200,
+  duration: '858ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:55',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68bac0e702bdfaca8b940455',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:55',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/profile/',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:55',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/address/get/68bac0e702bdfaca8b940455',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:55',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/address/get/68bac0e702bdfaca8b940455',
+  statusCode: 304,
+  duration: '132ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:55',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68bac0e702bdfaca8b940455',
+  statusCode: 304,
+  duration: '157ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:55',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68bac0e702bdfaca8b940455',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:55',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/profile/',
+  statusCode: 200,
+  duration: '222ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:55',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68bac0e702bdfaca8b940455',
+  statusCode: 304,
+  duration: '203ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:55',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/profile/',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:55',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68bac0e702bdfaca8b940455',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:55',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/address/get/68bac0e702bdfaca8b940455',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:55',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/address/get/68bac0e702bdfaca8b940455',
+  statusCode: 304,
+  duration: '74ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:55',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68bac0e702bdfaca8b940455',
+  statusCode: 304,
+  duration: '169ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:55',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/profile/',
+  statusCode: 304,
+  duration: '179ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:55',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'POST',
+  url: '/api/shop/cart/merge-guest-cart',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:55',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/address/get/68bac0e702bdfaca8b940455',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:55',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/address/get/68bac0e702bdfaca8b940455',
+  statusCode: 304,
+  duration: '96ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:55',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'POST',
+  url: '/api/shop/cart/merge-guest-cart',
+  statusCode: 200,
+  duration: '537ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:56',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68bac0e702bdfaca8b940455',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:56',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68bac0e702bdfaca8b940455',
+  statusCode: 200,
+  duration: '246ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:44:56',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'POST',
+  url: '/api/shop/order/create',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:45:14',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'POST',
+  url: '/api/shop/order/create',
+  statusCode: 201,
+  duration: '4184ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:45:18',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/auth/check-auth',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:45:26',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/auth/check-auth',
+  statusCode: 200,
+  duration: '4ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:45:26',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68bac0e702bdfaca8b940455',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:45:26',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/profile/',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:45:26',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'POST',
+  url: '/api/shop/order/capture',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:45:26',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/profile/',
+  statusCode: 304,
+  duration: '464ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:45:27',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/profile/',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:45:27',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68bac0e702bdfaca8b940455',
+  statusCode: 304,
+  duration: '631ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:45:27',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68bac0e702bdfaca8b940455',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:45:27',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/profile/',
+  statusCode: 304,
+  duration: '229ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:45:27',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68bac0e702bdfaca8b940455',
+  statusCode: 304,
+  duration: '296ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:45:27',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68bac0e702bdfaca8b940455',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:45:27',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/cart/get/68bac0e702bdfaca8b940455',
+  statusCode: 200,
+  duration: '277ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:45:28',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'POST',
+  url: '/api/shop/order/capture',
+  statusCode: 200,
+  duration: '6189ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:45:33',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=price-lowtohigh',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:45:38',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=createdAt-desc&limit=8',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:45:38',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:45:38',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=price-lowtohigh',
+  statusCode: 200,
+  duration: '112ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:45:38',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/shop/products/get?sortBy=createdAt-desc&limit=8',
+  statusCode: 200,
+  duration: '124ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:45:38',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  statusCode: 304,
+  duration: '147ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:45:38',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'POST',
+  url: '/api/auth/logout',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:45:52',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'POST',
+  url: '/api/auth/logout',
+  statusCode: 200,
+  duration: '7ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:45:52',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'POST',
+  url: '/api/auth/login',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:46:02',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'POST',
+  url: '/api/auth/login',
+  statusCode: 200,
+  duration: '766ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:46:03',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:46:03',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:46:03',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  statusCode: 304,
+  duration: '79ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:46:03',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  statusCode: 200,
+  duration: '657ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:46:04',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:46:06',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/get',
+  statusCode: 200,
+  duration: '166ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:46:07',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'DELETE',
+  url: '/api/admin/products/delete/68ba9ec436c7547063610375',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:46:14',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'DELETE',
+  url: '/api/admin/products/delete/68ba9ec436c7547063610375',
+  statusCode: 200,
+  duration: '97ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:46:14',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:46:14',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/get',
+  statusCode: 200,
+  duration: '101ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:46:14',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'POST',
+  url: '/api/admin/products/upload-image',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:46:24',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'POST',
+  url: '/api/admin/products/upload-image',
+  statusCode: 200,
+  duration: '7797ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:46:32',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'POST',
+  url: '/api/admin/products/add',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:46:58',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'POST',
+  url: '/api/admin/products/add',
+  statusCode: 201,
+  duration: '208ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:46:58',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:46:59',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/get',
+  statusCode: 200,
+  duration: '156ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:46:59',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/orders/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:47:06',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/orders/get',
+  statusCode: 200,
+  duration: '103ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:47:06',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'DELETE',
+  url: '/api/admin/orders/delete/68bae34b26488c8798454ee0',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:47:11',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'DELETE',
+  url: '/api/admin/orders/delete/68bae34b26488c8798454ee0',
+  statusCode: 200,
+  duration: '222ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:47:11',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:47:15',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:47:15',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/common/feature/get',
+  statusCode: 304,
+  duration: '169ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:47:15',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/products/dashboard-overview',
+  statusCode: 200,
+  duration: '642ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:47:16',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/users',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:47:25',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/users/stats/overview',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:47:25',
+  level: 'http',
+  message: 'Incoming Request'
+}
+{
+  method: 'GET',
+  url: '/api/admin/users',
+  statusCode: 304,
+  duration: '113ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:47:25',
+  level: 'http',
+  message: 'Outgoing Response'
+}
+{
+  method: 'GET',
+  url: '/api/admin/users/stats/overview',
+  statusCode: 304,
+  duration: '450ms',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+  timestamp: '2025-09-06 12:47:25',
+  level: 'http',
+  message: 'Outgoing Response'
+}

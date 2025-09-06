@@ -9,6 +9,11 @@
             "date": 1757085913012,
             "name": "E:\\MERN\\E-commerce-MERN\\server\\logs\\security-2025-09-05.log",
             "hash": "ee41ad17631392577dd2bad1ae71edeacfb8c6ffc01306e5704eb88277ef8e01"
+        },
+        {
+            "date": 1757141797981,
+            "name": "E:\\MERN\\E-commerce-MERN\\server\\logs\\security-2025-09-06.log",
+            "hash": "b55d025bf6c0da46d8a0faace6ac68dfc754f32a408a4bcf848ac0e5a924b850"
         }
     ],
     "hashType": "sha256"

@@ -1,0 +1,85 @@
+{"timestamp":"2025-09-06T06:56:38.683Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T06:56:39.852Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T06:57:16.290Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T06:57:16.302Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T06:57:16.309Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T06:57:28.466Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T06:57:45.950Z","level":"INFO","message":"Failed to sign JWT token: JWT secret not configured. Please set JWT_SECRET or CLIENT_SECRET_KEY environment variable.","type":"other","stack":"Error: Failed to sign JWT token: JWT secret not configured. Please set JWT_SECRET or CLIENT_SECRET_KEY environment variable.\n    at signToken (E:\\MERN\\E-commerce-MERN\\server\\utils\\jwt.js:20:11)\n    at E:\\MERN\\E-commerce-MERN\\server\\controllers\\auth\\auth-controller.js:74:17","statusCode":500,"context":{"url":"/api/auth/login","method":"POST","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36","body":{"emailOrUsername":"imansha.idr@gmail.com","password":"123abc@IDR"},"query":{},"params":{}}}
+{"timestamp":"2025-09-06T07:02:45.467Z","level":"INFO","message":"Failed to sign JWT token: JWT secret not configured. Please set JWT_SECRET or CLIENT_SECRET_KEY environment variable.","type":"other","stack":"Error: Failed to sign JWT token: JWT secret not configured. Please set JWT_SECRET or CLIENT_SECRET_KEY environment variable.\n    at signToken (E:\\MERN\\E-commerce-MERN\\server\\utils\\jwt.js:20:11)\n    at E:\\MERN\\E-commerce-MERN\\server\\controllers\\auth\\auth-controller.js:74:17","statusCode":500,"context":{"url":"/api/auth/login","method":"POST","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36","body":{"emailOrUsername":"imansha.idr@gmail.com","password":"123abc@IDR"},"query":{},"params":{}}}
+{"timestamp":"2025-09-06T07:03:00.385Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T07:03:01.815Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T07:03:12.101Z","level":"INFO","message":"User logged in","userId":"68b892a59660ecffbc052229","email":"imansha.idr@gmail.com","role":"admin"}
+{"timestamp":"2025-09-06T07:03:12.270Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T07:03:13.384Z","level":"INFO","message":"Guest cart merged with user cart","userId":"68b892a59660ecffbc052229","guestItemsCount":3,"mergedItemsCount":3}
+{"timestamp":"2025-09-06T07:03:19.100Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T07:03:19.107Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T07:03:19.113Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T07:03:28.852Z","level":"INFO","message":"User logged in","userId":"68b892a59660ecffbc052229","email":"imansha.idr@gmail.com","role":"admin"}
+{"timestamp":"2025-09-06T07:03:29.038Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T07:03:33.274Z","level":"INFO","message":"All users fetched for admin","count":3}
+{"timestamp":"2025-09-06T07:03:33.780Z","level":"INFO","message":"User statistics fetched","totalUsers":3,"activeUsers":3,"inactiveUsers":0,"adminUsers":1,"regularUsers":2,"newUsers":2}
+{"timestamp":"2025-09-06T07:03:39.876Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T07:05:32.330Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T07:05:33.947Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T07:05:36.611Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T07:05:37.789Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T07:08:21.760Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T07:08:22.512Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T07:08:22.561Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T07:08:41.611Z","level":"INFO","message":"Order created successfully","orderId":"68bbddf99a6ad6c56c866c41","userId":"68b892a59660ecffbc052229","totalAmount":625}
+{"timestamp":"2025-09-06T07:08:43.734Z","level":"INFO","message":"Order created successfully","orderId":"68bbddfb9a6ad6c56c866c47","userId":"68b892a59660ecffbc052229","totalAmount":625}
+{"timestamp":"2025-09-06T07:09:42.410Z","level":"INFO","message":"User logged in","userId":"68b892a59660ecffbc052229","email":"imansha.idr@gmail.com","role":"admin"}
+{"timestamp":"2025-09-06T07:09:42.593Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T07:09:47.976Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T07:09:48.024Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T07:09:48.041Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T07:10:42.837Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T07:10:44.054Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T07:10:53.107Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T07:10:55.134Z","level":"INFO","message":"User logged out"}
+{"timestamp":"2025-09-06T07:10:55.259Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T07:10:56.148Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T07:10:56.229Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T07:11:03.572Z","level":"INFO","message":"User logged in","userId":"68b892a59660ecffbc052229","email":"imansha.idr@gmail.com","role":"admin"}
+{"timestamp":"2025-09-06T07:11:03.763Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T07:11:09.760Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T07:11:28.609Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T07:11:29.614Z","level":"INFO","message":"All users fetched for admin","count":3}
+{"timestamp":"2025-09-06T07:11:30.268Z","level":"INFO","message":"User statistics fetched","totalUsers":3,"activeUsers":3,"inactiveUsers":0,"adminUsers":1,"regularUsers":2,"newUsers":2}
+{"timestamp":"2025-09-06T07:11:36.006Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T07:12:38.147Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T07:12:39.393Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T07:12:43.682Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T07:12:44.707Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T07:12:51.915Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T07:12:53.089Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T07:12:59.194Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T07:13:00.329Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T07:14:05.536Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T07:14:14.367Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T07:14:15.003Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T07:14:15.029Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T07:14:18.159Z","level":"INFO","message":"User logged out"}
+{"timestamp":"2025-09-06T07:14:20.366Z","level":"INFO","message":"Products fetched","count":1,"filters":{"category":{"$in":["men"]}},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T07:14:20.468Z","level":"INFO","message":"Products fetched","count":1,"filters":{"category":{"$in":["men"]}},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T07:14:54.996Z","level":"INFO","message":"User logged in","userId":"68bac0e702bdfaca8b940455","email":"dilshan.idr@gmail.com","role":"user"}
+{"timestamp":"2025-09-06T07:14:56.217Z","level":"INFO","message":"Guest cart merged with user cart","userId":"68bac0e702bdfaca8b940455","guestItemsCount":1,"mergedItemsCount":1}
+{"timestamp":"2025-09-06T07:15:18.897Z","level":"INFO","message":"Order created successfully","orderId":"68bbdf86921b42315647902d","userId":"68bac0e702bdfaca8b940455","totalAmount":100}
+{"timestamp":"2025-09-06T07:15:33.181Z","level":"INFO","message":"Payment captured successfully","orderId":"68bbdf86921b42315647902d","userId":"68bac0e702bdfaca8b940455","paymentId":"PAYID-NC557BQ34N71983DK440663A","totalAmount":100}
+{"timestamp":"2025-09-06T07:15:38.143Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T07:15:38.177Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T07:15:38.212Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T07:15:52.395Z","level":"INFO","message":"User logged out"}
+{"timestamp":"2025-09-06T07:16:03.358Z","level":"INFO","message":"User logged in","userId":"68b892a59660ecffbc052229","email":"imansha.idr@gmail.com","role":"admin"}
+{"timestamp":"2025-09-06T07:16:03.504Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T07:16:07.069Z","level":"INFO","message":"All products fetched","count":4}
+{"timestamp":"2025-09-06T07:16:14.272Z","level":"INFO","message":"Product deleted","productId":"68ba9ec436c7547063610375","title":"cnfg"}
+{"timestamp":"2025-09-06T07:16:14.385Z","level":"INFO","message":"All products fetched","count":3}
+{"timestamp":"2025-09-06T07:16:32.402Z","level":"INFO","message":"Image uploaded successfully","originalName":"Screenshot 2025-09-05 093959.png","size":488941,"mimetype":"image/png"}
+{"timestamp":"2025-09-06T07:16:58.919Z","level":"INFO","message":"New product created","productId":"68bbdfea921b423156479056","title":"Product 4","category":"women","price":234}
+{"timestamp":"2025-09-06T07:16:59.123Z","level":"INFO","message":"All products fetched","count":4}
+{"timestamp":"2025-09-06T07:17:06.435Z","level":"INFO","message":"All orders fetched for admin","count":11}
+{"timestamp":"2025-09-06T07:17:11.661Z","level":"INFO","message":"Order deleted by admin","orderId":"68bae34b26488c8798454ee0","userId":"68bac0e702bdfaca8b940455","totalAmount":180}
+{"timestamp":"2025-09-06T07:17:15.635Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T07:17:25.242Z","level":"INFO","message":"All users fetched for admin","count":3}
+{"timestamp":"2025-09-06T07:17:25.584Z","level":"INFO","message":"User statistics fetched","totalUsers":3,"activeUsers":3,"inactiveUsers":0,"adminUsers":1,"regularUsers":2,"newUsers":2}

@@ -1,4 +1,6 @@
 const Address = require("../../models/Address");
+const { asyncHandler, createError } = require("../../utils/errorHandler");
+const logger = require("../../utils/logger");
 
 const addAddress = async (req, res) => {
   try {
@@ -44,7 +46,7 @@ const addAddress = async (req, res) => {
       success: true,
       data: newlyCreatedAddress,
     });
-  } catch (e) {
+  } catch (error) {
     res.status(500).json({
       success: false,
       message: "Error",
@@ -68,7 +70,7 @@ const fetchAllAddress = async (req, res) => {
       success: true,
       data: addressList,
     });
-  } catch (e) {
+  } catch (error) {
     res.status(500).json({
       success: false,
       message: "Error",
@@ -126,7 +128,7 @@ const editAddress = async (req, res) => {
       success: true,
       data: address,
     });
-  } catch (e) {
+  } catch (error) {
     res.status(500).json({
       success: false,
       message: "Error",
@@ -157,7 +159,7 @@ const deleteAddress = async (req, res) => {
       success: true,
       message: "Address deleted successfully",
     });
-  } catch (e) {
+  } catch (error) {
     res.status(500).json({
       success: false,
       message: "Error",

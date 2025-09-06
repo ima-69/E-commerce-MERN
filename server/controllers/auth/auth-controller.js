@@ -1,10 +1,10 @@
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const User = require("../../models/User");
 const { sendPasswordResetEmail, sendPasswordResetConfirmation } = require("../../helpers/emailService");
 const { asyncHandler, createError } = require("../../utils/errorHandler");
 const logger = require("../../utils/logger");
+const { signToken, verifyToken } = require("../../utils/jwt");
 
 //register
 const registerUser = asyncHandler(async (req, res) => {
@@ -71,18 +71,14 @@ const loginUser = asyncHandler(async (req, res) => {
     throw createError.unauthorized("Incorrect password! Please try again");
   }
 
-  const token = jwt.sign(
-    {
-      id: checkUser._id,
-      role: checkUser.role,
-      email: checkUser.email,
-      userName: checkUser.userName,
-      firstName: checkUser.firstName,
-      lastName: checkUser.lastName,
-    },
-    process.env.JWT_SECRET || "CLIENT_SECRET_KEY",
-    { expiresIn: "60m" }
-  );
+  const token = signToken({
+    id: checkUser._id,
+    role: checkUser.role,
+    email: checkUser.email,
+    userName: checkUser.userName,
+    firstName: checkUser.firstName,
+    lastName: checkUser.lastName,
+  });
 
   logger.info('User logged in', { 
     userId: checkUser._id, 
@@ -119,17 +115,18 @@ const authMiddleware = async (req, res, next) => {
   if (!token)
     return res.status(401).json({
       success: false,
-      message: "Unauthorised user!",
+      message: "Unauthorized user!",
     });
 
   try {
-    const decoded = jwt.verify(token, "CLIENT_SECRET_KEY");
+    const decoded = verifyToken(token);
     req.user = decoded;
     next();
   } catch (error) {
+    logger.warn("Authentication failed", { error: error.message, ip: req.ip });
     res.status(401).json({
       success: false,
-      message: "Unauthorised user!",
+      message: "Unauthorized user!",
     });
   }
 };
@@ -145,12 +142,13 @@ const adminMiddleware = async (req, res, next) => {
   if (!token)
     return res.status(401).json({
       success: false,
-      message: "Unauthorised user!",
+      message: "Unauthorized user!",
     });
 
   try {
-    const decoded = jwt.verify(token, "CLIENT_SECRET_KEY");
+    const decoded = verifyToken(token);
     if (decoded.role !== "admin") {
+      logger.warn("Admin access denied", { userId: decoded.id, role: decoded.role, ip: req.ip });
       return res.status(403).json({
         success: false,
         message: "Access denied! Admin role required.",
@@ -159,9 +157,10 @@ const adminMiddleware = async (req, res, next) => {
     req.user = decoded;
     next();
   } catch (error) {
+    logger.warn("Admin authentication failed", { error: error.message, ip: req.ip });
     res.status(401).json({
       success: false,
-      message: "Unauthorised user!",
+      message: "Unauthorized user!",
     });
   }
 };

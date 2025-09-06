@@ -28,7 +28,7 @@ const searchProducts = async (req, res) => {
       data: searchResults,
     });
   } catch (error) {
-    console.error("Error in search operation:", error);
+    logger.error("Error in search operation:", { error: error.message, query: req.query });
     res.status(500).json({
       success: false,
       message: "Error",

@@ -5,12 +5,34 @@
 Create a `.env` file in the `server` directory with the following variables:
 
 ```env
+# Server Configuration
 PORT=5000
+NODE_ENV=development
+
+# Database
 mongodbURI=mongodb://localhost:27017/ecommerce-mern
+
+# JWT Configuration (REQUIRED)
+JWT_SECRET=your_super_secret_jwt_key_here_change_this_in_production
+CLIENT_SECRET_KEY=your_super_secret_jwt_key_here_change_this_in_production
+
+# Cloudinary Configuration
 cloudinaryCloudName=your_cloudinary_cloud_name
 cloudinaryApiKey=your_cloudinary_api_key
 cloudinaryApiSecret=your_cloudinary_api_secret
+
+# Email Configuration
+EMAIL_SERVICE=gmail
+EMAIL_USER=your-email@gmail.com
+EMAIL_PASS=your-app-password
+
+# Frontend URL
 VITE_FRONTEND_URL=http://localhost:5173
+
+# PayPal Configuration (if using PayPal)
+PAYPAL_CLIENT_ID=your_paypal_client_id
+PAYPAL_CLIENT_SECRET=your_paypal_client_secret
+PAYPAL_MODE=sandbox
 ```
 
 ## Client Environment Variables

@@ -4,66 +4,71 @@ const Cart = require("../../models/Cart");
 const Product = require("../../models/Product");
 const User = require("../../models/User");
 const { sendOrderConfirmationEmail } = require("../../helpers/emailService");
+const { asyncHandler, createError } = require("../../utils/errorHandler");
+const logger = require("../../utils/logger");
 
-const createOrder = async (req, res) => {
-  try {
-    const {
-      userId,
-      cartItems,
-      addressInfo,
-      orderStatus,
-      paymentMethod,
-      paymentStatus,
-      totalAmount,
-      orderDate,
-      orderUpdateDate,
-      purchaseDate,
-      preferredDeliveryTime,
-      receivingDate,
-      paymentId,
-      payerId,
-      cartId,
-    } = req.body;
+const createOrder = asyncHandler(async (req, res) => {
+  const {
+    userId,
+    cartItems,
+    addressInfo,
+    orderStatus,
+    paymentMethod,
+    paymentStatus,
+    totalAmount,
+    orderDate,
+    orderUpdateDate,
+    purchaseDate,
+    preferredDeliveryTime,
+    receivingDate,
+    paymentId,
+    payerId,
+    cartId,
+  } = req.body;
 
+  // Validate required fields
+  if (!userId || !cartItems || !addressInfo || !totalAmount) {
+    throw createError.badRequest("Missing required order information");
+  }
 
-    const create_payment_json = {
-      intent: "sale",
-      payer: {
-        payment_method: "paypal",
-      },
-      redirect_urls: {
-        return_url: `${process.env.VITE_FRONTEND_URL}/shop/paypal-return`,
-        cancel_url: `${process.env.VITE_FRONTEND_URL}/shop/paypal-cancel`,
-      },
-      transactions: [
-        {
-          item_list: {
-            items: cartItems.map((item) => ({
-              name: item.title,
-              sku: item.productId,
-              price: item.price.toFixed(2),
-              currency: "USD",
-              quantity: item.quantity,
-            })),
-          },
-          amount: {
+  const create_payment_json = {
+    intent: "sale",
+    payer: {
+      payment_method: "paypal",
+    },
+    redirect_urls: {
+      return_url: `${process.env.VITE_FRONTEND_URL}/shop/paypal-return`,
+      cancel_url: `${process.env.VITE_FRONTEND_URL}/shop/paypal-cancel`,
+    },
+    transactions: [
+      {
+        item_list: {
+          items: cartItems.map((item) => ({
+            name: item.title,
+            sku: item.productId,
+            price: item.price.toFixed(2),
             currency: "USD",
-            total: totalAmount.toFixed(2),
-          },
-          description: "description",
+            quantity: item.quantity,
+          })),
         },
-      ],
-    };
+        amount: {
+          currency: "USD",
+          total: totalAmount.toFixed(2),
+        },
+        description: "description",
+      },
+    ],
+  };
 
+  return new Promise((resolve, reject) => {
     paypal.payment.create(create_payment_json, async (error, paymentInfo) => {
       if (error) {
-        console.error("Error creating order:", error);
+        logger.error("Error creating PayPal payment", { error: error.message, userId });
+        reject(createError.serverError("Error while creating PayPal payment"));
+        return;
+      }
 
-        return res.status(500).json({
-          success: false,
-          message: "Error while creating paypal payment",
-        });
-      } else {
+      try {
         const newlyCreatedOrder = new Order({
           userId,
           cartId,
@@ -88,142 +93,139 @@ const createOrder = async (req, res) => {
           (link) => link.rel === "approval_url"
         ).href;
 
+        logger.info('Order created successfully', { 
+          orderId: newlyCreatedOrder._id, 
+          userId, 
+          totalAmount 
+        });
+
         res.status(201).json({
           success: true,
           approvalURL,
           orderId: newlyCreatedOrder._id,
         });
+        resolve();
+      } catch (dbError) {
+        logger.error("Database error creating order", { error: dbError.message, userId });
+        reject(createError.serverError("Failed to save order"));
       }
     });
-  } catch (e) {
-    res.status(500).json({
-      success: false,
-      message: "Some error occured!",
-    });
+  });
+});
+
+const capturePayment = asyncHandler(async (req, res) => {
+  const { paymentId, payerId, orderId } = req.body;
+
+  if (!paymentId || !payerId || !orderId) {
+    throw createError.badRequest("Payment ID, Payer ID, and Order ID are required");
   }
-};
 
-const capturePayment = async (req, res) => {
-  try {
-    const { paymentId, payerId, orderId } = req.body;
+  const order = await Order.findById(orderId);
+  if (!order) {
+    throw createError.notFound("Order not found");
+  }
 
-    let order = await Order.findById(orderId);
+  order.paymentStatus = "paid";
+  order.orderStatus = "confirmed";
+  order.paymentId = paymentId;
+  order.payerId = payerId;
 
-    if (!order) {
-      return res.status(404).json({
-        success: false,
-        message: "Order can not be found",
-      });
+  // Update product stock
+  for (let item of order.cartItems) {
+    const product = await Product.findById(item.productId);
+    if (!product) {
+      throw createError.notFound(`Product not found: ${item.productId}`);
     }
 
-    order.paymentStatus = "paid";
-    order.orderStatus = "confirmed";
-    order.paymentId = paymentId;
-    order.payerId = payerId;
+    if (product.totalStock < item.quantity) {
+      throw createError.badRequest(`Insufficient stock for product: ${product.title}`);
+    }
 
-    for (let item of order.cartItems) {
-      let product = await Product.findById(item.productId);
+    product.totalStock -= item.quantity;
+    await product.save();
+  }
 
-      if (!product) {
-        return res.status(404).json({
-          success: false,
-          message: `Not enough stock for this product ${product.title}`,
+  // Clear cart after successful payment
+  if (order.cartId) {
+    await Cart.findByIdAndDelete(order.cartId);
+  }
+
+  await order.save();
+
+  // Send order confirmation email
+  try {
+    const user = await User.findById(order.userId);
+    
+    if (user && user.email) {
+      const emailResult = await sendOrderConfirmationEmail(
+        user.email,
+        user.userName || user.firstName || 'Customer',
+        order
+      );
+      
+      if (!emailResult.success) {
+        logger.warn("Failed to send order confirmation email", { 
+          orderId, 
+          userId: order.userId, 
+          error: emailResult.error 
         });
       }
-
-      product.totalStock -= item.quantity;
-
-      await product.save();
     }
-
-    const getCartId = order.cartId;
-    await Cart.findByIdAndDelete(getCartId);
-
-    await order.save();
-
-    // Send order confirmation email
-    try {
-      const user = await User.findById(order.userId);
-      
-      if (user && user.email) {
-        const emailResult = await sendOrderConfirmationEmail(
-          user.email,
-          user.userName || user.firstName || 'Customer',
-          order
-        );
-        
-        if (!emailResult.success) {
-          console.error("Failed to send order confirmation email:", emailResult.error);
-        }
-      }
-    } catch (emailError) {
-      console.error("Error sending order confirmation email:", emailError);
-      // Don't fail the order if email fails
-    }
-
-    res.status(200).json({
-      success: true,
-      message: "Order confirmed",
-      data: order,
+  } catch (emailError) {
+    logger.warn("Error sending order confirmation email", { 
+      orderId, 
+      userId: order.userId, 
+      error: emailError.message 
     });
-  } catch (e) {
-    res.status(500).json({
-      success: false,
-      message: "Some error occured!",
-    });
+    // Don't fail the order if email fails
   }
-};
 
-const getAllOrdersByUser = async (req, res) => {
-  try {
-    const { userId } = req.params;
+  logger.info('Payment captured successfully', { 
+    orderId, 
+    userId: order.userId, 
+    paymentId, 
+    totalAmount: order.totalAmount 
+  });
 
-    if (!userId) {
-      return res.status(400).json({
-        success: false,
-        message: "User ID is required",
-      });
-    }
+  res.status(200).json({
+    success: true,
+    message: "Order confirmed",
+    data: order,
+  });
+});
 
-    const orders = await Order.find({ userId });
+const getAllOrdersByUser = asyncHandler(async (req, res) => {
+  const { userId } = req.params;
 
-    res.status(200).json({
-      success: true,
-      data: orders,
-    });
-  } catch (e) {
-    console.error("Error fetching orders:", e);
-    res.status(500).json({
-      success: false,
-      message: "Some error occured!",
-    });
+  if (!userId) {
+    throw createError.badRequest("User ID is required");
   }
-};
 
-const getOrderDetails = async (req, res) => {
-  try {
-    const { id } = req.params;
+  const orders = await Order.find({ userId }).sort({ createdAt: -1 });
 
-    const order = await Order.findById(id);
+  logger.info('Orders fetched for user', { userId, count: orders.length });
 
-    if (!order) {
-      return res.status(404).json({
-        success: false,
-        message: "Order not found!",
-      });
-    }
+  res.status(200).json({
+    success: true,
+    data: orders,
+  });
+});
 
-    res.status(200).json({
-      success: true,
-      data: order,
-    });
-  } catch (e) {
-    res.status(500).json({
-      success: false,
-      message: "Some error occured!",
-    });
+const getOrderDetails = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+
+  const order = await Order.findById(id);
+  if (!order) {
+    throw createError.notFound("Order not found");
   }
-};
+
+  logger.info('Order details fetched', { orderId: id, userId: order.userId });
+
+  res.status(200).json({
+    success: true,
+    data: order,
+  });
+});
 
 module.exports = {
   createOrder,

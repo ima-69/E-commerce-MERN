@@ -50,3 +50,5 @@
 {"timestamp":"2025-09-05T15:28:42.862Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
 {"timestamp":"2025-09-05T15:28:42.865Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
 {"timestamp":"2025-09-05T15:28:47.713Z","level":"INFO","message":"User logged out"}
+{"timestamp":"2025-09-05T15:29:53.467Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-05T15:29:53.472Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
