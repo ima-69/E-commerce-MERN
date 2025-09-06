@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API_BASE_URL } from "../../../config/api";
 
 const initialState = {
   approvalURL: null,
@@ -14,7 +15,7 @@ export const createNewOrder = createAsyncThunk(
   "/order/createNewOrder",
   async (orderData) => {
     const response = await axios.post(
-      `${import.meta.env.VITE_BACKEND_URL}/api/shop/order/create`,
+      `${API_BASE_URL}/api/shop/order/create`,
       orderData,
       {
         withCredentials: true,
@@ -29,7 +30,7 @@ export const capturePayment = createAsyncThunk(
   "/order/capturePayment",
   async ({ paymentId, payerId, orderId }) => {
     const response = await axios.post(
-      `${import.meta.env.VITE_BACKEND_URL}/api/shop/order/capture`,
+      `${API_BASE_URL}/api/shop/order/capture`,
       {
         paymentId,
         payerId,
@@ -48,7 +49,7 @@ export const getAllOrdersByUserId = createAsyncThunk(
   "/order/getAllOrdersByUserId",
   async (userId) => {
     const response = await axios.get(
-      `${import.meta.env.VITE_BACKEND_URL}/api/shop/order/list/${userId}`,
+      `${API_BASE_URL}/api/shop/order/list/${userId}`,
       {
         withCredentials: true,
       }
@@ -61,7 +62,7 @@ export const getOrderDetails = createAsyncThunk(
   "/order/getOrderDetails",
   async (id) => {
     const response = await axios.get(
-      `${import.meta.env.VITE_BACKEND_URL}/api/shop/order/details/${id}`,
+      `${API_BASE_URL}/api/shop/order/details/${id}`,
       {
         withCredentials: true,
       }

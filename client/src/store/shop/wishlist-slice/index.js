@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API_BASE_URL } from "../../../config/api";
 
 // Async thunks for wishlist operations
 export const addToWishlist = createAsyncThunk(
@@ -7,7 +8,7 @@ export const addToWishlist = createAsyncThunk(
   async ({ userId, productId }, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/shop/wishlist/add`,
+        `${API_BASE_URL}/api/shop/wishlist/add`,
         {
           userId,
           productId,
@@ -28,7 +29,7 @@ export const removeFromWishlist = createAsyncThunk(
   async ({ userId, productId }, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/shop/wishlist/remove`,
+        `${API_BASE_URL}/api/shop/wishlist/remove`,
         {
           userId,
           productId,
@@ -49,7 +50,7 @@ export const fetchWishlist = createAsyncThunk(
   async (userId, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/shop/wishlist/${userId}`,
+        `${API_BASE_URL}/api/shop/wishlist/${userId}`,
         {
           withCredentials: true,
         }
@@ -66,7 +67,7 @@ export const checkWishlistStatus = createAsyncThunk(
   async ({ userId, productId }, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/shop/wishlist/status/${userId}/${productId}`,
+        `${API_BASE_URL}/api/shop/wishlist/status/${userId}/${productId}`,
         {
           withCredentials: true,
         }
@@ -114,6 +115,27 @@ const wishlistSlice = createSlice({
       .addCase(addToWishlist.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+        
+        // Show user-friendly error messages
+        const errorMsg = action.payload || "";
+        
+        if (errorMsg?.includes("Account is deactivated") || errorMsg?.includes("deactivated")) {
+          import("sonner").then(({ toast }) => {
+            toast.error("🚫 Your account has been deactivated. Please contact support for assistance.");
+          });
+        } else if (errorMsg?.includes("Unauthorized") || errorMsg?.includes("401")) {
+          import("sonner").then(({ toast }) => {
+            toast.error("🔒 Please log in to add items to your wishlist.");
+          });
+        } else if (errorMsg?.includes("Network Error") || errorMsg?.includes("timeout")) {
+          import("sonner").then(({ toast }) => {
+            toast.error("🌐 Network error. Please check your internet connection and try again.");
+          });
+        } else if (errorMsg) {
+          import("sonner").then(({ toast }) => {
+            toast.error(`❌ ${errorMsg}`);
+          });
+        }
       })
       // Remove from wishlist
       .addCase(removeFromWishlist.pending, (state) => {

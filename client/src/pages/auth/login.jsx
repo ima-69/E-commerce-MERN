@@ -85,11 +85,31 @@ const AuthLogin = () => {
           navigate(redirectTo || "/shop/home");
         }
       } else {
-        const msg = result?.payload?.message || result?.error?.message || "Login failed";
-        toast.error(msg);
+        // Handle specific error messages
+        const errorMsg = result?.payload?.message || result?.error?.message || "";
+        
+        if (errorMsg?.includes("Incorrect password") || errorMsg?.includes("password")) {
+          toast.error("❌ Incorrect password. Please check your password and try again.");
+        } else if (errorMsg?.includes("Account is deactivated") || errorMsg?.includes("deactivated")) {
+          toast.error("🚫 Your account has been deactivated. Please contact support for assistance.");
+        } else if (errorMsg?.includes("User not found") || errorMsg?.includes("User doesn't exist") || errorMsg?.includes("doesn't exist")) {
+          toast.error("👤 User not found. Please check your email/username or register a new account.");
+        } else if (errorMsg?.includes("Too many requests") || errorMsg?.includes("rate limit")) {
+          toast.error("⏰ Too many login attempts. Please wait a few minutes before trying again.");
+        } else if (errorMsg?.includes("Unauthorized") || errorMsg?.includes("401")) {
+          toast.error("🔒 Login failed. Please check your credentials and try again.");
+        } else if (errorMsg?.includes("Network Error") || errorMsg?.includes("timeout")) {
+          toast.error("🌐 Network error. Please check your internet connection and try again.");
+        } else if (errorMsg) {
+          // Show the actual error message if it's user-friendly
+          toast.error(`❌ ${errorMsg}`);
+        } else {
+          toast.error("❌ Login failed. Please check your credentials and try again.");
+        }
       }
     } catch (error) {
-      toast.error("An unexpected error occurred");
+      console.error("Login error:", error);
+      toast.error("❌ An unexpected error occurred. Please try again.");
     } finally {
       setIsLoading(false);
     }

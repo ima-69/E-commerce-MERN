@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API_BASE_URL } from "../../../config/api";
 
 
 const initialState = {
@@ -18,7 +19,7 @@ export const fetchAllFilteredProducts = createAsyncThunk(
       sortBy: sortParams,
     });
 
-    const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+    const backendUrl = API_BASE_URL || 'http://localhost:5000';
 
     try {
       const result = await axios.get(
@@ -36,7 +37,7 @@ export const fetchAllFilteredProducts = createAsyncThunk(
 export const fetchProductDetails = createAsyncThunk(
   "/products/fetchProductDetails",
   async (id) => {
-    const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+    const backendUrl = API_BASE_URL || 'http://localhost:5000';
     
     try {
       const result = await axios.get(
@@ -53,7 +54,7 @@ export const fetchProductDetails = createAsyncThunk(
 export const fetchNewArrivals = createAsyncThunk(
   "/products/fetchNewArrivals",
   async (limit = 8) => {
-    const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+    const backendUrl = API_BASE_URL || 'http://localhost:5000';
     
     try {
       const result = await axios.get(

@@ -83,3 +83,211 @@
 {"timestamp":"2025-09-06T07:17:15.635Z","level":"INFO","message":"Feature images fetched","count":2}
 {"timestamp":"2025-09-06T07:17:25.242Z","level":"INFO","message":"All users fetched for admin","count":3}
 {"timestamp":"2025-09-06T07:17:25.584Z","level":"INFO","message":"User statistics fetched","totalUsers":3,"activeUsers":3,"inactiveUsers":0,"adminUsers":1,"regularUsers":2,"newUsers":2}
+{"timestamp":"2025-09-06T10:56:12.912Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T10:56:13.975Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T10:56:18.245Z","level":"WARN","message":"Authentication failed","error":"Invalid token","ip":"::1"}
+{"timestamp":"2025-09-06T10:56:18.513Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T10:56:18.526Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T10:56:18.536Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T10:56:32.150Z","level":"INFO","message":"User logged in","userId":"68b892a59660ecffbc052229","email":"imansha.idr@gmail.com","role":"admin"}
+{"timestamp":"2025-09-06T10:56:32.308Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T10:56:45.980Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T10:56:46.429Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T10:56:46.454Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T10:57:05.072Z","level":"INFO","message":"User logged out"}
+{"timestamp":"2025-09-06T10:57:14.837Z","level":"INFO","message":"User logged in","userId":"68bac0e702bdfaca8b940455","email":"dilshan.idr@gmail.com","role":"user"}
+{"timestamp":"2025-09-06T10:57:14.991Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T10:57:15.008Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T10:57:15.022Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T10:59:10.088Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T10:59:11.239Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T10:59:18.713Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T10:59:18.723Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T10:59:18.730Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T10:59:28.370Z","level":"WARN","message":"Incorrect password! Please try again","type":"4xx","stack":"Error: Incorrect password! Please try again\n    at Object.unauthorized (E:\\MERN\\E-commerce-MERN\\server\\utils\\errorHandler.js:17:47)\n    at E:\\MERN\\E-commerce-MERN\\server\\controllers\\auth\\auth-controller.js:71:23","statusCode":401,"context":{"url":"/api/auth/login","method":"POST","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36","body":{"emailOrUsername":"dilshan.idr@gmail.com","password":"123abc@IDr"},"query":{},"params":{}}}
+{"timestamp":"2025-09-06T10:59:49.357Z","level":"INFO","message":"User logged in","userId":"68bac0e702bdfaca8b940455","email":"dilshan.idr@gmail.com","role":"user"}
+{"timestamp":"2025-09-06T10:59:49.571Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T10:59:50.021Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T10:59:50.069Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T11:00:41.173Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T11:00:42.168Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T11:00:48.788Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T11:00:49.632Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T11:00:54.888Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T11:00:55.719Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T11:00:58.990Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T11:00:59.797Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T11:01:02.862Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T11:01:03.719Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T11:01:05.309Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T11:01:06.274Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T11:01:21.620Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T11:01:22.462Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T11:01:25.615Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T11:01:26.412Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T11:01:33.168Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T11:01:33.963Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T11:01:38.850Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T11:01:39.819Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T11:01:43.492Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T11:01:44.435Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T11:02:25.506Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T11:02:26.386Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T11:02:29.489Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T11:02:30.294Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T11:02:33.484Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T11:02:34.377Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T11:02:37.730Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T11:02:38.532Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T11:02:46.834Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T11:02:47.727Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T11:03:39.238Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T11:03:40.232Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T11:03:42.660Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T11:03:43.486Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T11:03:45.272Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T11:03:46.103Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T11:03:56.499Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T11:03:57.352Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T11:04:29.527Z","level":"WARN","message":"User account is deactivated","userId":"68bac0e702bdfaca8b940455","ip":"::1"}
+{"timestamp":"2025-09-06T11:04:30.262Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T11:04:30.273Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T11:04:30.281Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:04:32.535Z","level":"WARN","message":"User account is deactivated","userId":"68bac0e702bdfaca8b940455","ip":"::1"}
+{"timestamp":"2025-09-06T11:04:32.948Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T11:04:32.953Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T11:04:32.958Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:04:50.533Z","level":"INFO","message":"User logged in","userId":"68bac0e702bdfaca8b940455","email":"dilshan.idr@gmail.com","role":"user"}
+{"timestamp":"2025-09-06T11:04:50.721Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T11:04:51.169Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:04:51.206Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T11:05:00.384Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T11:05:00.389Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T11:05:00.404Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:05:02.191Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T11:05:04.631Z","level":"INFO","message":"Item added to cart","userId":"68bac0e702bdfaca8b940455","productId":"68a67b1157bf73ad6b548fdc","quantity":1}
+{"timestamp":"2025-09-06T11:06:06.080Z","level":"INFO","message":"Item added to cart","userId":"68bac0e702bdfaca8b940455","productId":"68a764dcddc4b0a59658780f","quantity":1}
+{"timestamp":"2025-09-06T11:20:23.806Z","level":"WARN","message":"No token provided","ip":"::1","url":"/check-auth"}
+{"timestamp":"2025-09-06T11:23:02.548Z","level":"WARN","message":"User account is deactivated","userId":"68bac0e702bdfaca8b940455","ip":"::1"}
+{"timestamp":"2025-09-06T11:23:02.887Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T11:23:03.577Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T11:23:03.581Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:23:05.554Z","level":"WARN","message":"User account is deactivated","userId":"68bac0e702bdfaca8b940455","ip":"::1"}
+{"timestamp":"2025-09-06T11:23:06.221Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T11:23:06.251Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T11:23:06.269Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:23:24.239Z","level":"INFO","message":"User logged in","userId":"68bac0e702bdfaca8b940455","email":"dilshan.idr@gmail.com","role":"user"}
+{"timestamp":"2025-09-06T11:23:24.480Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T11:23:25.110Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:23:25.123Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T11:23:29.365Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T11:23:30.762Z","level":"INFO","message":"Item added to cart","userId":"68bac0e702bdfaca8b940455","productId":"68a67b1157bf73ad6b548fdc","quantity":1}
+{"timestamp":"2025-09-06T11:26:30.889Z","level":"INFO","message":"Item added to cart","userId":"68bac0e702bdfaca8b940455","productId":"68a67b1157bf73ad6b548fdc","quantity":1}
+{"timestamp":"2025-09-06T11:26:36.837Z","level":"INFO","message":"Item added to cart","userId":"68bac0e702bdfaca8b940455","productId":"68a764dcddc4b0a59658780f","quantity":1}
+{"timestamp":"2025-09-06T11:26:45.082Z","level":"INFO","message":"User logged out"}
+{"timestamp":"2025-09-06T11:26:45.129Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T11:26:45.144Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T11:26:45.150Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:26:56.543Z","level":"INFO","message":"User logged in","userId":"68b892a59660ecffbc052229","email":"imansha.idr@gmail.com","role":"admin"}
+{"timestamp":"2025-09-06T11:26:56.735Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:26:59.323Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T11:26:59.338Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T11:26:59.363Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:27:01.184Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:27:04.033Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T11:27:04.040Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T11:27:04.046Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:27:05.999Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:27:07.081Z","level":"INFO","message":"All users fetched for admin","count":3}
+{"timestamp":"2025-09-06T11:27:07.505Z","level":"INFO","message":"User statistics fetched","totalUsers":3,"activeUsers":2,"inactiveUsers":1,"adminUsers":1,"regularUsers":2,"newUsers":2}
+{"timestamp":"2025-09-06T11:27:11.834Z","level":"INFO","message":"User status updated","userId":"68bac0e702bdfaca8b940455","isActive":true,"updatedBy":"68b892a59660ecffbc052229"}
+{"timestamp":"2025-09-06T11:27:13.064Z","level":"INFO","message":"User statistics fetched","totalUsers":3,"activeUsers":3,"inactiveUsers":0,"adminUsers":1,"regularUsers":2,"newUsers":2}
+{"timestamp":"2025-09-06T11:27:13.684Z","level":"INFO","message":"User logged out"}
+{"timestamp":"2025-09-06T11:27:13.826Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T11:27:13.835Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T11:27:13.843Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:27:14.452Z","level":"WARN","message":"No token provided in authenticateToken","ip":"::1","url":"/"}
+{"timestamp":"2025-09-06T11:27:14.497Z","level":"WARN","message":"No token provided in authenticateToken","ip":"::1","url":"/get/68b892a59660ecffbc052229"}
+{"timestamp":"2025-09-06T11:28:16.068Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T11:28:17.423Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T11:28:20.546Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T11:28:21.666Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T11:28:27.393Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T11:28:28.482Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T11:28:36.692Z","level":"WARN","message":"Incorrect password! Please try again","type":"4xx","stack":"Error: Incorrect password! Please try again\n    at Object.unauthorized (E:\\MERN\\E-commerce-MERN\\server\\utils\\errorHandler.js:17:47)\n    at E:\\MERN\\E-commerce-MERN\\server\\controllers\\auth\\auth-controller.js:71:23","statusCode":401,"context":{"url":"/api/auth/login","method":"POST","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36","body":{"emailOrUsername":"dilshan.idr@gmail.com","password":"123@IDR"},"query":{},"params":{}}}
+{"timestamp":"2025-09-06T11:28:49.953Z","level":"INFO","message":"User logged in","userId":"68bac0e702bdfaca8b940455","email":"dilshan.idr@gmail.com","role":"user"}
+{"timestamp":"2025-09-06T11:28:50.273Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T11:28:50.999Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T11:28:51.009Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:29:20.527Z","level":"INFO","message":"Order created successfully","orderId":"68bc1b10a7b1efb61f7c5267","userId":"68bac0e702bdfaca8b940455","totalAmount":1100}
+{"timestamp":"2025-09-06T11:29:21.922Z","level":"INFO","message":"Order created successfully","orderId":"68bc1b11a7b1efb61f7c526c","userId":"68bac0e702bdfaca8b940455","totalAmount":1100}
+{"timestamp":"2025-09-06T11:30:16.878Z","level":"INFO","message":"Payment captured successfully","orderId":"68bc1b11a7b1efb61f7c526c","userId":"68bac0e702bdfaca8b940455","paymentId":"PAYID-NC6BWEQ6EE2053294339410W","totalAmount":1100}
+{"timestamp":"2025-09-06T11:30:22.379Z","level":"INFO","message":"Orders fetched for user","userId":"68bac0e702bdfaca8b940455","count":15}
+{"timestamp":"2025-09-06T11:30:27.764Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T11:30:27.773Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T11:30:27.778Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:31:27.975Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T11:31:29.699Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T11:33:30.888Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T11:33:31.633Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:33:31.638Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T11:33:39.695Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T11:33:39.706Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T11:33:39.710Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:33:43.442Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T11:33:43.450Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T11:33:43.455Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:33:52.837Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T11:33:52.858Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:33:52.867Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T11:34:10.921Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T11:34:10.926Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T11:34:10.931Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:34:15.420Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T11:34:15.428Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T11:34:15.944Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:34:21.635Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T11:34:21.639Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T11:34:21.643Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:34:27.747Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T11:34:27.824Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T11:34:27.831Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:34:38.569Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T11:34:38.573Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}
+{"timestamp":"2025-09-06T11:34:38.577Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:35:14.716Z","level":"INFO","message":"User logged out"}
+{"timestamp":"2025-09-06T11:35:22.398Z","level":"WARN","message":"Incorrect password! Please try again","type":"4xx","stack":"Error: Incorrect password! Please try again\n    at Object.unauthorized (E:\\MERN\\E-commerce-MERN\\server\\utils\\errorHandler.js:17:47)\n    at E:\\MERN\\E-commerce-MERN\\server\\controllers\\auth\\auth-controller.js:71:23","statusCode":401,"context":{"url":"/api/auth/login","method":"POST","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36","body":{"emailOrUsername":"dilshan.idr@gmail.com","password":"zfc"},"query":{},"params":{}}}
+{"timestamp":"2025-09-06T11:36:11.649Z","level":"WARN","message":"No token provided","ip":"::1","url":"/check-auth"}
+{"timestamp":"2025-09-06T11:37:19.907Z","level":"WARN","message":"No token provided","ip":"::1","url":"/check-auth"}
+{"timestamp":"2025-09-06T11:37:26.525Z","level":"WARN","message":"No token provided","ip":"::1","url":"/check-auth"}
+{"timestamp":"2025-09-06T11:37:33.494Z","level":"WARN","message":"No token provided","ip":"::1","url":"/check-auth"}
+{"timestamp":"2025-09-06T11:38:05.485Z","level":"WARN","message":"No token provided","ip":"::1","url":"/check-auth"}
+{"timestamp":"2025-09-06T11:38:24.977Z","level":"WARN","message":"User doesn't exist! Please register first","type":"4xx","stack":"Error: User doesn't exist! Please register first\n    at Object.unauthorized (E:\\MERN\\E-commerce-MERN\\server\\utils\\errorHandler.js:17:47)\n    at E:\\MERN\\E-commerce-MERN\\server\\controllers\\auth\\auth-controller.js:63:23\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","statusCode":401,"context":{"url":"/api/auth/login","method":"POST","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36","body":{"emailOrUsername":"dummy34@gmail.com","password":"123"},"query":{},"params":{}}}
+{"timestamp":"2025-09-06T11:38:38.141Z","level":"WARN","message":"Incorrect password! Please try again","type":"4xx","stack":"Error: Incorrect password! Please try again\n    at Object.unauthorized (E:\\MERN\\E-commerce-MERN\\server\\utils\\errorHandler.js:17:47)\n    at E:\\MERN\\E-commerce-MERN\\server\\controllers\\auth\\auth-controller.js:71:23","statusCode":401,"context":{"url":"/api/auth/login","method":"POST","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36","body":{"emailOrUsername":"dilshan.idr@gmail.com","password":"123abcqw"},"query":{},"params":{}}}
+{"timestamp":"2025-09-06T11:38:49.321Z","level":"INFO","message":"User logged in","userId":"68b892a59660ecffbc052229","email":"imansha.idr@gmail.com","role":"admin"}
+{"timestamp":"2025-09-06T11:38:50.027Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:38:55.038Z","level":"INFO","message":"All products fetched","count":4}
+{"timestamp":"2025-09-06T11:38:57.494Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:39:13.257Z","level":"INFO","message":"Image uploaded successfully","originalName":"JH 2.png","size":597259,"mimetype":"image/png"}
+{"timestamp":"2025-09-06T11:39:17.088Z","level":"INFO","message":"Feature image added","featureId":"68bc1d6451ca1fa10d0f437f"}
+{"timestamp":"2025-09-06T11:39:17.719Z","level":"INFO","message":"Feature images fetched","count":3}
+{"timestamp":"2025-09-06T11:39:22.132Z","level":"INFO","message":"Feature image deleted","featureId":"68bc1d6451ca1fa10d0f437f"}
+{"timestamp":"2025-09-06T11:40:56.987Z","level":"INFO","message":"Server is running on port 5000"}
+{"timestamp":"2025-09-06T11:40:58.210Z","level":"INFO","message":"MongoDB connected successfully"}
+{"timestamp":"2025-09-06T11:41:12.513Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:41:15.202Z","level":"INFO","message":"All products fetched","count":4}
+{"timestamp":"2025-09-06T11:41:16.687Z","level":"INFO","message":"All orders fetched for admin","count":17}
+{"timestamp":"2025-09-06T11:41:17.282Z","level":"INFO","message":"All products fetched","count":4}
+{"timestamp":"2025-09-06T11:41:18.949Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:41:21.837Z","level":"INFO","message":"All products fetched","count":4}
+{"timestamp":"2025-09-06T11:41:25.500Z","level":"INFO","message":"Product deleted","productId":"68bbdfea921b423156479056","title":"Product 4"}
+{"timestamp":"2025-09-06T11:41:25.618Z","level":"INFO","message":"All products fetched","count":3}
+{"timestamp":"2025-09-06T11:42:22.097Z","level":"INFO","message":"Image uploaded successfully","originalName":"Untitled design (1).png","size":6081163,"mimetype":"image/png"}
+{"timestamp":"2025-09-06T11:42:28.477Z","level":"INFO","message":"New product created","productId":"68bc1e23de3a5511a8535089","title":"Product 4","category":"footwear","price":123}
+{"timestamp":"2025-09-06T11:42:29.280Z","level":"INFO","message":"All products fetched","count":4}
+{"timestamp":"2025-09-06T11:42:34.598Z","level":"INFO","message":"All orders fetched for admin","count":17}
+{"timestamp":"2025-09-06T11:42:35.365Z","level":"INFO","message":"All users fetched for admin","count":3}
+{"timestamp":"2025-09-06T11:42:35.938Z","level":"INFO","message":"User statistics fetched","totalUsers":3,"activeUsers":3,"inactiveUsers":0,"adminUsers":1,"regularUsers":2,"newUsers":2}
+{"timestamp":"2025-09-06T11:42:36.394Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"price-lowtohigh"}
+{"timestamp":"2025-09-06T11:42:37.123Z","level":"INFO","message":"Feature images fetched","count":2}
+{"timestamp":"2025-09-06T11:42:37.137Z","level":"INFO","message":"Products fetched","count":4,"filters":{},"sortBy":"createdAt-desc","limit":"8"}

@@ -121,11 +121,28 @@ const AuthRegister = () => {
         toast.success(result.payload.message || "Registration successful");
         navigate("/auth/login");
       } else {
-        const msg = result?.payload?.message || result?.error?.message || "Registration failed";
-        toast.error(msg);
+        // Handle specific error messages
+        const errorMsg = result?.payload?.message || result?.error?.message || "";
+        
+        if (errorMsg?.includes("User already exists") || errorMsg?.includes("already exists")) {
+          toast.error("👤 User already exists with this email. Please try logging in instead.");
+        } else if (errorMsg?.includes("Username already taken") || errorMsg?.includes("username")) {
+          toast.error("👤 Username already taken. Please choose a different username.");
+        } else if (errorMsg?.includes("Email already exists") || errorMsg?.includes("email")) {
+          toast.error("📧 Email already exists. Please try logging in instead.");
+        } else if (errorMsg?.includes("Validation failed") || errorMsg?.includes("validation")) {
+          toast.error("❌ Please check your information and try again.");
+        } else if (errorMsg?.includes("Network Error") || errorMsg?.includes("timeout")) {
+          toast.error("🌐 Network error. Please check your internet connection and try again.");
+        } else if (errorMsg) {
+          toast.error(`❌ ${errorMsg}`);
+        } else {
+          toast.error("❌ Registration failed. Please try again.");
+        }
       }
     } catch (error) {
-      toast.error("An unexpected error occurred");
+      console.error("Registration error:", error);
+      toast.error("❌ An unexpected error occurred. Please try again.");
     } finally {
       setIsLoading(false);
     }

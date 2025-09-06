@@ -4,6 +4,7 @@ import { Label } from "../ui/label";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "../ui/button";
 import axios from "axios";
+import { API_BASE_URL } from "@/config/api";
 import { Skeleton } from "../ui/skeleton";
 
 const ProductImageUpload =  ({
@@ -81,7 +82,7 @@ const ProductImageUpload =  ({
       const controller = new AbortController();
       timeoutId = setTimeout(() => controller.abort(), 60000); // 60 second timeout
       
-      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+      const backendUrl = API_BASE_URL || 'http://localhost:5000';
       
       const response = await axios.post(
         `${backendUrl}/api/admin/products/upload-image`,

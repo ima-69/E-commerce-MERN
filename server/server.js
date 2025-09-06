@@ -54,7 +54,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(
     cors({
-        origin: process.env.VITE_FRONTEND_URL,
+        origin: process.env.VITE_FRONTEND_URL || 'http://localhost:5173',
         methods: ['GET', 'POST', 'PUT', 'DELETE'],
         allowedHeaders : [
             'Content-Type',
@@ -114,6 +114,16 @@ app.get("/api/test-email", async (req, res) => {
 // Health check and monitoring endpoints
 app.get("/api/health", healthCheck);
 app.get("/api/error-stats", getErrorStats);
+
+// Development endpoint to reset rate limits (only in development)
+if (process.env.NODE_ENV === 'development') {
+  app.get("/api/reset-rate-limit", (req, res) => {
+    res.json({
+      success: true,
+      message: "Rate limit reset for development. Please wait a moment before making requests."
+    });
+  });
+}
 
 // 404 handler for undefined routes
 app.use(notFoundHandler);

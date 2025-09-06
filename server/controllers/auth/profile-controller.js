@@ -8,10 +8,20 @@ const logger = require("../../utils/logger");
 // Get user profile
 const getUserProfile = async (req, res) => {
   try {
-    const userId = req.user.id;
+    const userId = req.user?.id;
+    
+    if (!userId) {
+      logger.warn("No user ID in request", { ip: req.ip });
+      return res.status(401).json({
+        success: false,
+        message: "User not authenticated"
+      });
+    }
+    
     const user = await User.findById(userId).select("-password -resetPasswordToken -resetPasswordExpires");
     
     if (!user) {
+      logger.warn("User not found in database", { userId, ip: req.ip });
       return res.status(404).json({
         success: false,
         message: "User not found"
@@ -23,7 +33,7 @@ const getUserProfile = async (req, res) => {
       user
     });
   } catch (error) {
-    logger.error("Get user profile error:", { error: error.message, userId });
+    logger.error("Get user profile error:", { error: error.message, userId: req.user?.id, ip: req.ip });
     res.status(500).json({
       success: false,
       message: "Internal server error"

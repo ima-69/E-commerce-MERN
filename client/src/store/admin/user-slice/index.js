@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API_BASE_URL } from "../../../config/api";
 
 const initialState = {
   userList: [],
@@ -14,7 +15,7 @@ export const getAllUsers = createAsyncThunk(
   "adminUsers/getAllUsers",
   async () => {
     const response = await axios.get(
-      `${import.meta.env.VITE_BACKEND_URL}/api/admin/users`,
+      `${API_BASE_URL}/api/admin/users`,
       {
         withCredentials: true,
       }
@@ -28,7 +29,7 @@ export const getUserById = createAsyncThunk(
   "adminUsers/getUserById",
   async (userId) => {
     const response = await axios.get(
-      `${import.meta.env.VITE_BACKEND_URL}/api/admin/users/${userId}`,
+      `${API_BASE_URL}/api/admin/users/${userId}`,
       {
         withCredentials: true,
       }
@@ -43,7 +44,7 @@ export const updateUserStatus = createAsyncThunk(
   "adminUsers/updateUserStatus",
   async ({ userId, isActive }) => {
     const response = await axios.put(
-      `${import.meta.env.VITE_BACKEND_URL}/api/admin/users/${userId}/status`,
+      `${API_BASE_URL}/api/admin/users/${userId}/status`,
       { isActive },
       {
         withCredentials: true,
@@ -58,7 +59,7 @@ export const deleteUser = createAsyncThunk(
   "adminUsers/deleteUser",
   async (userId) => {
     const response = await axios.delete(
-      `${import.meta.env.VITE_BACKEND_URL}/api/admin/users/${userId}`,
+      `${API_BASE_URL}/api/admin/users/${userId}`,
       {
         withCredentials: true,
       }
@@ -72,7 +73,7 @@ export const getUserStats = createAsyncThunk(
   "adminUsers/getUserStats",
   async () => {
     const response = await axios.get(
-      `${import.meta.env.VITE_BACKEND_URL}/api/admin/users/stats/overview`,
+      `${API_BASE_URL}/api/admin/users/stats/overview`,
       {
         withCredentials: true,
       }

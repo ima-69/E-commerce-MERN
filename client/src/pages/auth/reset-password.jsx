@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import axios from "axios";
+import { API_BASE_URL } from "@/config/api";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -39,7 +40,7 @@ const ResetPassword = () => {
   const validateToken = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/auth/verify-reset-token/${token}`
+        `${API_BASE_URL}/api/auth/verify-reset-token/${token}`
       );
       
       if (response.data.success) {
@@ -109,7 +110,7 @@ const ResetPassword = () => {
     
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/auth/reset-password`,
+        `${API_BASE_URL}/api/auth/reset-password`,
         {
           token,
           newPassword: formData.newPassword,

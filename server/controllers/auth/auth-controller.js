@@ -86,7 +86,13 @@ const loginUser = asyncHandler(async (req, res) => {
     role: checkUser.role 
   });
 
-  res.cookie("token", token, { httpOnly: true, secure: false }).json({
+  res.cookie("token", token, { 
+    httpOnly: true, 
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
+    maxAge: 60 * 60 * 1000, // 1 hour
+    path: '/'
+  }).json({
     success: true,
     message: "Logged in successfully",
     user: {
@@ -112,18 +118,41 @@ const logoutUser = (req, res) => {
 //auth middleware
 const authMiddleware = async (req, res, next) => {
   const token = req.cookies.token;
-  if (!token)
+  
+  if (!token) {
+    logger.warn("No token provided", { ip: req.ip, url: req.url });
     return res.status(401).json({
       success: false,
       message: "Unauthorized user!",
     });
+  }
 
   try {
     const decoded = verifyToken(token);
+    
+    // Check if user exists and is active
+    const user = await User.findById(decoded.id);
+    
+    if (!user) {
+      logger.warn("User not found in database", { userId: decoded.id, ip: req.ip });
+      return res.status(401).json({
+        success: false,
+        message: "User not found!",
+      });
+    }
+    
+    if (!user.isActive) {
+      logger.warn("User account is deactivated", { userId: decoded.id, ip: req.ip });
+      return res.status(401).json({
+        success: false,
+        message: "Account is deactivated!",
+      });
+    }
+    
     req.user = decoded;
     next();
   } catch (error) {
-    logger.warn("Authentication failed", { error: error.message, ip: req.ip });
+    logger.warn("Authentication failed", { error: error.message, ip: req.ip, url: req.url });
     res.status(401).json({
       success: false,
       message: "Unauthorized user!",

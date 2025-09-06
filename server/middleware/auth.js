@@ -1,14 +1,18 @@
 const User = require('../models/User');
 const { verifyToken } = require('../utils/jwt');
+const logger = require('../utils/logger');
 
 // Auth middleware
 const authenticateToken = async (req, res, next) => {
   const token = req.cookies.token;
-  if (!token)
+  
+  if (!token) {
+    logger.warn("No token provided in authenticateToken", { ip: req.ip, url: req.url });
     return res.status(401).json({
       success: false,
       message: "Unauthorized user!",
     });
+  }
 
   try {
     const decoded = verifyToken(token);

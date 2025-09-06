@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
+import { API_BASE_URL } from '@/config/api';
 import { 
   DollarSign, 
   ShoppingCart, 
@@ -42,7 +43,7 @@ const DashboardOverview = () => {
       setLoading(true);
 
       const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/admin/products/dashboard-overview`,
+        `${API_BASE_URL}/api/admin/products/dashboard-overview`,
         {
           withCredentials: true,
         }

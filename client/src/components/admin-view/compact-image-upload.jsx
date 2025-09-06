@@ -2,6 +2,7 @@ import { UploadCloudIcon, XIcon, CheckCircle } from "lucide-react";
 import { Button } from "../ui/button";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "@/config/api";
 import { toast } from "sonner";
 
 const CompactImageUpload = ({
@@ -52,7 +53,7 @@ const CompactImageUpload = ({
       const data = new FormData();
       data.append("my_file", imageFile);
       
-      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+      const backendUrl = API_BASE_URL || 'http://localhost:5000';
       
       const response = await axios.post(
         `${backendUrl}/api/admin/products/upload-image`,
