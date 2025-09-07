@@ -75,7 +75,7 @@ const getProductDetails = async (req, res) => {
       success: true,
       data: product,
     });
-  } catch (e) {
+  } catch (error) {
     console.error("Error in products operation:", error);
     res.status(500).json({
       success: false,

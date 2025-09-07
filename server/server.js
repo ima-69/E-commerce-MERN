@@ -58,13 +58,17 @@ app.use(helmet({
 // Rate limiting
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100, // limit each IP to 100 requests per windowMs
+    max: 1000, // limit each IP to 1000 requests per windowMs (more generous for development)
     message: {
         success: false,
         message: "Too many requests from this IP, please try again later."
     },
     standardHeaders: true,
     legacyHeaders: false,
+    skip: (req) => {
+        // Skip rate limiting for development (localhost)
+        return req.ip === '127.0.0.1' || req.ip === '::1' || req.ip === '::ffff:127.0.0.1';
+    }
 });
 
 // Apply rate limiting to all requests
@@ -73,13 +77,17 @@ app.use(limiter);
 // Stricter rate limiting for auth endpoints
 const authLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 20, // limit each IP to 20 requests per windowMs for auth (more reasonable)
+    max: 50, // limit each IP to 50 requests per windowMs for auth (more reasonable for development)
     message: {
         success: false,
         message: "Too many authentication attempts, please try again later."
     },
     standardHeaders: true,
     legacyHeaders: false,
+    skip: (req) => {
+        // Skip rate limiting for development (localhost)
+        return req.ip === '127.0.0.1' || req.ip === '::1' || req.ip === '::ffff:127.0.0.1';
+    }
 });
 
 // Custom NoSQL injection sanitization middleware

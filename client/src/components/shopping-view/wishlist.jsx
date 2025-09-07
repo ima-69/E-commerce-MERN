@@ -26,7 +26,6 @@ const ShoppingWishlist = () => {
   const handleRemoveFromWishlist = async (productId) => {
     try {
       await dispatch(removeFromWishlist({ 
-        userId: user?.id || user?._id, 
         productId 
       })).unwrap();
       toast.success("Removed from wishlist");

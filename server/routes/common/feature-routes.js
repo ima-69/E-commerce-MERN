@@ -1,4 +1,5 @@
 const express = require("express");
+const { authenticateToken, adminMiddleware } = require("../../middleware/auth");
 
 const {
   addFeatureImage,
@@ -8,8 +9,8 @@ const {
 
 const router = express.Router();
 
-router.post("/add", addFeatureImage);
+router.post("/add", authenticateToken, adminMiddleware, addFeatureImage);
 router.get("/get", getFeatureImages);
-router.delete("/delete/:id", deleteFeatureImage);
+router.delete("/delete/:id", authenticateToken, adminMiddleware, deleteFeatureImage);
 
 module.exports = router;
