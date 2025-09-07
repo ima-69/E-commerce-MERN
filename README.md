@@ -2,42 +2,7 @@
 
 A full-stack e-commerce application built with MongoDB, Express.js, React, and Node.js. This project features a complete shopping experience with user authentication, product management, cart functionality, order processing, and admin dashboard.
 
-## 🚀 Features
 
-- **User Authentication & Authorization**
-  - Auth0 Google OAuth integration
-  - Secure JWT-based authentication
-  - Guest cart support
-  - Session management
-
-- **Product Management**
-  - Product listing with pagination
-  - Advanced filtering and sorting
-  - Product search functionality
-  - Product categories (Men, Women, Kids, Accessories, Footwear)
-  - Multiple brands support
-
-- **Shopping Experience**
-  - Shopping cart with add/remove functionality
-  - Wishlist management
-  - Product details with image gallery
-  - Order tracking
-  - Address management
-
-- **Admin Dashboard**
-  - Product management (CRUD operations)
-  - Order management
-  - User management
-  - Dashboard analytics
-
-- **Payment Integration**
-  - PayPal payment gateway
-  - Order confirmation system
-
-- **Responsive Design**
-  - Mobile-first approach
-  - Modern UI with Tailwind CSS
-  - Dark/Light theme support
 
 ## 🛠️ Tech Stack
 
@@ -197,7 +162,26 @@ npm run seed
 
 This will add 75 sample products across all categories.
 
-### 7. Run the Application
+### 7. Admin Access Setup
+
+To access the admin dashboard:
+
+1. **Login with Auth0 Google OAuth** - Use the Google login button on the website
+2. **Access MongoDB Atlas** - Go to your MongoDB Atlas dashboard
+3. **Find your user document** - Look in the `users` collection for your email
+4. **Update user role** - Change the `role` field from `"user"` to `"admin"`
+5. **Login again** - Logout and login again to refresh your session
+6. **Access admin dashboard** - You'll now see the admin dashboard option in the navigation
+
+**Example MongoDB update query:**
+```javascript
+db.users.updateOne(
+  { email: "your-email@gmail.com" },
+  { $set: { role: "admin" } }
+)
+```
+
+### 8. Run the Application
 
 #### Start the Server
 ```bash
@@ -281,6 +265,56 @@ npm run lint       # Run ESLint
 - `DELETE /api/admin/products/delete/:id` - Delete product
 - `GET /api/admin/orders/get` - Get all orders
 - `GET /api/admin/users/get` - Get all users
+
+## 🔐 Admin Dashboard
+
+### Access Requirements
+- User must be logged in with Auth0 Google OAuth
+- User role must be set to `"admin"` in MongoDB
+- Admin dashboard is accessible at `/admin/dashboard`
+
+### Admin Features
+
+#### 📊 Dashboard Overview
+- **Sales Analytics** - Revenue charts and sales trends
+- **Order Statistics** - Total orders, pending orders, completed orders
+- **User Metrics** - Total users, new registrations, active users
+- **Product Insights** - Top-selling products, low stock alerts
+
+#### 🛍️ Product Management
+- **Add Products** - Create new products with detailed information
+- **Edit Products** - Update product details, pricing, and descriptions
+- **Delete Products** - Remove products from the catalog
+- **Image Management** - Upload and manage product images via Cloudinary
+- **Bulk Operations** - Mass update product information
+- **Stock Management** - Monitor and update inventory levels
+
+#### 📦 Order Management
+- **Order List** - View all orders with filtering and sorting
+- **Order Details** - Detailed view of individual orders
+- **Status Updates** - Change order status (pending, shipped, delivered, cancelled)
+- **Order Tracking** - Track order progress and delivery status
+- **Customer Information** - View customer details for each order
+
+#### 👥 User Management
+- **User List** - View all registered users
+- **User Details** - Individual user profiles and activity
+- **Role Management** - Change user roles (user/admin)
+- **Account Status** - Enable/disable user accounts
+- **User Analytics** - User engagement and activity metrics
+
+#### 🎨 Content Management
+- **Banner Management** - Upload and manage homepage banners
+- **Category Management** - Add/edit product categories
+- **Brand Management** - Manage product brands
+- **Site Settings** - Configure site-wide settings
+
+### Admin Navigation
+- **Dashboard** - Overview and analytics
+- **Products** - Product management
+- **Orders** - Order management
+- **Users** - User management
+- **Features** - Content management
 
 ## 🔐 Environment Variables Reference
 
