@@ -31,8 +31,8 @@ out/
 .DS_Store
 
 # dotenv environment variables
-.env
-.env.*.local
+# .env
+# .env.*.local
 
 # OS files
 Thumbs.db
