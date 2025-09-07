@@ -151,18 +151,8 @@ The database will automatically create the necessary collections when you start 
 2. Generate an App Password
 3. Use your Gmail and app password in `.env`
 
-### 6. Populate Database with Sample Data
 
-To populate the database with sample products:
-
-```bash
-cd server
-npm run seed
-```
-
-This will add 75 sample products across all categories.
-
-### 7. Admin Access Setup
+### 6. Admin Access Setup
 
 To access the admin dashboard:
 
@@ -181,7 +171,7 @@ db.users.updateOne(
 )
 ```
 
-### 8. Run the Application
+### 7. Run the Application
 
 #### Start the Server
 ```bash
