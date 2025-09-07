@@ -14,12 +14,16 @@ const AUTH0_CLIENT_SECRET = process.env.AUTH0_CLIENT_SECRET;
 
 // Auth0 login redirect
 router.get("/login", async (req, res) => {
+    const returnTo = req.query.redirect || 'http://localhost:5173';
+    const state = encodeURIComponent(JSON.stringify({ returnTo }));
+    
     const redir_url = `https://${AUTH0_DOMAIN}/authorize?` +
       `response_type=${encodeURIComponent(AUTH0_RESPONSE_TYPE)}` +
       `&client_id=${encodeURIComponent(AUTH0_CLIENT_ID)}` +
       `&redirect_uri=${encodeURIComponent(AUTH0_REDIRECT_URI)}` +
       `&scope=${encodeURIComponent(AUTH0_SCOPE)}` +
-      `&state=${encodeURIComponent("xyz123")}`;
+      `&state=${state}` +
+      `&prompt=login`;
 
     res.redirect(redir_url);
 });
@@ -27,8 +31,20 @@ router.get("/login", async (req, res) => {
 // Auth0 callback handler
 router.get("/callback", async (req, res) => {
     const code = req.query.code;
+    const state = req.query.state;
 
     try {
+        // Parse the state to get return URL
+        let returnTo = 'http://localhost:5173';
+        if (state) {
+            try {
+                const stateData = JSON.parse(decodeURIComponent(state));
+                returnTo = stateData.returnTo || 'http://localhost:5173';
+            } catch (e) {
+                console.log("Error parsing state:", e);
+            }
+        }
+
         const tokenResponse = await axios.post(`https://${AUTH0_DOMAIN}/oauth/token`, {
             grant_type: "authorization_code",
             client_id: AUTH0_CLIENT_ID,
@@ -90,7 +106,9 @@ router.get("/callback", async (req, res) => {
             maxAge: 60 * 60 * 1000, // 1 hour
         });
 
-        res.redirect(`http://localhost:5173/auth/login?token=${token}&id=${id}&role=${role}&email=${email_}&firstName=${fName}&lastName=${Lname}&username=${usrname}`);
+        // Redirect to the return URL with token parameters
+        const redirectUrl = `${returnTo}/auth/login?token=${token}&id=${id}&role=${role}&email=${email_}&firstName=${fName}&lastName=${Lname}&username=${usrname}`;
+        res.redirect(redirectUrl);
     } catch (err) {
         console.error("Callback error:", err.response?.data || err.message);
         res.status(500).send("Authentication failed");
@@ -110,10 +128,10 @@ router.get("/logout", (req, res) => {
             sameSite: "lax",
         });
         
-        // Redirect to Auth0 logout with return URL
+        // Redirect to Auth0 logout with return URL and federated logout
         const returnTo = encodeURIComponent('http://localhost:5173'); 
         const clientId = AUTH0_CLIENT_ID;
-        const logoutURL = `https://${AUTH0_DOMAIN}/v2/logout?client_id=${clientId}&returnTo=${returnTo}`;
+        const logoutURL = `https://${AUTH0_DOMAIN}/v2/logout?client_id=${clientId}&returnTo=${returnTo}&federated`;
         res.redirect(logoutURL);
     } catch (e) {
         console.log("Auth0 logout error:", e);

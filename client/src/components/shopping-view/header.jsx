@@ -141,14 +141,13 @@ const MenuItems = ({ isMobile = false }) => {
 }
 
 const MobileLoginButton = () => {
-  const navigate = useNavigate();
   const { isAuthenticated } = useSelector((state) => state.auth);
 
   if (isAuthenticated) return null;
 
   return (
     <Button
-      onClick={() => navigate("/auth/login")}
+      onClick={() => window.location.href = "http://localhost:5000/api/auth0/login"}
       className="inline-flex gap-2 items-center rounded-md px-3 py-2 text-sm font-medium shadow"
       size="sm"
     >
@@ -215,7 +214,7 @@ const HeaderRightContent = ({ isMobile = false }) => {
 
         {!isMobile && (
           <Button
-            onClick={() => navigate("/auth/login")}
+            onClick={() => window.location.href = "http://localhost:5000/api/auth0/login"}
             className="inline-flex gap-2 items-center rounded-md px-4 py-2 text-sm font-medium shadow"
           >
             <LogIn />
@@ -416,7 +415,7 @@ function ShoppingHeader() {
               </DropdownMenu>
             ) : (
               <Button
-                onClick={() => navigate("/auth/login")}
+                onClick={() => window.location.href = "http://localhost:5000/api/auth0/login"}
                 className="inline-flex gap-2 items-center rounded-md px-3 py-2 text-sm font-medium shadow"
                 size="sm"
               >

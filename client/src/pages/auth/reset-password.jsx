@@ -118,7 +118,7 @@ const ResetPassword = () => {
       
       if (response.data.success) {
         toast.success(response.data.message);
-        navigate("/auth/login");
+        window.location.href = "http://localhost:5000/api/auth0/login";
       } else {
         toast.error(response.data.message || "Failed to reset password");
       }
@@ -170,11 +170,13 @@ const ResetPassword = () => {
                 </Button>
               </Link>
               
-              <Link to="/auth/login">
-                <Button variant="outline" className="w-full">
-                  Back to Login
-                </Button>
-              </Link>
+              <Button 
+                onClick={() => window.location.href = "http://localhost:5000/api/auth0/login"}
+                variant="outline" 
+                className="w-full"
+              >
+                Back to Login
+              </Button>
             </div>
           </CardContent>
         </Card>
@@ -263,12 +265,12 @@ const ResetPassword = () => {
           </form>
           
           <div className="mt-6 text-center">
-            <Link
-              to="/auth/login"
+            <button
+              onClick={() => window.location.href = "http://localhost:5000/api/auth0/login"}
               className="text-sm text-primary hover:underline"
             >
               Back to Login
-            </Link>
+            </button>
           </div>
         </CardContent>
       </Card>

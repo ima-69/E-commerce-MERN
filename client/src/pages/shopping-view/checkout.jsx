@@ -23,7 +23,7 @@ const ShoppingCheckout = () => {
   const navigate = useNavigate();
 
 
-  // Redirect guest users to login
+  // Redirect guest users to Auth0 login
   if (!isAuthenticated) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[400px] p-8">
@@ -33,8 +33,11 @@ const ShoppingCheckout = () => {
             Please login to proceed with checkout. Your cart items will be preserved.
           </p>
           <div className="space-x-4">
-            <Button onClick={() => navigate("/auth/login?redirect=/shop/checkout")} variant="default">
-              Login
+            <Button 
+              onClick={() => window.location.href = "http://localhost:5000/api/auth0/login?redirect=" + encodeURIComponent("/shop/checkout")} 
+              variant="default"
+            >
+              Login with Auth0
             </Button>
           </div>
         </div>

@@ -101,12 +101,14 @@ const ForgotPassword = () => {
                 Send Another Email
               </Button>
               
-              <Link to="/auth/login">
-                <Button variant="ghost" className="w-full">
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  Back to Login
-                </Button>
-              </Link>
+              <Button 
+                onClick={() => window.location.href = "http://localhost:5000/api/auth0/login"}
+                variant="ghost" 
+                className="w-full"
+              >
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Back to Login
+              </Button>
             </div>
           </CardContent>
         </Card>
@@ -156,13 +158,13 @@ const ForgotPassword = () => {
           </form>
           
           <div className="mt-6 text-center">
-            <Link
-              to="/auth/login"
+            <button
+              onClick={() => window.location.href = "http://localhost:5000/api/auth0/login"}
               className="text-sm text-primary hover:underline"
             >
               <ArrowLeft className="mr-1 inline h-3 w-3" />
               Back to Login
-            </Link>
+            </button>
           </div>
         </CardContent>
       </Card>

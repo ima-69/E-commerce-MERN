@@ -58,7 +58,7 @@ const Sitemap = () => {
   ];
 
   const quickLinks = [
-    { name: "Login", url: "/auth/login" },
+    { name: "Login", url: "http://localhost:5000/api/auth0/login" },
     { name: "Checkout", url: "/shop/checkout" },
     { name: "Payment Success", url: "/shop/payment-success" },
     { name: "PayPal Return", url: "/shop/paypal-return" }
