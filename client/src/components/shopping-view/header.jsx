@@ -166,12 +166,18 @@ const HeaderRightContent = ({ isMobile = false }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleLogout = () => {
-    navigate("/shop/home");
-    // Add a small delay to ensure navigation happens before state update
-    setTimeout(() => {
-      dispatch(logoutUser());
-    }, 100);
+  const handleLogout = async () => {
+    try {
+      const result = await dispatch(logoutUser());
+      // If it's not an Auth0 user, navigate after logout
+      if (!result.payload?.message?.includes("Redirecting to Auth0 logout")) {
+        navigate("/shop/home");
+      }
+    } catch (error) {
+      console.error("Logout error:", error);
+      // Fallback navigation
+      navigate("/shop/home");
+    }
   };
 
   useEffect(() => {
@@ -389,12 +395,18 @@ function ShoppingHeader() {
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem 
-                    onClick={() => {
-                      navigate("/shop/home");
-                      // Add a small delay to ensure navigation happens before state update
-                      setTimeout(() => {
-                        dispatch(logoutUser());
-                      }, 100);
+                    onClick={async () => {
+                      try {
+                        const result = await dispatch(logoutUser());
+                        // If it's not an Auth0 user, navigate after logout
+                        if (!result.payload?.message?.includes("Redirecting to Auth0 logout")) {
+                          navigate("/shop/home");
+                        }
+                      } catch (error) {
+                        console.error("Logout error:", error);
+                        // Fallback navigation
+                        navigate("/shop/home");
+                      }
                     }}
                   >
                     <LogOut className="mr-2 h-4 w-4" />

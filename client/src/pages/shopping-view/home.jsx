@@ -46,7 +46,7 @@ import {
   fetchNewArrivals,
 } from "@/store/shop/products-slice";
 import ShoppingProductTile from "@/components/shopping-view/product-tile";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { addToCart, fetchCartItems } from "@/store/shop/cart-slice";
 import { addToGuestCart } from "@/store/guest-cart-slice";
 import { toast } from "sonner";
@@ -83,7 +83,8 @@ const ShoppingHome = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+  const location = useLocation();
+
 
   const handleNavigateToListingPage = (getCurrentItem, section) => {
     sessionStorage.removeItem("filters");

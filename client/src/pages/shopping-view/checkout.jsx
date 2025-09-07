@@ -36,9 +36,6 @@ const ShoppingCheckout = () => {
             <Button onClick={() => navigate("/auth/login?redirect=/shop/checkout")} variant="default">
               Login
             </Button>
-            <Button onClick={() => navigate("/auth/register")} variant="outline">
-              Register
-            </Button>
           </div>
         </div>
       </div>

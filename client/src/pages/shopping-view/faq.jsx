@@ -23,7 +23,7 @@ const FAQ = () => {
         },
         {
           question: "How do I create an account?",
-          answer: "Creating an account is easy! Click on the 'Login' button in the top right corner, then select 'Register' to create a new account. You'll need to provide your name, email address, and create a password."
+          answer: "Creating an account is easy! Click on the 'Login' button in the top right corner to sign in with Auth0. You can use your existing social media accounts or email to create a new account."
         },
         {
           question: "Is my personal information secure?",

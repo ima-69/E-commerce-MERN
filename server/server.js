@@ -24,6 +24,8 @@ const shopWishlistRouter = require("./routes/shop/wishlist-routes");
 const commonFeatureRouter = require("./routes/common/feature-routes");
 const { testEmail } = require("./helpers/emailService");
 
+const auth0 = require("./routes/auth0/auth0")
+
 mongoose
     .connect(process.env.mongodbURI)
     .then(() => console.log('MongoDB connected'))
@@ -50,6 +52,7 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 
+app.use("/api/auth0", auth0);
 app.use("/api/auth", authRouter);
 app.use("/api/profile", profileRouter);
 

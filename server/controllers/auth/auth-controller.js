@@ -4,110 +4,79 @@ const crypto = require("crypto");
 const User = require("../../models/User");
 const { sendPasswordResetEmail, sendPasswordResetConfirmation } = require("../../helpers/emailService");
 
-//register
-const registerUser = async (req, res) => {
-  const { firstName, lastName, userName, email, password } = req.body;
-
-  try {
-    // Check if user exists with email
-    const checkUserByEmail = await User.findOne({ email });
-    if (checkUserByEmail)
-      return res.json({
-        success: false,
-        message: "User already exists with the same email! Please try again",
-      });
-
-    // Check if user exists with username
-    const checkUserByUsername = await User.findOne({ userName });
-    if (checkUserByUsername)
-      return res.json({
-        success: false,
-        message: "Username already taken! Please choose a different username",
-      });
-
-    const hashPassword = await bcrypt.hash(password, 12);
-    const newUser = new User({
-      firstName,
-      lastName,
-      userName,
-      email,
-      password: hashPassword,
-    });
-
-    await newUser.save();
-    res.status(200).json({
-      success: true,
-      message: "Registration successful",
-    });
-  } catch (e) {
-    res.status(500).json({
-      success: false,
-      message: "Some error occurred",
-    });
-  }
-};
-
 //login
-
 const loginUser = async (req, res) => {
   const { emailOrUsername, password } = req.body;
 
   try {
-    // Check if the input is an email or username
-    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailOrUsername);
-    
-    let checkUser;
-    if (isEmail) {
-      checkUser = await User.findOne({ email: emailOrUsername });
-    } else {
-      checkUser = await User.findOne({ userName: emailOrUsername });
+    // Find user by email or username
+    const user = await User.findOne({
+      $or: [{ email: emailOrUsername }, { userName: emailOrUsername }],
+    });
+
+    if (!user) {
+      return res.json({
+        success: false,
+        message: "Invalid credentials!",
+      });
     }
 
-    if (!checkUser)
+    // Check if user is active
+    if (!user.isActive) {
       return res.json({
         success: false,
-        message: "User doesn't exist! Please register first",
+        message: "Account is deactivated!",
       });
+    }
 
-    const checkPasswordMatch = await bcrypt.compare(
-      password,
-      checkUser.password
-    );
-    if (!checkPasswordMatch)
+    // Check password
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
       return res.json({
         success: false,
-        message: "Incorrect password! Please try again",
+        message: "Invalid credentials!",
       });
+    }
 
+    // Generate JWT token
     const token = jwt.sign(
       {
-        id: checkUser._id,
-        role: checkUser.role,
-        email: checkUser.email,
-        userName: checkUser.userName,
-        firstName: checkUser.firstName,
-        lastName: checkUser.lastName,
+        id: user._id,
+        role: user.role,
+        email: user.email,
+        userName: user.userName,
+        firstName: user.firstName,
+        lastName: user.lastName,
       },
       "CLIENT_SECRET_KEY",
       { expiresIn: "60m" }
     );
 
-    res.cookie("token", token, { httpOnly: true, secure: false }).json({
+    // Set cookie
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: false, // Set to true in production with HTTPS
+      sameSite: "lax",
+      maxAge: 60 * 60 * 1000, // 1 hour
+    });
+
+    res.json({
       success: true,
-      message: "Logged in successfully",
+      message: "Login successful!",
       user: {
-        email: checkUser.email,
-        role: checkUser.role,
-        id: checkUser._id,
-        userName: checkUser.userName,
-        firstName: checkUser.firstName,
-        lastName: checkUser.lastName,
+        id: user._id,
+        role: user.role,
+        email: user.email,
+        userName: user.userName,
+        firstName: user.firstName,
+        lastName: user.lastName,
       },
     });
-  } catch (e) {
+  } catch (error) {
+    console.error("Login error:", error);
     res.status(500).json({
       success: false,
-      message: "Some error occured",
+      message: "Internal server error",
     });
   }
 };
@@ -309,8 +278,7 @@ const verifyResetToken = async (req, res) => {
 };
 
 module.exports = { 
-  registerUser, 
-  loginUser, 
+  loginUser,
   logoutUser, 
   authMiddleware, 
   adminMiddleware,

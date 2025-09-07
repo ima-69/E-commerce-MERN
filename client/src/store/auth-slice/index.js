@@ -7,63 +7,91 @@ const initialState = {
   user: null,
 };
 
-export const registerUser = createAsyncThunk(
-  "/auth/register",
-  async (FormData) => {
-    const response = await axios.post(
-      `${import.meta.env.VITE_BACKEND_URL}/api/auth/register`,
-      FormData,
-      {
-        withCredentials: true,
-      }
-    );
-    return response.data;
-  }
-);
 
-export const loginUser = createAsyncThunk("/auth/login", async (FormData) => {
+export const loginUser = createAsyncThunk("/auth/login", async (loginData) => {
+  // If loginData has token, id, etc., it's from Auth0 - return it directly
+  if (loginData.token && loginData.id) {
+    return {
+      success: true,
+      user: {
+        id: loginData.id,
+        role: loginData.role,
+        email: loginData.email,
+        userName: loginData.username,
+        firstName: loginData.firstName,
+        lastName: loginData.lastName,
+      }
+    };
+  }
+  
+  // Otherwise, it's a regular login attempt
   const response = await axios.post(
     `${import.meta.env.VITE_BACKEND_URL}/api/auth/login`,
-    FormData,
+    loginData,
     {
       withCredentials: true,
     }
   );
+
   return response.data;
 });
 
 export const logoutUser = createAsyncThunk(
   "/auth/logout",
+  async (_, { getState }) => {
+    const state = getState();
+    const user = state.auth.user;
+    
+    // Check if user was logged in via Auth0 (has userName that looks like Auth0 ID)
+    const isAuth0User = user?.userName && user.userName.startsWith('auth0|');
+    
+    if (isAuth0User) {
+      // For Auth0 users, redirect to Auth0 logout endpoint
+      window.location.href = `${import.meta.env.VITE_BACKEND_URL}/api/auth0/logout`;
+      return { success: true, message: "Redirecting to Auth0 logout..." };
+    } else {
+      // For regular users, use standard logout
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/auth/logout`,
+        {},
+        {
+          withCredentials: true,
+        }
+      );
 
-  async () => {
-    const response = await axios.post(
-      `${import.meta.env.VITE_BACKEND_URL}/api/auth/logout`,
-      {},
-      {
-        withCredentials: true,
-      }
-    );
-
-    return response.data;
+      // Clear localStorage
+      localStorage.removeItem('authToken');
+      
+      return response.data;
+    }
   }
 );
 
 export const checkAuth = createAsyncThunk(
   "/auth/checkauth",
 
-  async () => {
-    const response = await axios.get(
-      `${import.meta.env.VITE_BACKEND_URL}/api/auth/check-auth`,
-      {
-        withCredentials: true,
-        headers: {
-          "Cache-Control":
-            "no-store, no-cache, must-revalidate, proxy-revalidate",
-        },
-      }
-    );
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/api/auth/check-auth`,
+        {
+          withCredentials: true,
+          headers: {
+            "Cache-Control":
+              "no-store, no-cache, must-revalidate, proxy-revalidate",
+          },
+        }
+      );
 
-    return response.data;
+      return response.data;
+    } catch (error) {
+      // If 401, user is not authenticated - this is normal
+      if (error.response?.status === 401) {
+        return { success: false, user: null };
+      }
+      // For other errors, reject with the error
+      return rejectWithValue(error.response?.data || error.message);
+    }
   }
 );
 
@@ -154,19 +182,6 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(registerUser.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(registerUser.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.user = null;
-        state.isAuthenticated = false;
-      })
-      .addCase(registerUser.rejected, (state, action) => {
-        state.isLoading = false;
-        state.user = null;
-        state.isAuthenticated = false;
-      })
       .addCase(loginUser.pending, (state) => {
         state.isLoading = true;
       })

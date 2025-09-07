@@ -34,12 +34,11 @@ const CheckAuth = ({ isAuthenticated, user, children }) => {
     return <>{children}</>;
   }
 
-  // Redirect to login for protected routes if not authenticated
+  // Redirect to Auth0 login for protected routes if not authenticated
   if (
     !isAuthenticated &&
     !(
       location.pathname.includes("/login") ||
-      location.pathname.includes("/register") ||
       location.pathname.includes("/forgot-password") ||
       location.pathname.includes("/reset-password")
     )
@@ -49,14 +48,15 @@ const CheckAuth = ({ isAuthenticated, user, children }) => {
     if (location.pathname.includes("/admin") || location.pathname.includes("/shop/account")) {
       return <Navigate to="/shop/home" />;
     }
-    return <Navigate to={`/auth/login?redirect=${encodeURIComponent(location.pathname)}`} />;
+    // Redirect to Auth0 login
+    window.location.href = `http://localhost:5000/api/auth0/login?redirect=${encodeURIComponent(location.pathname)}`;
+    return null;
   }
 
   // Redirect authenticated users away from auth pages (except reset-password)
   if (
     isAuthenticated &&
     (location.pathname.includes("/login") ||
-      location.pathname.includes("/register") ||
       location.pathname.includes("/forgot-password"))
   ) {
     if (user?.role === "admin") {
