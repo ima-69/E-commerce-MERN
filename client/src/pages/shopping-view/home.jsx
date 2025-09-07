@@ -41,7 +41,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  fetchAllFilteredProducts,
   fetchProductDetails,
   fetchNewArrivals,
 } from "@/store/shop/products-slice";
@@ -72,7 +71,7 @@ const brandsWithIcon = [
 
 const ShoppingHome = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const { productList, productDetails, newArrivals } = useSelector(
+  const { productDetails, newArrivals } = useSelector(
     (state) => state.shopProducts
   );
   const { featureImageList } = useSelector((state) => state.commonFeature);
@@ -102,8 +101,8 @@ const ShoppingHome = () => {
 
   const handleAddtoCart = (getCurrentProductId, getTotalStock) => {
     if (!isAuthenticated) {
-      // Handle guest cart
-      const product = productList.find(p => p._id === getCurrentProductId);
+      // Handle guest cart - we'll need to get product details from newArrivals
+      const product = newArrivals.find(p => p._id === getCurrentProductId);
       if (product) {
         dispatch(addToGuestCart({
           productId: getCurrentProductId,
@@ -142,12 +141,6 @@ const ShoppingHome = () => {
   }, [featureImageList]);
 
   useEffect(() => {
-    dispatch(
-      fetchAllFilteredProducts({
-        filterParams: {},
-        sortParams: "price-lowtohigh",
-      })
-    );
     dispatch(fetchNewArrivals(8));
   }, [dispatch]);
 
@@ -338,26 +331,6 @@ const ShoppingHome = () => {
         </div>
       </section>
 
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Featured Products</h2>
-            <p className="text-xl text-gray-600">Handpicked items just for you</p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {productList && productList.length > 0
-              ? productList.map((productItem) => (
-                  <ShoppingProductTile
-                    key={productItem._id}
-                    handleGetProductDetails={handleGetProductDetails}
-                    product={productItem}
-                    handleAddtoCart={handleAddtoCart}
-                  />
-                ))
-              : null}
-          </div>
-        </div>
-      </section>
 
       {/* New Arrivals Section */}
       <section className="py-16 bg-white">

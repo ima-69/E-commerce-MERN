@@ -11,15 +11,25 @@ const initialState = {
   productList: [],
   productDetails: null,
   newArrivals: [],
+  pagination: {
+    currentPage: 1,
+    totalPages: 1,
+    totalProducts: 0,
+    hasNextPage: false,
+    hasPrevPage: false,
+    limit: 12
+  }
 };
 
 export const fetchAllFilteredProducts = createAsyncThunk(
   "/products/fetchAllProducts",
-  async ({ filterParams, sortParams }) => {
+  async ({ filterParams, sortParams, page = 1, limit = 12 }) => {
 
     const query = new URLSearchParams({
       ...filterParams,
       sortBy: sortParams,
+      page: page.toString(),
+      limit: limit.toString(),
     });
 
     const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
@@ -87,6 +97,7 @@ const shoppingProductSlice = createSlice({
       .addCase(fetchAllFilteredProducts.fulfilled, (state, action) => {
         state.isLoading = false;
         state.productList = action.payload.data;
+        state.pagination = action.payload.pagination;
       })
       .addCase(fetchAllFilteredProducts.rejected, (state, action) => {
         state.isLoading = false;

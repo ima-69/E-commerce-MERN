@@ -2,6 +2,7 @@ import ProductFilter from "@/components/shopping-view/filter";
 import MobileFilter from "@/components/shopping-view/mobile-filter";
 import ProductDetailsDialog from "@/components/shopping-view/product-details";
 import ShoppingProductTile from "@/components/shopping-view/product-tile";
+import Pagination from "@/components/common/pagination";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -41,17 +42,23 @@ const createSearchParamsHelper = (filterParams) => {
 
 const ShoppingListing = () => {
   const dispatch = useDispatch();
-  const { productList, productDetails } = useSelector((state) => state.shopProducts);
+  const { productList, productDetails, pagination } = useSelector((state) => state.shopProducts);
   const { cartItems } = useSelector((state) => state.shopCart);
   const { user, isAuthenticated } = useSelector((state) => state.auth);
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
   const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
   const categorySearchParam = searchParams.get("category");
 
   const handleSort = (value) => {
     setSort(value);
+    setCurrentPage(1); // Reset to first page when sorting changes
+  }
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
   }
 
   const handleFilter = (getSectionId, getCurrentOption) => {
@@ -73,16 +80,19 @@ const ShoppingListing = () => {
     }
 
     setFilters(cpyFilters);
+    setCurrentPage(1); // Reset to first page when filters change
     sessionStorage.setItem("filters", JSON.stringify(cpyFilters));
   }
 
   const handleApplyFilters = (newFilters) => {
     setFilters(newFilters);
+    setCurrentPage(1); // Reset to first page when filters are applied
     sessionStorage.setItem("filters", JSON.stringify(newFilters));
   }
 
   const handleClearFilters = () => {
     setFilters({});
+    setCurrentPage(1); // Reset to first page when filters are cleared
     sessionStorage.removeItem("filters");
   }
 
@@ -137,6 +147,7 @@ const ShoppingListing = () => {
   useEffect(() => {
     setSort("price-lowtohigh");
     setFilters(JSON.parse(sessionStorage.getItem("filters")) || {});
+    setCurrentPage(1); // Reset to first page when category changes
   }, [categorySearchParam]);
 
   useEffect(() => {
@@ -149,9 +160,14 @@ const ShoppingListing = () => {
   useEffect(() => {
     if (filters !== null && sort !== null)
       dispatch(
-        fetchAllFilteredProducts({ filterParams: filters, sortParams: sort })
+        fetchAllFilteredProducts({ 
+          filterParams: filters, 
+          sortParams: sort, 
+          page: currentPage,
+          limit: 12
+        })
       );
-  }, [dispatch, sort, filters]);
+  }, [dispatch, sort, filters, currentPage]);
 
   // Check wishlist status for all products when product list changes
   useEffect(() => {
@@ -191,7 +207,7 @@ const ShoppingListing = () => {
             <h2 className="text-lg font-extrabold">All Products</h2>
             <div className="flex items-center gap-3">
               <span className="text-muted-foreground">
-                {productList?.length} Products
+                {pagination?.totalProducts || 0} Products
               </span>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -234,6 +250,15 @@ const ShoppingListing = () => {
                 ))
               : null}
           </div>
+          
+          {/* Pagination for Desktop */}
+          <Pagination
+            currentPage={pagination?.currentPage || 1}
+            totalPages={pagination?.totalPages || 1}
+            onPageChange={handlePageChange}
+            hasNextPage={pagination?.hasNextPage || false}
+            hasPrevPage={pagination?.hasPrevPage || false}
+          />
         </div>
       </div>
 
@@ -244,7 +269,7 @@ const ShoppingListing = () => {
             <h2 className="text-lg font-extrabold">All Products</h2>
             <div className="flex items-center gap-3">
               <span className="text-muted-foreground text-sm">
-                {productList?.length} Products
+                {pagination?.totalProducts || 0} Products
               </span>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -287,6 +312,15 @@ const ShoppingListing = () => {
                 ))
               : null}
           </div>
+          
+          {/* Pagination for Mobile */}
+          <Pagination
+            currentPage={pagination?.currentPage || 1}
+            totalPages={pagination?.totalPages || 1}
+            onPageChange={handlePageChange}
+            hasNextPage={pagination?.hasNextPage || false}
+            hasPrevPage={pagination?.hasPrevPage || false}
+          />
         </div>
       </div>
 
