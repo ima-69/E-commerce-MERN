@@ -8,6 +8,7 @@ const {
   deleteProfilePicture,
   changePassword
 } = require("../../controllers/auth/profile-controller");
+const { validationRules } = require("../../middleware/validation");
 
 const router = express.Router();
 
@@ -31,7 +32,7 @@ const upload = multer({
 router.get("/", authenticateToken, getUserProfile);
 
 // Update user profile
-router.put("/", authenticateToken, updateUserProfile);
+router.put("/", authenticateToken, validationRules.updateProfile, updateUserProfile);
 
 // Upload profile picture
 router.post("/picture", authenticateToken, upload.single('profilePicture'), uploadProfilePicture);
@@ -40,6 +41,6 @@ router.post("/picture", authenticateToken, upload.single('profilePicture'), uplo
 router.delete("/picture", authenticateToken, deleteProfilePicture);
 
 // Change password
-router.put("/password", authenticateToken, changePassword);
+router.put("/password", authenticateToken, validationRules.changePassword, changePassword);
 
 module.exports = router;

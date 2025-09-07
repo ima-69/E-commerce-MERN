@@ -5,14 +5,35 @@ const addToCart = async (req, res) => {
   try {
     const { userId, productId, quantity } = req.body;
 
-    if (!userId || !productId || quantity <= 0) {
+    // Sanitize inputs
+    const sanitizedUserId = userId?.toString().trim();
+    const sanitizedProductId = productId?.toString().trim();
+    const sanitizedQuantity = parseInt(quantity);
+
+    // Validate inputs
+    if (!sanitizedUserId || !sanitizedProductId || !sanitizedQuantity || sanitizedQuantity <= 0) {
       return res.status(400).json({
         success: false,
-        message: "Invalid data provided!",
+        message: "User ID, Product ID, and valid quantity are required!",
       });
     }
 
-    const product = await Product.findById(productId);
+    if (sanitizedQuantity > 99) {
+      return res.status(400).json({
+        success: false,
+        message: "Quantity cannot exceed 99 items",
+      });
+    }
+
+    // Verify that the authenticated user is adding to their own cart (if authenticated)
+    if (req.user && req.user.id !== sanitizedUserId) {
+      return res.status(403).json({
+        success: false,
+        message: "Access denied! You can only add items to your own cart.",
+      });
+    }
+
+    const product = await Product.findById(sanitizedProductId);
 
     if (!product) {
       return res.status(404).json({
@@ -21,20 +42,20 @@ const addToCart = async (req, res) => {
       });
     }
 
-    let cart = await Cart.findOne({ userId });
+    let cart = await Cart.findOne({ userId: sanitizedUserId });
 
     if (!cart) {
-      cart = new Cart({ userId, items: [] });
+      cart = new Cart({ userId: sanitizedUserId, items: [] });
     }
 
     const findCurrentProductIndex = cart.items.findIndex(
-      (item) => item.productId.toString() === productId
+      (item) => item.productId.toString() === sanitizedProductId
     );
 
     if (findCurrentProductIndex === -1) {
-      cart.items.push({ productId, quantity });
+      cart.items.push({ productId: sanitizedProductId, quantity: sanitizedQuantity });
     } else {
-      cart.items[findCurrentProductIndex].quantity += quantity;
+      cart.items[findCurrentProductIndex].quantity += sanitizedQuantity;
     }
 
     await cart.save();
@@ -59,6 +80,14 @@ const fetchCartItems = async (req, res) => {
       return res.status(400).json({
         success: false,
         message: "User id is manadatory!",
+      });
+    }
+
+    // Verify that the authenticated user is accessing their own cart
+    if (req.user && req.user.id !== userId) {
+      return res.status(403).json({
+        success: false,
+        message: "Access denied! You can only access your own cart.",
       });
     }
 

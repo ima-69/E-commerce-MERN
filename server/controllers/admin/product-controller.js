@@ -57,17 +57,58 @@ const addProduct = async (req, res) => {
       averageReview,
     } = req.body;
 
+    // Sanitize inputs
+    const sanitizedData = {
+      image: image?.toString().trim(),
+      title: title?.toString().trim(),
+      description: description?.toString().trim(),
+      category: category?.toString().trim(),
+      brand: brand?.toString().trim(),
+      price: parseFloat(price),
+      salePrice: salePrice ? parseFloat(salePrice) : undefined,
+      totalStock: parseInt(totalStock),
+      averageReview: averageReview ? parseFloat(averageReview) : 0
+    };
+
+    // Validate required fields
+    if (!sanitizedData.title || sanitizedData.title.length < 3) {
+      return res.status(400).json({
+        success: false,
+        message: "Product title must be at least 3 characters long"
+      });
+    }
+
+    if (!sanitizedData.description || sanitizedData.description.length < 10) {
+      return res.status(400).json({
+        success: false,
+        message: "Product description must be at least 10 characters long"
+      });
+    }
+
+    if (!sanitizedData.price || sanitizedData.price <= 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Product price must be a positive number"
+      });
+    }
+
+    if (!sanitizedData.totalStock || sanitizedData.totalStock < 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Product stock must be a non-negative number"
+      });
+    }
 
     const newlyCreatedProduct = new Product({
-      image,
-      title,
-      description,
-      category,
-      brand,
-      price,
-      salePrice: salePrice === "" ? undefined : salePrice,
-      totalStock,
-      averageReview,
+      image: sanitizedData.image,
+      title: sanitizedData.title,
+      description: sanitizedData.description,
+      category: sanitizedData.category,
+      brand: sanitizedData.brand,
+      price: sanitizedData.price,
+      salePrice: sanitizedData.salePrice,
+      totalStock: sanitizedData.totalStock,
+      averageReview: sanitizedData.averageReview,
     });
 
     await newlyCreatedProduct.save();

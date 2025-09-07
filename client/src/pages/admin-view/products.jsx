@@ -43,8 +43,64 @@ const AdminProducts = () => {
   const { productList, isLoading, error } = useSelector((state) => state.adminProducts);
   const dispatch = useDispatch();
 
+  const validateForm = () => {
+    const errors = {};
+
+    if (!formData.title.trim()) {
+      errors.title = "Product title is required";
+    } else if (formData.title.length < 3 || formData.title.length > 200) {
+      errors.title = "Product title must be between 3 and 200 characters";
+    }
+
+    if (!formData.description.trim()) {
+      errors.description = "Product description is required";
+    } else if (formData.description.length < 10 || formData.description.length > 2000) {
+      errors.description = "Product description must be between 10 and 2000 characters";
+    }
+
+    if (!formData.category.trim()) {
+      errors.category = "Product category is required";
+    } else if (formData.category.length < 2 || formData.category.length > 100) {
+      errors.category = "Product category must be between 2 and 100 characters";
+    }
+
+    if (!formData.brand.trim()) {
+      errors.brand = "Product brand is required";
+    } else if (formData.brand.length < 2 || formData.brand.length > 100) {
+      errors.brand = "Product brand must be between 2 and 100 characters";
+    }
+
+    if (!formData.price || formData.price <= 0) {
+      errors.price = "Product price must be a positive number";
+    } else if (formData.price > 999999.99) {
+      errors.price = "Product price cannot exceed 999999.99";
+    }
+
+    if (formData.salePrice && formData.salePrice > 0 && formData.salePrice >= formData.price) {
+      errors.salePrice = "Sale price must be less than regular price";
+    }
+
+    if (!formData.totalStock || formData.totalStock < 0) {
+      errors.totalStock = "Product stock must be a non-negative number";
+    } else if (formData.totalStock > 999999) {
+      errors.totalStock = "Product stock cannot exceed 999999";
+    }
+
+    if (!uploadedImageUrl && !currentEditedId) {
+      errors.image = "Product image is required";
+    }
+
+    return errors;
+  };
+
   const onSubmit = (event) => {
     event.preventDefault();
+
+    const errors = validateForm();
+    if (Object.keys(errors).length > 0) {
+      toast.error("Please fix the form errors before submitting");
+      return;
+    }
 
     currentEditedId !== null
               ? dispatch(

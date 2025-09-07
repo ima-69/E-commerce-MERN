@@ -49,16 +49,26 @@ const Profile = () => {
 
     if (!formData.firstName.trim()) {
       newErrors.firstName = "First name is required";
+    } else if (formData.firstName.length < 2 || formData.firstName.length > 50) {
+      newErrors.firstName = "First name must be between 2 and 50 characters";
+    } else if (!/^[a-zA-Z\s]+$/.test(formData.firstName)) {
+      newErrors.firstName = "First name can only contain letters and spaces";
     }
 
     if (!formData.lastName.trim()) {
       newErrors.lastName = "Last name is required";
+    } else if (formData.lastName.length < 2 || formData.lastName.length > 50) {
+      newErrors.lastName = "Last name must be between 2 and 50 characters";
+    } else if (!/^[a-zA-Z\s]+$/.test(formData.lastName)) {
+      newErrors.lastName = "Last name can only contain letters and spaces";
     }
 
     if (!formData.userName.trim()) {
       newErrors.userName = "Username is required";
-    } else if (formData.userName.length < 3) {
-      newErrors.userName = "Username must be at least 3 characters";
+    } else if (formData.userName.length < 3 || formData.userName.length > 150) {
+      newErrors.userName = "Username must be between 3 and 150 characters";
+    } else if (!/^[a-zA-Z0-9_-]+$/.test(formData.userName)) {
+      newErrors.userName = "Username can only contain letters, numbers, underscores, and hyphens";
     }
 
     if (!formData.email.trim()) {
@@ -133,6 +143,12 @@ const Profile = () => {
       newErrors.newPassword = "New password is required";
     } else if (passwordData.newPassword.length < 8) {
       newErrors.newPassword = "New password must be at least 8 characters";
+    } else {
+      // Enhanced password validation to match server
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/;
+      if (!passwordRegex.test(passwordData.newPassword)) {
+        newErrors.newPassword = "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character";
+      }
     }
 
     if (!passwordData.confirmPassword) {

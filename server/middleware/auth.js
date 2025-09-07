@@ -11,7 +11,8 @@ const authenticateToken = async (req, res, next) => {
     });
 
   try {
-    const decoded = jwt.verify(token, "CLIENT_SECRET_KEY");
+    const jwtSecret = "CLIENT_SECRET_KEY";
+    const decoded = jwt.verify(token, jwtSecret);
     
     // Check if user exists and is active
     const user = await User.findById(decoded.id);
@@ -33,6 +34,7 @@ const authenticateToken = async (req, res, next) => {
     req.user = decoded;
     next();
   } catch (error) {
+    console.error("JWT verification error:", error.message);
     res.status(401).json({
       success: false,
       message: "Unauthorised user!",

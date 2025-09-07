@@ -11,6 +11,7 @@ const { getDashboardOverview } = require("../../controllers/admin/dashboard-cont
 
 const { upload } = require("../../helpers/cloudinary");
 const { adminMiddleware } = require("../../controllers/auth/auth-controller");
+const { validationRules } = require("../../middleware/validation");
 
 const router = express.Router();
 
@@ -19,9 +20,9 @@ router.use(adminMiddleware);
 
 router.get("/dashboard-overview", getDashboardOverview);
 router.post("/upload-image", upload.single("my_file"), handleImageUpload);
-router.post("/add", addProduct);
-router.put("/edit/:id", editProduct);
-router.delete("/delete/:id", deleteProduct);
+router.post("/add", validationRules.createProduct, addProduct);
+router.put("/edit/:id", validationRules.updateProduct, editProduct);
+router.delete("/delete/:id", validationRules.getById, deleteProduct);
 router.get("/get", fetchAllProducts);
 
 module.exports = router;

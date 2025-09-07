@@ -3,14 +3,29 @@ const Product = require("../../models/Product");
 const searchProducts = async (req, res) => {
   try {
     const { keyword } = req.params;
-    if (!keyword || typeof keyword !== "string") {
+    
+    // Sanitize and validate keyword input
+    const sanitizedKeyword = keyword?.toString().trim();
+    
+    if (!sanitizedKeyword || sanitizedKeyword.length === 0) {
       return res.status(400).json({
         success: false,
-        message: "Keyword is required and must be in string format",
+        message: "Search keyword is required",
       });
     }
 
-    const regEx = new RegExp(keyword, "i");
+    if (sanitizedKeyword.length > 100) {
+      return res.status(400).json({
+        success: false,
+        message: "Search keyword is too long (maximum 100 characters)",
+      });
+    }
+
+    // Escape special regex characters to prevent regex injection
+    const escapedKeyword = sanitizedKeyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    
+    // Create safe regex with escaped characters
+    const regEx = new RegExp(escapedKeyword, "i");
 
     const createSearchQuery = {
       $or: [

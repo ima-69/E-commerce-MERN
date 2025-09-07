@@ -35,10 +35,18 @@ const updateUserProfile = async (req, res) => {
     const userId = req.user.id;
     const { firstName, lastName, userName, email } = req.body;
 
+    // Sanitize inputs
+    const sanitizedData = {
+      firstName: firstName?.toString().trim(),
+      lastName: lastName?.toString().trim(),
+      userName: userName?.toString().trim(),
+      email: email?.toString().trim().toLowerCase()
+    };
+
     // Check if username or email already exists (excluding current user)
-    if (userName) {
+    if (sanitizedData.userName) {
       const existingUserByUsername = await User.findOne({ 
-        userName, 
+        userName: sanitizedData.userName, 
         _id: { $ne: userId } 
       });
       if (existingUserByUsername) {
@@ -49,9 +57,9 @@ const updateUserProfile = async (req, res) => {
       }
     }
 
-    if (email) {
+    if (sanitizedData.email) {
       const existingUserByEmail = await User.findOne({ 
-        email, 
+        email: sanitizedData.email, 
         _id: { $ne: userId } 
       });
       if (existingUserByEmail) {
@@ -64,10 +72,10 @@ const updateUserProfile = async (req, res) => {
 
     // Update user profile
     const updateData = {};
-    if (firstName) updateData.firstName = firstName;
-    if (lastName) updateData.lastName = lastName;
-    if (userName) updateData.userName = userName;
-    if (email) updateData.email = email;
+    if (sanitizedData.firstName) updateData.firstName = sanitizedData.firstName;
+    if (sanitizedData.lastName) updateData.lastName = sanitizedData.lastName;
+    if (sanitizedData.userName) updateData.userName = sanitizedData.userName;
+    if (sanitizedData.email) updateData.email = sanitizedData.email;
 
     const updatedUser = await User.findByIdAndUpdate(
       userId,
@@ -198,25 +206,39 @@ const changePassword = async (req, res) => {
     const userId = req.user.id;
     const { currentPassword, newPassword, confirmPassword } = req.body;
 
+    // Sanitize inputs
+    const sanitizedCurrentPassword = currentPassword?.toString().trim();
+    const sanitizedNewPassword = newPassword?.toString().trim();
+    const sanitizedConfirmPassword = confirmPassword?.toString().trim();
+
     // Validate input
-    if (!currentPassword || !newPassword || !confirmPassword) {
+    if (!sanitizedCurrentPassword || !sanitizedNewPassword || !sanitizedConfirmPassword) {
       return res.status(400).json({
         success: false,
         message: "All password fields are required"
       });
     }
 
-    if (newPassword !== confirmPassword) {
+    if (sanitizedNewPassword !== sanitizedConfirmPassword) {
       return res.status(400).json({
         success: false,
         message: "New password and confirm password do not match"
       });
     }
 
-    if (newPassword.length < 8) {
+    if (sanitizedNewPassword.length < 8) {
       return res.status(400).json({
         success: false,
         message: "New password must be at least 8 characters long"
+      });
+    }
+
+    // Enhanced password validation
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/;
+    if (!passwordRegex.test(sanitizedNewPassword)) {
+      return res.status(400).json({
+        success: false,
+        message: "New password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
       });
     }
 
@@ -230,7 +252,7 @@ const changePassword = async (req, res) => {
     }
 
     // Verify current password
-    const isCurrentPasswordValid = await bcrypt.compare(currentPassword, user.password);
+    const isCurrentPasswordValid = await bcrypt.compare(sanitizedCurrentPassword, user.password);
     if (!isCurrentPasswordValid) {
       return res.status(400).json({
         success: false,
@@ -239,7 +261,7 @@ const changePassword = async (req, res) => {
     }
 
     // Hash new password
-    const hashedNewPassword = await bcrypt.hash(newPassword, 12);
+    const hashedNewPassword = await bcrypt.hash(sanitizedNewPassword, 12);
 
     // Update password
     await User.findByIdAndUpdate(userId, { password: hashedNewPassword });
