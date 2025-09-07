@@ -15,6 +15,10 @@ import {
   Loader2
 } from 'lucide-react';
 import axios from 'axios';
+import { createApiCall } from '@/config/api';
+
+// Create CSRF-enabled API instance
+const api = createApiCall(axios);
 
 const DashboardOverview = () => {
   const [data, setData] = useState(null);
@@ -41,11 +45,8 @@ const DashboardOverview = () => {
     try {
       setLoading(true);
 
-      const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/admin/products/dashboard-overview`,
-        {
-          withCredentials: true,
-        }
+      const response = await api.get(
+        `${import.meta.env.VITE_BACKEND_URL}/api/admin/products/dashboard-overview`
       );
       
       if (response.data.success) {

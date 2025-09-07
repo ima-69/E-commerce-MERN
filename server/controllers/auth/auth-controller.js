@@ -123,19 +123,20 @@ const authMiddleware = async (req, res, next) => {
 
 //admin middleware
 const adminMiddleware = async (req, res, next) => {
-  // Check for token in Authorization header first, then cookies
-  let token = req.headers.authorization?.replace('Bearer ', '');
-  if (!token) {
-    token = req.cookies.token;
-  }
-  
-  if (!token)
-    return res.status(401).json({
-      success: false,
-      message: "Unauthorised user!",
-    });
-
   try {
+    // Check for token in Authorization header first, then cookies
+    let token = req.headers.authorization?.replace('Bearer ', '');
+    if (!token) {
+      token = req.cookies.token;
+    }
+    
+    if (!token) {
+      return res.status(401).json({
+        success: false,
+        message: "Unauthorised user!",
+      });
+    }
+
     const decoded = jwt.verify(token, "CLIENT_SECRET_KEY");
     if (decoded.role !== "admin") {
       return res.status(403).json({
@@ -146,6 +147,7 @@ const adminMiddleware = async (req, res, next) => {
     req.user = decoded;
     next();
   } catch (error) {
+    console.error("Admin middleware error:", error.message);
     res.status(401).json({
       success: false,
       message: "Unauthorised user!",

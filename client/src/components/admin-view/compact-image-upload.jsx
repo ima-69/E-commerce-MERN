@@ -3,6 +3,10 @@ import { Button } from "../ui/button";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
+import { createApiCall } from "@/config/api";
+
+// Create CSRF-enabled API instance
+const api = createApiCall(axios);
 
 const CompactImageUpload = ({
   imageFile,
@@ -54,11 +58,10 @@ const CompactImageUpload = ({
       
       const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
       
-      const response = await axios.post(
+      const response = await api.post(
         `${backendUrl}/api/admin/products/upload-image`,
         data,
         {
-          withCredentials: true,
           headers: {
             'Content-Type': 'multipart/form-data'
           }

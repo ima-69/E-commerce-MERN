@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
+const csrf = require('csrf');
 
 dotenv.config();
 
@@ -127,13 +128,68 @@ app.use(
             'Authorization',
             'Cache-Control',
             'Expires',
-            'Pragma'
+            'Pragma',
+            'X-CSRF-Token'
         ],
         credentials: true
     })
 );
 
 app.use(cookieParser());
+
+// CSRF Protection Configuration
+const csrfProtection = csrf();
+
+// Apply CSRF protection to all routes except GET requests and auth endpoints
+app.use((req, res, next) => {
+    // Skip CSRF for GET requests, auth endpoints, and static files
+    if (req.method === 'GET' || 
+        req.path.startsWith('/api/auth0') || 
+        req.path.startsWith('/api/auth/login') ||
+        req.path.startsWith('/api/auth/forgot-password') ||
+        req.path.startsWith('/api/auth/reset-password') ||
+        req.path.includes('/csrf-token')) {
+        return next();
+    }
+    
+    // Skip CSRF for image upload routes (handled by multer)
+    if (req.path.includes('/upload-image')) {
+        return next();
+    }
+    
+    // Apply CSRF protection to all other routes
+    const secret = (req.cookies && req.cookies._csrf) || csrfProtection.secretSync();
+    const token = req.headers['x-csrf-token'] || (req.body && req.body._csrf);
+    
+    if (!token || !csrfProtection.verify(secret, token)) {
+        return res.status(403).json({
+            success: false,
+            message: 'Invalid CSRF token'
+        });
+    }
+    
+    next();
+});
+
+// CSRF Token endpoint for frontend
+app.get('/api/csrf-token', (req, res) => {
+    const secret = (req.cookies && req.cookies._csrf) || csrfProtection.secretSync();
+    const token = csrfProtection.create(secret);
+    
+    // Set CSRF secret in cookie if not already set
+    if (!req.cookies || !req.cookies._csrf) {
+        res.cookie('_csrf', secret, {
+            httpOnly: true,
+            secure: false, // Set to true in production with HTTPS
+            sameSite: 'lax',
+            maxAge: 60 * 60 * 1000 // 1 hour
+        });
+    }
+    
+    res.json({ 
+        csrfToken: token 
+    });
+});
 
 // Apply auth rate limiting to authentication routes
 app.use("/api/auth0", authLimiter, auth0);

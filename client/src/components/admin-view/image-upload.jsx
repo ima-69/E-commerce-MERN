@@ -5,6 +5,10 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "../ui/button";
 import axios from "axios";
 import { Skeleton } from "../ui/skeleton";
+import { createApiCall } from "@/config/api";
+
+// Create CSRF-enabled API instance
+const api = createApiCall(axios);
 
 const ProductImageUpload =  ({
   imageFile,
@@ -83,13 +87,12 @@ const ProductImageUpload =  ({
       
       const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
       
-      const response = await axios.post(
+      const response = await api.post(
         `${backendUrl}/api/admin/products/upload-image`,
         data,
         {
           signal: controller.signal,
           timeout: 60000,
-          withCredentials: true, // This will send cookies automatically
           headers: {
             'Content-Type': 'multipart/form-data'
           }

@@ -9,6 +9,8 @@ const AdminProductTile = ({
   setFormData,
   setOpenCreateProductsDialog,
   setCurrentEditedId,
+  setImageFile,
+  setUploadedImageUrl,
   handleDelete,
 }) => {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
@@ -68,6 +70,8 @@ const AdminProductTile = ({
             setOpenCreateProductsDialog(true);
             setCurrentEditedId(product?._id);
             setFormData(product);
+            setImageFile(null);
+            setUploadedImageUrl(product?.image || "");
           }}
           className="w-full bg-black hover:bg-gray-800 text-white font-medium py-2 rounded-md"
         >

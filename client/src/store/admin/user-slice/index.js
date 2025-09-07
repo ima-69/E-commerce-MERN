@@ -1,5 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { createApiCall } from "@/config/api";
+
+// Create CSRF-enabled API instance
+const api = createApiCall(axios);
 
 const initialState = {
   userList: [],
@@ -13,7 +17,7 @@ const initialState = {
 export const getAllUsers = createAsyncThunk(
   "adminUsers/getAllUsers",
   async () => {
-    const response = await axios.get(
+    const response = await api.get(
       `${import.meta.env.VITE_BACKEND_URL}/api/admin/users`,
       {
         withCredentials: true,
@@ -27,7 +31,7 @@ export const getAllUsers = createAsyncThunk(
 export const getUserById = createAsyncThunk(
   "adminUsers/getUserById",
   async (userId) => {
-    const response = await axios.get(
+    const response = await api.get(
       `${import.meta.env.VITE_BACKEND_URL}/api/admin/users/${userId}`,
       {
         withCredentials: true,
@@ -42,7 +46,7 @@ export const getUserById = createAsyncThunk(
 export const updateUserStatus = createAsyncThunk(
   "adminUsers/updateUserStatus",
   async ({ userId, isActive }) => {
-    const response = await axios.put(
+    const response = await api.put(
       `${import.meta.env.VITE_BACKEND_URL}/api/admin/users/${userId}/status`,
       { isActive },
       {
@@ -57,7 +61,7 @@ export const updateUserStatus = createAsyncThunk(
 export const deleteUser = createAsyncThunk(
   "adminUsers/deleteUser",
   async (userId) => {
-    const response = await axios.delete(
+    const response = await api.delete(
       `${import.meta.env.VITE_BACKEND_URL}/api/admin/users/${userId}`,
       {
         withCredentials: true,
@@ -71,7 +75,7 @@ export const deleteUser = createAsyncThunk(
 export const getUserStats = createAsyncThunk(
   "adminUsers/getUserStats",
   async () => {
-    const response = await axios.get(
+    const response = await api.get(
       `${import.meta.env.VITE_BACKEND_URL}/api/admin/users/stats/overview`,
       {
         withCredentials: true,

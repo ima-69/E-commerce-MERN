@@ -1,5 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { createApiCall } from "@/config/api";
+
+// Create CSRF-enabled API instance
+const api = createApiCall(axios);
 
 const initialState = {
   isAuthenticated: false,
@@ -25,7 +29,7 @@ export const loginUser = createAsyncThunk("/auth/login", async (loginData) => {
   }
   
   // Otherwise, it's a regular login attempt
-  const response = await axios.post(
+  const response = await api.post(
     `${import.meta.env.VITE_BACKEND_URL}/api/auth/login`,
     loginData,
     {
@@ -51,7 +55,7 @@ export const logoutUser = createAsyncThunk(
       return { success: true, message: "Redirecting to Auth0 logout..." };
     } else {
       // For regular users, use standard logout
-      const response = await axios.post(
+      const response = await api.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/auth/logout`,
         {},
         {
@@ -72,7 +76,7 @@ export const checkAuth = createAsyncThunk(
 
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
+      const response = await api.get(
         `${import.meta.env.VITE_BACKEND_URL}/api/auth/check-auth`,
         {
           withCredentials: true,
@@ -99,7 +103,7 @@ export const checkAuth = createAsyncThunk(
 export const getUserProfile = createAsyncThunk(
   "/profile/get",
   async () => {
-    const response = await axios.get(
+    const response = await api.get(
       `${import.meta.env.VITE_BACKEND_URL}/api/profile/`,
       {
         withCredentials: true,
@@ -113,7 +117,7 @@ export const getUserProfile = createAsyncThunk(
 export const updateUserProfile = createAsyncThunk(
   "/profile/update",
   async (profileData) => {
-    const response = await axios.put(
+    const response = await api.put(
       `${import.meta.env.VITE_BACKEND_URL}/api/profile/`,
       profileData,
       {
@@ -131,7 +135,7 @@ export const uploadProfilePicture = createAsyncThunk(
     const formData = new FormData();
     formData.append('profilePicture', file);
     
-    const response = await axios.post(
+    const response = await api.post(
       `${import.meta.env.VITE_BACKEND_URL}/api/profile/picture`,
       formData,
       {
@@ -149,7 +153,7 @@ export const uploadProfilePicture = createAsyncThunk(
 export const deleteProfilePicture = createAsyncThunk(
   "/profile/delete-picture",
   async () => {
-    const response = await axios.delete(
+    const response = await api.delete(
       `${import.meta.env.VITE_BACKEND_URL}/api/profile/picture`,
       {
         withCredentials: true,
@@ -163,7 +167,7 @@ export const deleteProfilePicture = createAsyncThunk(
 export const changePassword = createAsyncThunk(
   "/profile/change-password",
   async (passwordData) => {
-    const response = await axios.put(
+    const response = await api.put(
       `${import.meta.env.VITE_BACKEND_URL}/api/profile/password`,
       passwordData,
       {

@@ -1,6 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { API_BASE_URL, axiosConfig } from "@/config/api";
+import { API_BASE_URL, createApiCall } from "@/config/api";
+
+// Create CSRF-enabled API instance
+const api = createApiCall(axios);
 
 
 const initialState = {
@@ -12,10 +15,9 @@ const initialState = {
 export const addNewProduct = createAsyncThunk(
   "/products/addnewproduct",
   async (formData) => {
-    const result = await axios.post(
+    const result = await api.post(
       `${API_BASE_URL}/api/admin/products/add`,
-      formData,
-      axiosConfig
+      formData
     );
 
     return result?.data;
@@ -25,9 +27,8 @@ export const addNewProduct = createAsyncThunk(
 export const fetchAllProducts = createAsyncThunk(
   "/products/fetchAllProducts",
   async () => {
-    const result = await axios.get(
-      `${API_BASE_URL}/api/admin/products/get`,
-      axiosConfig
+    const result = await api.get(
+      `${API_BASE_URL}/api/admin/products/get`
     );
 
     return result?.data;
@@ -37,10 +38,9 @@ export const fetchAllProducts = createAsyncThunk(
 export const editProduct = createAsyncThunk(
   "/products/editProduct",
   async ({ id, formData }) => {
-    const result = await axios.put(
+    const result = await api.put(
       `${API_BASE_URL}/api/admin/products/edit/${id}`,
-      formData,
-      axiosConfig
+      formData
     );
 
     return result?.data;
@@ -50,9 +50,8 @@ export const editProduct = createAsyncThunk(
 export const deleteProduct = createAsyncThunk(
   "/products/deleteProduct",
   async (id) => {
-    const result = await axios.delete(
-      `${API_BASE_URL}/api/admin/products/delete/${id}`,
-      axiosConfig
+    const result = await api.delete(
+      `${API_BASE_URL}/api/admin/products/delete/${id}`
     );
 
     return result?.data;

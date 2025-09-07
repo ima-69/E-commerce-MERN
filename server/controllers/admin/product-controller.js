@@ -128,15 +128,18 @@ const addProduct = async (req, res) => {
 
 const fetchAllProducts = async (req, res) => {
   try {
+    console.log("Fetching all products for admin...");
     const listOfProducts = await Product.find({});
+    console.log(`Found ${listOfProducts.length} products`);
     res.status(200).json({
       success: true,
       data: listOfProducts,
     });
   } catch (e) {
+    console.error("Error fetching products:", e.message);
     res.status(500).json({
       success: false,
-      message: "Error occured",
+      message: "Error occurred",
     });
   }
 };

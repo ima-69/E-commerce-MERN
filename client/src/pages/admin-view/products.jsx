@@ -116,6 +116,8 @@ const AdminProducts = () => {
           if (data?.payload?.success) {
             dispatch(fetchAllProducts());
             setFormData(initialFormData);
+            setImageFile(null);
+            setUploadedImageUrl("");
             setOpenCreateProductsDialog(false);
             setCurrentEditedId(null);
             toast.success("Product details updated successfully");
@@ -134,6 +136,7 @@ const AdminProducts = () => {
             dispatch(fetchAllProducts());
             setOpenCreateProductsDialog(false);
             setImageFile(null);
+            setUploadedImageUrl("");
             setFormData(initialFormData);
             toast.success("Product added successfully");
           } else {
@@ -197,6 +200,8 @@ const AdminProducts = () => {
                   setFormData={setFormData}
                   setOpenCreateProductsDialog={setOpenCreateProductsDialog}
                   setCurrentEditedId={setCurrentEditedId}
+                  setImageFile={setImageFile}
+                  setUploadedImageUrl={setUploadedImageUrl}
                   product={productItem}
                   handleDelete={handleDelete}
                 />    
@@ -214,6 +219,8 @@ const AdminProducts = () => {
           setOpenCreateProductsDialog(false);
           setCurrentEditedId(null);
           setFormData(initialFormData);
+          setImageFile(null);
+          setUploadedImageUrl("");
         }}
       >
         <SheetContent side="right" className="overflow-auto p-4">

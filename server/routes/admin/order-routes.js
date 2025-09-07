@@ -8,6 +8,7 @@ const {
 } = require("../../controllers/admin/order-controller");
 
 const { adminMiddleware } = require("../../controllers/auth/auth-controller");
+const { validationRules } = require("../../middleware/validation");
 
 const router = express.Router();
 
@@ -15,8 +16,8 @@ const router = express.Router();
 router.use(adminMiddleware);
 
 router.get("/get", getAllOrdersOfAllUsers);
-router.get("/details/:id", getOrderDetailsForAdmin);
-router.put("/update/:id", updateOrderStatus);
-router.delete("/delete/:id", deleteOrder);
+router.get("/details/:id", validationRules.getById, getOrderDetailsForAdmin);
+router.put("/update/:id", validationRules.getById, updateOrderStatus);
+router.delete("/delete/:id", validationRules.getById, deleteOrder);
 
 module.exports = router;

@@ -1,5 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { createApiCall } from "@/config/api";
+
+// Create CSRF-enabled API instance
+const api = createApiCall(axios);
 
 
 const initialState = {
@@ -21,7 +25,7 @@ export const fetchAllFilteredProducts = createAsyncThunk(
     const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 
     try {
-      const result = await axios.get(
+      const result = await api.get(
         `${backendUrl}/api/shop/products/get?${query}`
       );
 
@@ -39,7 +43,7 @@ export const fetchProductDetails = createAsyncThunk(
     const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
     
     try {
-      const result = await axios.get(
+      const result = await api.get(
         `${backendUrl}/api/shop/products/get/${id}`
       );
       return result?.data;
@@ -56,7 +60,7 @@ export const fetchNewArrivals = createAsyncThunk(
     const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
     
     try {
-      const result = await axios.get(
+      const result = await api.get(
         `${backendUrl}/api/shop/products/get?sortBy=createdAt-desc&limit=${limit}`
       );
       return result?.data;

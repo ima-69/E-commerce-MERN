@@ -1,5 +1,9 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createApiCall } from "@/config/api";
+
+// Create CSRF-enabled API instance
+const api = createApiCall(axios);
 
 const initialState = {
   cartItems: [],
@@ -9,7 +13,7 @@ const initialState = {
 export const addToCart = createAsyncThunk(
   "cart/addToCart",
   async ({ userId, productId, quantity }) => {
-    const response = await axios.post(
+    const response = await api.post(
       `${import.meta.env.VITE_BACKEND_URL}/api/shop/cart/add`,
       {
         userId,
@@ -28,7 +32,7 @@ export const addToCart = createAsyncThunk(
 export const fetchCartItems = createAsyncThunk(
   "cart/fetchCartItems",
   async (userId) => {
-    const response = await axios.get(
+    const response = await api.get(
       `${import.meta.env.VITE_BACKEND_URL}/api/shop/cart/get/${userId}`,
       {
         withCredentials: true,
@@ -42,7 +46,7 @@ export const fetchCartItems = createAsyncThunk(
 export const deleteCartItem = createAsyncThunk(
   "cart/deleteCartItem",
   async ({ userId, productId }) => {
-    const response = await axios.delete(
+    const response = await api.delete(
       `${import.meta.env.VITE_BACKEND_URL}/api/shop/cart/${userId}/${productId}`,
       {
         withCredentials: true,
@@ -56,7 +60,7 @@ export const deleteCartItem = createAsyncThunk(
 export const updateCartQuantity = createAsyncThunk(
   "cart/updateCartQuantity",
   async ({ userId, productId, quantity }) => {
-    const response = await axios.put(
+    const response = await api.put(
       `${import.meta.env.VITE_BACKEND_URL}/api/shop/cart/update-cart`,
       {
         userId,
@@ -75,7 +79,7 @@ export const updateCartQuantity = createAsyncThunk(
 export const mergeGuestCart = createAsyncThunk(
   "cart/mergeGuestCart",
   async ({ userId, guestCartItems }) => {
-    const response = await axios.post(
+    const response = await api.post(
       `${import.meta.env.VITE_BACKEND_URL}/api/shop/cart/merge-guest-cart`,
       {
         userId,
