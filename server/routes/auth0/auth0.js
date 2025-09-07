@@ -106,8 +106,9 @@ router.get("/callback", async (req, res) => {
             maxAge: 60 * 60 * 1000, // 1 hour
         });
 
-        // Redirect to the return URL with token parameters
-        const redirectUrl = `${returnTo}/auth/login?token=${token}&id=${id}&role=${role}&email=${email_}&firstName=${fName}&lastName=${Lname}&username=${usrname}`;
+        // Redirect to the frontend login page with token parameters
+        // The frontend will handle the redirect to the original returnTo URL after processing the token
+        const redirectUrl = `http://localhost:5173/auth/login?token=${token}&id=${id}&role=${role}&email=${email_}&firstName=${fName}&lastName=${Lname}&username=${usrname}&returnTo=${encodeURIComponent(returnTo)}`;
         res.redirect(redirectUrl);
     } catch (err) {
         console.error("Callback error:", err.response?.data || err.message);

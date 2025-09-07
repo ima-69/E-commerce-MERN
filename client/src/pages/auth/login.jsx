@@ -9,8 +9,9 @@ const AuthLogin = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Get redirect URL from query params
-  const redirectTo = new URLSearchParams(location.search).get('redirect');
+  // Get redirect URL from query params (either 'redirect' or 'returnTo')
+  const redirectTo = new URLSearchParams(location.search).get('redirect') || 
+                     new URLSearchParams(location.search).get('returnTo');
 
   // --- Handle Auth0 login redirect ---
   useEffect(() => {
