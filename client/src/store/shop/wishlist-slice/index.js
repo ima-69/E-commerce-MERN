@@ -1,19 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { createApiCall } from "@/config/api";
+
+// Create CSRF-enabled API instance
+const api = createApiCall(axios);
 
 // Async thunks for wishlist operations
 export const addToWishlist = createAsyncThunk(
   "wishlist/addToWishlist",
-  async ({ userId, productId }, { rejectWithValue }) => {
+  async ({ productId }, { rejectWithValue }) => {
     try {
-      const response = await axios.post(
+      const response = await api.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/shop/wishlist/add`,
         {
-          userId,
           productId,
-        },
-        {
-          withCredentials: true,
         }
       );
       return response.data;
@@ -25,16 +25,12 @@ export const addToWishlist = createAsyncThunk(
 
 export const removeFromWishlist = createAsyncThunk(
   "wishlist/removeFromWishlist",
-  async ({ userId, productId }, { rejectWithValue }) => {
+  async ({ productId }, { rejectWithValue }) => {
     try {
-      const response = await axios.post(
+      const response = await api.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/shop/wishlist/remove`,
         {
-          userId,
           productId,
-        },
-        {
-          withCredentials: true,
         }
       );
       return response.data;
@@ -48,11 +44,8 @@ export const fetchWishlist = createAsyncThunk(
   "wishlist/fetchWishlist",
   async (userId, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/shop/wishlist/${userId}`,
-        {
-          withCredentials: true,
-        }
+      const response = await api.get(
+        `${import.meta.env.VITE_BACKEND_URL}/api/shop/wishlist/${userId}`
       );
       return response.data;
     } catch (error) {
@@ -65,11 +58,8 @@ export const checkWishlistStatus = createAsyncThunk(
   "wishlist/checkWishlistStatus",
   async ({ userId, productId }, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/shop/wishlist/status/${userId}/${productId}`,
-        {
-          withCredentials: true,
-        }
+      const response = await api.get(
+        `${import.meta.env.VITE_BACKEND_URL}/api/shop/wishlist/status/${userId}/${productId}`
       );
       return response.data;
     } catch (error) {

@@ -27,7 +27,6 @@ const Profile = () => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
-    userName: '',
     email: ''
   });
   const [passwordData, setPasswordData] = useState({
@@ -63,13 +62,6 @@ const Profile = () => {
       newErrors.lastName = "Last name can only contain letters and spaces";
     }
 
-    if (!formData.userName.trim()) {
-      newErrors.userName = "Username is required";
-    } else if (formData.userName.length < 3 || formData.userName.length > 150) {
-      newErrors.userName = "Username must be between 3 and 150 characters";
-    } else if (!/^[a-zA-Z0-9_-]+$/.test(formData.userName)) {
-      newErrors.userName = "Username can only contain letters, numbers, underscores, and hyphens";
-    }
 
     if (!formData.email.trim()) {
       newErrors.email = "Email is required";
@@ -305,7 +297,6 @@ const Profile = () => {
       setFormData({
         firstName: user.firstName || '',
         lastName: user.lastName || '',
-        userName: user.userName || '',
         email: user.email || ''
       });
     }
@@ -322,8 +313,8 @@ const Profile = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      {/* Left Column - Profile Information */}
+    <div className="grid grid-cols-1 gap-6">
+      {/* Profile Information */}
       <Card>
         <CardHeader className="bg-gray-50 border-b">
           <CardTitle className="flex items-center gap-2 text-xl">
@@ -480,37 +471,17 @@ const Profile = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="userName">Username</Label>
-                <Input
-                  id="userName"
-                  name="userName"
-                  value={formData.userName}
-                  onChange={handleInputChange}
-                  disabled={!isEditing || isLoading}
-                  className={errors.userName ? 'border-red-500' : ''}
-                />
-                {errors.userName && (
-                  <p className="text-sm text-red-500">{errors.userName}</p>
-                )}
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  disabled={!isEditing || isLoading}
-                  className={errors.email ? 'border-red-500' : ''}
-                />
-                {errors.email && (
-                  <p className="text-sm text-red-500">{errors.email}</p>
-                )}
-              </div>
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                value={formData.email}
+                disabled={true}
+                className="bg-gray-100 text-gray-600"
+              />
+              <p className="text-sm text-gray-500">Email cannot be changed</p>
             </div>
           </div>
 
@@ -549,6 +520,8 @@ const Profile = () => {
       </Card>
 
       {/* Right Column - Change Password */}
+      {/* Commented out for now - no need for change password section */}
+      {/*
       <Card>
         <CardHeader className="bg-gray-50 border-b">
           <CardTitle className="flex items-center gap-2 text-xl">
@@ -683,6 +656,7 @@ const Profile = () => {
           )}
         </CardContent>
       </Card>
+      */}
     </div>
   );
 };

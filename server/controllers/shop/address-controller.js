@@ -2,9 +2,10 @@ const Address = require("../../models/Address");
 
 const addAddress = async (req, res) => {
   try {
+    // Get user ID from authenticated token
+    const userId = req.user.id;
     
     const { 
-      userId, 
       addressLine1, 
       addressLine2, 
       city, 
@@ -17,7 +18,23 @@ const addAddress = async (req, res) => {
       deliveryInstructions 
     } = req.body;
 
-    if (!userId || !addressLine1 || !city || !state || !postalCode || !country || !phone || !addressType) {
+    // Sanitize inputs
+    const sanitizedData = {
+      addressLine1: addressLine1?.toString().trim(),
+      addressLine2: addressLine2?.toString().trim(),
+      city: city?.toString().trim(),
+      state: state?.toString().trim(),
+      postalCode: postalCode?.toString().trim(),
+      country: country?.toString().trim(),
+      phone: phone?.toString().trim(),
+      countryCode: countryCode?.toString().trim() || "+1",
+      addressType: addressType?.toString().trim(),
+      deliveryInstructions: deliveryInstructions?.toString().trim() || ""
+    };
+
+    if (!sanitizedData.addressLine1 || !sanitizedData.city || !sanitizedData.state || 
+        !sanitizedData.postalCode || !sanitizedData.country || !sanitizedData.phone || 
+        !sanitizedData.addressType) {
       return res.status(400).json({
         success: false,
         message: "Invalid data provided! Required fields: addressLine1, city, state, postalCode, country, phone, addressType",
@@ -26,16 +43,16 @@ const addAddress = async (req, res) => {
 
     const newlyCreatedAddress = new Address({
       userId,
-      addressLine1,
-      addressLine2: addressLine2 || "",
-      city,
-      state,
-      postalCode,
-      country,
-      phone,
-      countryCode: countryCode || "+1",
-      addressType,
-      deliveryInstructions: deliveryInstructions || "",
+      addressLine1: sanitizedData.addressLine1,
+      addressLine2: sanitizedData.addressLine2,
+      city: sanitizedData.city,
+      state: sanitizedData.state,
+      postalCode: sanitizedData.postalCode,
+      country: sanitizedData.country,
+      phone: sanitizedData.phone,
+      countryCode: sanitizedData.countryCode,
+      addressType: sanitizedData.addressType,
+      deliveryInstructions: sanitizedData.deliveryInstructions,
     });
 
     await newlyCreatedAddress.save();
@@ -55,14 +72,26 @@ const addAddress = async (req, res) => {
 const fetchAllAddress = async (req, res) => {
   try {
     const { userId } = req.params;
-    if (!userId) {
+    const authenticatedUserId = req.user.id;
+    
+    // Sanitize and validate the userId parameter
+    const sanitizedUserId = userId?.toString().trim();
+    if (!sanitizedUserId) {
       return res.status(400).json({
         success: false,
         message: "User id is required!",
       });
     }
 
-    const addressList = await Address.find({ userId });
+    // Ensure user can only access their own addresses
+    if (sanitizedUserId !== authenticatedUserId) {
+      return res.status(403).json({
+        success: false,
+        message: "Access denied. You can only view your own addresses.",
+      });
+    }
+
+    const addressList = await Address.find({ userId: sanitizedUserId });
 
     res.status(200).json({
       success: true,
@@ -79,27 +108,46 @@ const fetchAllAddress = async (req, res) => {
 const editAddress = async (req, res) => {
   try {
     const { userId, addressId } = req.params;
+    const authenticatedUserId = req.user.id;
     const formData = req.body;
 
-    if (!userId || !addressId) {
+    // Sanitize and validate parameters
+    const sanitizedUserId = userId?.toString().trim();
+    const sanitizedAddressId = addressId?.toString().trim();
+
+    if (!sanitizedUserId || !sanitizedAddressId) {
       return res.status(400).json({
         success: false,
         message: "User and address id is required!",
       });
     }
 
-    // Validate required fields for update
-    const { 
-      addressLine1, 
-      city, 
-      state, 
-      postalCode, 
-      country, 
-      phone, 
-      addressType 
-    } = formData;
+    // Ensure user can only edit their own addresses
+    if (sanitizedUserId !== authenticatedUserId) {
+      return res.status(403).json({
+        success: false,
+        message: "Access denied. You can only edit your own addresses.",
+      });
+    }
 
-    if (!addressLine1 || !city || !state || !postalCode || !country || !phone || !addressType) {
+    // Sanitize form data
+    const sanitizedFormData = {
+      addressLine1: formData.addressLine1?.toString().trim(),
+      addressLine2: formData.addressLine2?.toString().trim(),
+      city: formData.city?.toString().trim(),
+      state: formData.state?.toString().trim(),
+      postalCode: formData.postalCode?.toString().trim(),
+      country: formData.country?.toString().trim(),
+      phone: formData.phone?.toString().trim(),
+      countryCode: formData.countryCode?.toString().trim() || "+1",
+      addressType: formData.addressType?.toString().trim(),
+      deliveryInstructions: formData.deliveryInstructions?.toString().trim() || ""
+    };
+
+    // Validate required fields for update
+    if (!sanitizedFormData.addressLine1 || !sanitizedFormData.city || !sanitizedFormData.state || 
+        !sanitizedFormData.postalCode || !sanitizedFormData.country || !sanitizedFormData.phone || 
+        !sanitizedFormData.addressType) {
       return res.status(400).json({
         success: false,
         message: "Invalid data provided! Required fields: addressLine1, city, state, postalCode, country, phone, addressType",
@@ -108,10 +156,10 @@ const editAddress = async (req, res) => {
 
     const address = await Address.findOneAndUpdate(
       {
-        _id: addressId,
-        userId,
+        _id: sanitizedAddressId,
+        userId: sanitizedUserId,
       },
-      formData,
+      sanitizedFormData,
       { new: true }
     );
 
@@ -137,14 +185,31 @@ const editAddress = async (req, res) => {
 const deleteAddress = async (req, res) => {
   try {
     const { userId, addressId } = req.params;
-    if (!userId || !addressId) {
+    const authenticatedUserId = req.user.id;
+
+    // Sanitize and validate parameters
+    const sanitizedUserId = userId?.toString().trim();
+    const sanitizedAddressId = addressId?.toString().trim();
+
+    if (!sanitizedUserId || !sanitizedAddressId) {
       return res.status(400).json({
         success: false,
         message: "User and address id is required!",
       });
     }
 
-    const address = await Address.findOneAndDelete({ _id: addressId, userId });
+    // Ensure user can only delete their own addresses
+    if (sanitizedUserId !== authenticatedUserId) {
+      return res.status(403).json({
+        success: false,
+        message: "Access denied. You can only delete your own addresses.",
+      });
+    }
+
+    const address = await Address.findOneAndDelete({ 
+      _id: sanitizedAddressId, 
+      userId: sanitizedUserId 
+    });
 
     if (!address) {
       return res.status(404).json({

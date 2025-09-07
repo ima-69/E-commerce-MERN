@@ -4,12 +4,16 @@ const Product = require("../../models/Product");
 // Add product to wishlist
 const addToWishlist = async (req, res) => {
   try {
-    const { userId, productId } = req.body;
+    // Get user ID from authenticated token
+    const userId = req.user.id;
+    const { productId } = req.body;
 
-    if (!userId || !productId) {
+    // Sanitize and validate productId
+    const sanitizedProductId = productId?.toString().trim();
+    if (!sanitizedProductId) {
       return res.status(400).json({
         success: false,
-        message: "User ID and Product ID are required",
+        message: "Product ID is required",
       });
     }
 
@@ -21,7 +25,7 @@ const addToWishlist = async (req, res) => {
       });
     }
 
-    const product = await Product.findById(productId);
+    const product = await Product.findById(sanitizedProductId);
     if (!product) {
       return res.status(404).json({
         success: false,
@@ -30,7 +34,7 @@ const addToWishlist = async (req, res) => {
     }
 
     // Check if product is already in wishlist
-    if (user.wishlist.includes(productId)) {
+    if (user.wishlist.includes(sanitizedProductId)) {
       return res.status(400).json({
         success: false,
         message: "Product already in wishlist",
@@ -38,7 +42,7 @@ const addToWishlist = async (req, res) => {
     }
 
     // Add product to wishlist
-    user.wishlist.push(productId);
+    user.wishlist.push(sanitizedProductId);
     await user.save();
 
     res.status(200).json({
@@ -58,12 +62,16 @@ const addToWishlist = async (req, res) => {
 // Remove product from wishlist
 const removeFromWishlist = async (req, res) => {
   try {
-    const { userId, productId } = req.body;
+    // Get user ID from authenticated token
+    const userId = req.user.id;
+    const { productId } = req.body;
 
-    if (!userId || !productId) {
+    // Sanitize and validate productId
+    const sanitizedProductId = productId?.toString().trim();
+    if (!sanitizedProductId) {
       return res.status(400).json({
         success: false,
-        message: "User ID and Product ID are required",
+        message: "Product ID is required",
       });
     }
 
@@ -76,7 +84,7 @@ const removeFromWishlist = async (req, res) => {
     }
 
     // Check if product is in wishlist
-    const productIndex = user.wishlist.indexOf(productId);
+    const productIndex = user.wishlist.indexOf(sanitizedProductId);
     if (productIndex === -1) {
       return res.status(400).json({
         success: false,

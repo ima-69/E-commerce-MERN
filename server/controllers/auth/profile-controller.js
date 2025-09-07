@@ -33,49 +33,18 @@ const getUserProfile = async (req, res) => {
 const updateUserProfile = async (req, res) => {
   try {
     const userId = req.user.id;
-    const { firstName, lastName, userName, email } = req.body;
+    const { firstName, lastName } = req.body;
 
     // Sanitize inputs
     const sanitizedData = {
       firstName: firstName?.toString().trim(),
-      lastName: lastName?.toString().trim(),
-      userName: userName?.toString().trim(),
-      email: email?.toString().trim().toLowerCase()
+      lastName: lastName?.toString().trim()
     };
-
-    // Check if username or email already exists (excluding current user)
-    if (sanitizedData.userName) {
-      const existingUserByUsername = await User.findOne({ 
-        userName: sanitizedData.userName, 
-        _id: { $ne: userId } 
-      });
-      if (existingUserByUsername) {
-        return res.status(400).json({
-          success: false,
-          message: "Username already exists"
-        });
-      }
-    }
-
-    if (sanitizedData.email) {
-      const existingUserByEmail = await User.findOne({ 
-        email: sanitizedData.email, 
-        _id: { $ne: userId } 
-      });
-      if (existingUserByEmail) {
-        return res.status(400).json({
-          success: false,
-          message: "Email already exists"
-        });
-      }
-    }
 
     // Update user profile
     const updateData = {};
     if (sanitizedData.firstName) updateData.firstName = sanitizedData.firstName;
     if (sanitizedData.lastName) updateData.lastName = sanitizedData.lastName;
-    if (sanitizedData.userName) updateData.userName = sanitizedData.userName;
-    if (sanitizedData.email) updateData.email = sanitizedData.email;
 
     const updatedUser = await User.findByIdAndUpdate(
       userId,

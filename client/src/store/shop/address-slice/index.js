@@ -1,20 +1,21 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { createApiCall } from "@/config/api";
 
 const initialState = {
   isLoading: false,
   addressList: [],
 };
 
+// Create CSRF-enabled API instance
+const api = createApiCall(axios);
+
 export const addNewAddress = createAsyncThunk(
   "/addresses/addNewAddress",
   async (formData) => {
-    const response = await axios.post(
+    const response = await api.post(
       `${import.meta.env.VITE_BACKEND_URL}/api/shop/address/add`,
-      formData,
-      {
-        withCredentials: true,
-      }
+      formData
     );
 
     return response.data;
@@ -24,11 +25,8 @@ export const addNewAddress = createAsyncThunk(
 export const fetchAllAddresses = createAsyncThunk(
   "/addresses/fetchAllAddresses",
   async (userId) => {
-    const response = await axios.get(
-      `${import.meta.env.VITE_BACKEND_URL}/api/shop/address/get/${userId}`,
-      {
-        withCredentials: true,
-      }
+    const response = await api.get(
+      `${import.meta.env.VITE_BACKEND_URL}/api/shop/address/get/${userId}`
     );
 
     return response.data;
@@ -38,12 +36,9 @@ export const fetchAllAddresses = createAsyncThunk(
 export const editaAddress = createAsyncThunk(
   "/addresses/editaAddress",
   async ({ userId, addressId, formData }) => {
-    const response = await axios.put(
+    const response = await api.put(
       `${import.meta.env.VITE_BACKEND_URL}/api/shop/address/update/${userId}/${addressId}`,
-      formData,
-      {
-        withCredentials: true,
-      }
+      formData
     );
 
     return response.data;
@@ -53,11 +48,8 @@ export const editaAddress = createAsyncThunk(
 export const deleteAddress = createAsyncThunk(
   "/addresses/deleteAddress",
   async ({ userId, addressId }) => {
-    const response = await axios.delete(
-      `${import.meta.env.VITE_BACKEND_URL}/api/shop/address/delete/${userId}/${addressId}`,
-      {
-        withCredentials: true,
-      }
+    const response = await api.delete(
+      `${import.meta.env.VITE_BACKEND_URL}/api/shop/address/delete/${userId}/${addressId}`
     );
 
     return response.data;

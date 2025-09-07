@@ -1,4 +1,5 @@
 const express = require("express");
+const { authenticateToken } = require("../../middleware/auth");
 
 const {
   addAddress,
@@ -9,9 +10,9 @@ const {
 
 const router = express.Router();
 
-router.post("/add", addAddress);
-router.get("/get/:userId", fetchAllAddress);
-router.delete("/delete/:userId/:addressId", deleteAddress);
-router.put("/update/:userId/:addressId", editAddress);
+router.post("/add", authenticateToken, addAddress);
+router.get("/get/:userId", authenticateToken, fetchAllAddress);
+router.delete("/delete/:userId/:addressId", authenticateToken, deleteAddress);
+router.put("/update/:userId/:addressId", authenticateToken, editAddress);
 
 module.exports = router;

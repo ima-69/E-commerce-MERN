@@ -72,10 +72,7 @@ function CheckoutAddress({ setCurrentSelectedAddress, selectedId }) {
           }
         })
       : dispatch(
-          addNewAddress({
-            ...formData,
-            userId: userId,
-          })
+          addNewAddress(formData)
         ).then((data) => {
           if (data?.payload?.success) {
             dispatch(fetchAllAddresses(userId));

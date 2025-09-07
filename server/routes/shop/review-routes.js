@@ -1,4 +1,5 @@
 const express = require("express");
+const { authenticateToken } = require("../../middleware/auth");
 
 const {
   addProductReview,
@@ -7,7 +8,7 @@ const {
 
 const router = express.Router();
 
-router.post("/add", addProductReview);
+router.post("/add", authenticateToken, addProductReview);
 router.get("/:productId", getProductReviews);
 
 module.exports = router;

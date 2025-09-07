@@ -1,15 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { createApiCall } from "@/config/api";
 
 const initialState = {
   isLoading: false,
   reviews: [],
 };
 
+// Create CSRF-enabled API instance
+const api = createApiCall(axios);
+
 export const addReview = createAsyncThunk(
   "/order/addReview",
   async (formdata) => {
-    const response = await axios.post(
+    const response = await api.post(
       `${import.meta.env.VITE_BACKEND_URL}/api/shop/review/add`,
       formdata
     );
@@ -19,7 +23,7 @@ export const addReview = createAsyncThunk(
 );
 
 export const getReviews = createAsyncThunk("/order/getReviews", async (id) => {
-  const response = await axios.get(
+  const response = await api.get(
     `${import.meta.env.VITE_BACKEND_URL}/api/shop/review/${id}`
   );
 

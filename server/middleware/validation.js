@@ -209,8 +209,6 @@ const validationRules = {
     updateProfile: [
         commonValidations.firstName,
         commonValidations.lastName,
-        commonValidations.userName,
-        commonValidations.email,
         handleValidationErrors
     ],
 

@@ -82,11 +82,13 @@ const ProductDetailsDialog = ({ open, setOpen, productDetails }) => {
   }
 
   const handleAddReview = () => {
+    // Create full name from firstName and lastName
+    const fullName = `${user?.firstName || ''} ${user?.lastName || ''}`.trim();
+    
     dispatch(
       addReview({
         productId: productDetails?._id,
-        userId: user?.id || user?._id,
-        userName: user?.userName,
+        userName: fullName || user?.userName || 'Anonymous',
         reviewMessage: reviewMsg,
         reviewValue: rating,
       })
